@@ -1,0 +1,20 @@
+@media (max-width: 740px) {
+    .slide {
+        background-position: center;
+    }
+    .head-menu {
+        height: 85px;
+    }
+    .head-menu .center{
+        width: 80%;
+    }
+    .head-btn{
+        height: 85px;
+        line-height: 85px;
+        font-size: 40px;
+    }
+    .md-effect-10.md-modal {    
+        height: calc(100% - 85px);
+        top: 85px;
+    }
+}

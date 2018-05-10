@@ -36,6 +36,13 @@ let design = () => {
         openModal($(this).attr('data-modal'));
     });
     var swiper = new Swiper(".swiper-container", swiperOptions);
+    
+    setTimeout(function(){
+        $("#slog1").css({'transform':'translate(0%, 0)'});
+    },500);
+    setTimeout(function(){
+        $("#slog2").css({'transform':'translate(0%, 0)'});
+    },1500);
 };
 
 var interleaveOffset = 0.5;
@@ -83,9 +90,24 @@ var swiperOptions = {
   }
 };
 
+function updateTime () {
+  var now = new Date();
+
+  document.getElementById("hour-hand").style.webkitTransform = "rotate(" + (now.getHours() * 30 + now.getMinutes() / 2) + "deg)";
+  
+  document.getElementById("min-hand").style.webkitTransform = "rotate(" + (now.getMinutes() * 6 + now.getSeconds() / 10) + "deg)";
+  
+  document.getElementById("sec-hand").style.webkitTransform = "rotate(" + now.getSeconds() * 6 + "deg)";
+
+  setTimeout(function () {
+      updateTime();
+  }, 1000);
+}
+
+
 
 
 $(document).ready(() => {
     design();
-    
+    updateTime();
 });

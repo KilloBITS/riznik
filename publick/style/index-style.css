@@ -1,12 +1,4 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 10.05.2018, 10:16:28
-    Author     : User8
-*/
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
 @font-face {
     font-family: 'btn';
     src: url('fonts/btn.otf');
@@ -265,17 +257,18 @@ body{
 
 #head{
     width: 100%;
-    height: 100%;
+    height: calc(100% - 50px);
     background: rgba(19, 0, 162, 0.4);
+    overflow: hidden;
 }
 
-#head:after{
+.about-head:after{
     content: '';
     position: absolute;
     display: block;
     width: 100%;
     height: 15px;
-    bottom: -15px;
+    top: 0;
     left: 0;
     color: #77383f;
     background-image: linear-gradient(45deg, rgba(0, 0, 0, 0) 33.333%, 33.333%, currentColor 66.667%, rgba(0, 0, 0, 0) 66.667%), linear-gradient(-45deg, rgba(0, 0, 0, 0) 33.333%, 33.333%, currentColor 66.667%, rgba(0, 0, 0, 0) 66.667%);
@@ -337,7 +330,7 @@ a {
 
 .head-menu{
     width: 100%;
-    height: 40px;
+    height: 50px;
     background: rgba(0, 0, 0, 0.4);  
     position: fixed;
     z-index: 5;
@@ -370,7 +363,7 @@ a {
     height: 40px;
 }
 
-.head-btn, .slash{
+/*.head-btn, .slash{
     font-family: btn3;
     float: left;
     display: inline-block;
@@ -382,19 +375,115 @@ a {
     transition: 0.3s;
     height: 40px;
     line-height: 40px;
-}
+}*/
 
 .slash{
     padding: 0;
 }
 
-.head-btn:hover{
+/*.head-btn:hover{
     color: rgba(255, 255, 255, 0.85);
     transition: 0.3s;  
     outline: 1px dashed rgba(218, 218, 218, 0.8);
     outline-offset: -5px;
+}*/
+
+
+section#button-container {
+  display: inline-block;
+  width: 100%;
+}
+section#button-container .container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  display: block;
+  float: left;
+  width: 100%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+section#button-container .button {
+  margin: 0 20px;
+  float: left;
+  position: relative;
+  font-family: arial;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+}
+section#button-container .button .label {
+  padding: 0px;
+  display: inline-block;
 }
 
+section#button-container .button.v13:hover .icon {
+  -webkit-transform: scale(0.9) skew(0deg, 0deg);
+          transform: scale(0.9) skew(0deg, 0deg);
+}
+section#button-container .button.v13:hover .icon:before, section#button-container .button.v13:hover .icon:after {
+  width: 60px;
+}
+section#button-container .button.v13:hover .icon:before {
+  left: calc(50% - 30px);
+}
+section#button-container .button.v13:hover .icon:after {
+  right: calc(50% - 30px);
+}
+section#button-container .button.v13:hover .icon span:before, section#button-container .button.v13:hover .icon span:after {
+  height: 0;
+}
+section#button-container .button.v13 .label {
+    padding: 0 22px;
+}
+section#button-container .button.v13 .icon {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: skew(-40deg, 0deg);
+          transform: skew(-40deg, 0deg);
+  transition: all 0.2s;
+}
+section#button-container .button.v13 .icon:before, section#button-container .button.v13 .icon:after {
+  content: '';
+  height: 1px;
+  width: 30px;
+  position: absolute;
+  display: block;
+  background: #f0202f;
+  transition: all 0.2s;
+  transition-delay: 0.4s;
+}
+section#button-container .button.v13 .icon:before {
+    left: 0;
+    top: 6px;
+}
+section#button-container .button.v13 .icon:after {
+    right: 0;
+    bottom: 6px;
+}
+section#button-container .button.v13 .icon span:before, section#button-container .button.v13 .icon span:after {
+  content: '';
+  background: #f0202f;
+  position: absolute;
+  display: block;
+  width: 2px;
+  height: 30px;
+  transition: all 0.2s;
+  transition-delay: 0.2s;
+}
+section#button-container .button.v13 .icon span:before {
+    left: 0;
+    top: 6px;
+}
+section#button-container .button.v13 .icon span:after {
+    right: 0;
+    bottom: 6px;    
+}
 
 /* Effect 10: 3D sign */
 .md-effect-10.md-modal {
@@ -462,6 +551,29 @@ a {
     border: 0;
 }
 
+.slogan{
+    position: absolute;
+    right: 0;
+    /* background: black; */
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 5;
+    color: white;
+    font-family: btn3;
+    font-size: 40px;
+    padding: 22px 40px;
+    border-radius: 15px 0 0 15px;
+    transition: 0.8s
+}
+
+#slog1{
+    top: 22%;
+    transform: translate(100%, 0);
+}
+#slog2{
+    top: 35%;
+    transform: translate(100%, 0);
+}
+
 .LOGOTYPE{
     background: rgba(0, 0, 0, 0.4) url(../../../image/logo.png);
     width: 150px;
@@ -470,10 +582,11 @@ a {
     background-repeat: no-repeat;
     background-position: center;
     position: absolute;
-    top: 45px;
+    top: 55px;
     padding: 5px;
     left: 5px;
     border-radius: 5px;
+    z-index: 2;
 }
 
 
@@ -498,26 +611,12 @@ a {
     border-radius: 30px 0 0 0;
     position: absolute;
     right: 0;
-    bottom: 12px;
-}
-
-.foot-C{
-    position: absolute;
-    width: 100px;
-    height: 50px;
-    background: rgb(255, 198, 198);
-    left: 50%;
-    bottom: 0;
-    transform: translate(-50%, 0);
-    border-radius: 100px 100px 0 0;
-    border: 1px dashed black;
-    border-bottom: 0;
-    /* box-shadow: 0px -3px 15px 1px white; */
+    top: 0;
 }
 
 .socials{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background-size: 180px;
     background-repeat: no-repeat;
     cursor: pointer;
@@ -528,21 +627,19 @@ a {
 
 #instagramm{
     background-image: url(../../../image/socials.png);
-    background-position: 0 0px;
+    background-position: -115px -10px;
 }
 #facebook{
     background-image: url(../../../image/socials.png);
-    background-position: -48px 0px;
-    width: 45px;
+    background-position: -26px -10px;
 }
 #twitter{
     background-image: url(../../../image/socials.png);
-    background-position: -90px 0px;
-    width: 46px;
+    background-position: -70px -10px;
 }
-#whatsapp{
+#youtube{
     background-image: url(../../../image/socials.png);
-    background-position: -135px 0px;
+    background-position: -70px -54px;
 }
 
 .socials:hover{
@@ -550,5 +647,334 @@ a {
 }
 
 .about-head{
-    
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background: #cd2222;
+    box-shadow: 0px 1px 6px 0px black;
+}
+
+.about-logo{
+    position: absolute;
+    left: 50%;
+    top: -75px;
+    width: 150px;
+    height: 150px;
+    z-index: 2;
+    background: #ffc6c6 url(../../../image/logo.png);
+    background-size: 47px;
+    border-radius: 150px;
+    background-repeat: no-repeat;
+    background-position: center 12px;
+    border: 4px solid #cd2222;
+    transform: translate(-50%, 0);
+}
+
+.about-logo-text{
+    position: absolute;
+    bottom: 38px;
+    font-family: btn2;
+    font-weight: bold;
+    color: rgba(205, 34, 34, 0.65);
+    width: 100%;
+    text-align: center;
+    font-size: 17px;
+    z-index: -1;
+}
+
+#analog-clock {
+    position: relative;
+    width: 142px;
+    height: 142px;
+    margin: auto;
+}
+
+#clock-dial {
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0px 0px 3px 1px black;
+    border-radius: 50%;
+}
+
+#clock-dial-circle {
+    position: absolute;
+    width: 3%;
+    height: 3%;  
+    border-radius: 50%;
+    background: white;
+    top: 48.5%;
+    left: 48.5%;
+}
+
+.clock-dial-stick {
+    position: absolute;
+    top: 5%;
+    left: 49.8%;
+    width: 0.7%;
+    height: 7%;
+    opacity 0.5;
+      background: rgba(0, 0, 0, 0.52);
+    -webkit-transform-origin: 50% 650%;
+}
+#clock-dial-12 {
+  -webkit-transform: rotate(0deg);
+}
+#clock-dial-1 {
+  -webkit-transform: rotate(30deg);
+}
+#clock-dial-2 {
+  -webkit-transform: rotate(60deg);
+}
+#clock-dial-3 {
+  -webkit-transform: rotate(90deg);
+}
+#clock-dial-4 {
+  -webkit-transform: rotate(120deg);
+}
+#clock-dial-5 {
+  -webkit-transform: rotate(150deg);
+}
+#clock-dial-6 {
+  -webkit-transform: rotate(180deg);
+}
+#clock-dial-7 {
+  -webkit-transform: rotate(210deg);
+}
+#clock-dial-8 {
+  -webkit-transform: rotate(240deg);
+}
+#clock-dial-9 {
+  -webkit-transform: rotate(270deg);
+}
+#clock-dial-10 {
+  -webkit-transform: rotate(300deg);
+}
+#clock-dial-11 {
+  -webkit-transform: rotate(330deg);
+}
+
+#hour-hand {
+	position: absolute;
+	width: 1.5%;
+  height: 25%;
+  background: white;
+  top: 24%;
+  left: 49.25%;
+  -webkit-transform-origin: 50% 110%;
+}
+
+#min-hand {
+  position: absolute;
+  width: 1.5%;
+  height: 35%;
+  background: white;
+  top: 12%;
+  left: 49.25%;
+  -webkit-transform-origin: 50% 110%;
+}
+
+#sec-hand {
+  position: absolute;
+  width: 1%;
+  height: 35%;
+  background: red;
+  top: 12%;
+  left: 49.5%;
+  -webkit-transform-origin: 50% 110%;
+}
+
+/* apply a natural box layout model to all elements */
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+.container {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin: 0;
+}
+.container .circle {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 5px;
+  stroke-dasharray: 40;
+  transition: all 0.2s ease-in-out;
+  -webkit-animation: outWaveOut 1s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+          animation: outWaveOut 1s cubic-bezier(0.42, 0, 0.58, 1) forwards;
+}
+.container .social {
+  color: white;
+  font-size: 1.8em;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease-in-out;
+}
+.container:hover {
+  cursor: pointer;
+}
+.twitter:hover .circle {
+  fill: #ffffff;
+  fill-opacity: 1;
+  -webkit-animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorTwitter 1s linear forwards;
+          animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorTwitter 1s linear forwards;
+}
+.twitter:hover .social {
+  color: #3aaae1;
+}
+.facebook:hover .circle {
+  fill: #ffffff;
+  fill-opacity: 1;
+  -webkit-animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorFacebook 1s linear forwards;
+          animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorFacebook 1s linear forwards;
+}
+.facebook:hover .social {
+  color: #3b5998;
+}
+.google:hover .circle {
+  fill: #ffffff;
+  fill-opacity: 1;
+  -webkit-animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorGoogle 1s linear forwards;
+          animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorGoogle 1s linear forwards;
+}
+.google:hover .social {
+  color: #dd4b39;
+}
+.pinterest:hover .circle {
+  fill: #ffffff;
+  fill-opacity: 1;
+  -webkit-animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorPinterest 1s linear forwards;
+          animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorPinterest 1s linear forwards;
+}
+.pinterest:hover .social {
+  color: #cb2027;
+}
+.linkedin:hover .circle {
+  fill: #ffffff;
+  fill-opacity: 1;
+  -webkit-animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorLinkedin 1s linear forwards;
+          animation: outWaveIn 1s cubic-bezier(0.42, 0, 0.58, 1) forwards, colorLinkedin 1s linear forwards;
+}
+.linkedin:hover .social {
+  color: #007bb6;
+}
+@-webkit-keyframes colorTwitter {
+  from {
+    stroke: #ffffff;
+  }
+  to {
+    stroke: #3aaae1;
+  }
+}
+@keyframes colorTwitter {
+  from {
+    stroke: #ffffff;
+  }
+  to {
+    stroke: #3aaae1;
+  }
+}
+@-webkit-keyframes colorFacebook {
+  from {
+    stroke: #ffffff;
+  }
+  to {
+    stroke: #3b5998;
+  }
+}
+@keyframes colorFacebook {
+  from {
+    stroke: #ffffff;
+  }
+  to {
+    stroke: #3b5998;
+  }
+}
+@-webkit-keyframes colorGoogle {
+  from {
+    stroke: #ffffff;
+  }
+  to {
+    stroke: #dd4b39;
+  }
+}
+@keyframes colorGoogle {
+  from {
+    stroke: #ffffff;
+  }
+  to {
+    stroke: #dd4b39;
+  }
+}
+@-webkit-keyframes colorPinterest {
+  from {
+    stroke: #ffffff;
+  }
+  to {
+    stroke: #cb2027;
+  }
+}
+@keyframes colorPinterest {
+  from {
+    stroke: #ffffff;
+  }
+  to {
+    stroke: #cb2027;
+  }
+}
+@-webkit-keyframes colorLinkedin {
+  from {
+    stroke: #ffffff;
+  }
+  to {
+    stroke: #007bb6;
+  }
+}
+@keyframes colorLinkedin {
+  from {
+    stroke: #ffffff;
+  }
+  to {
+    stroke: #007bb6;
+  }
+}
+@-webkit-keyframes outWaveIn {
+  to {
+    stroke-width: 10px;
+    stroke-dasharray: 400;
+  }
+}
+@keyframes outWaveIn {
+  to {
+    stroke-width: 10px;
+    stroke-dasharray: 400;
+  }
+}
+@-webkit-keyframes outWaveOut {
+  from {
+    stroke-width: 10px;
+    stroke-dasharray: 400;
+  }
+  to {
+    stroke: #ffffff;
+    stroke-width: 5px;
+    stroke-dasharray: 40;
+  }
+}
+@keyframes outWaveOut {
+  from {
+    stroke-width: 10px;
+    stroke-dasharray: 400;
+  }
+  to {
+    stroke: #ffffff;
+    stroke-width: 5px;
+    stroke-dasharray: 40;
+  }
 }

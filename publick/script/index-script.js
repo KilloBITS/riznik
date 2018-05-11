@@ -45,15 +45,15 @@ let closeModal = () => {
     }
 };
 
- function initMap() {
+ function initMap(i) {
 //     49.826827,
-        var uluru = {lat: 49.8339874, lng: 24.0082176};
+        var uluru = [{lat: 49.832343, lng: 24.0341354},{lat: 49.8339874, lng: 24.0082176}];
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 18,
-          center: uluru
+          center: uluru[i]
         });
         var marker = new google.maps.Marker({
-          position: uluru,
+          position: uluru[i],
           map: map
         });
       }
@@ -73,10 +73,15 @@ let design = () => {
     });
     
     $('.sPhoto').click(function(){
-        initMap();
+        var index = $('.sPhoto').index(this);
+        console.log(index)
+        initMap(index);
         $("#modal-6").addClass('md-show');
     });
     
+    $('.modal-6-close').click(function(){
+        $('#modal-6').removeClass('md-show');
+    });   
     
         
     var wrapperMenu = document.querySelector('.wrapper-menu');

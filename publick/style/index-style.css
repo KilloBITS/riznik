@@ -566,7 +566,7 @@ section#button-container .button.v13 .icon span:after {
     width: 100%;
     height: calc(100% - 50px);
     top: 50px;
-    z-index: 5;
+    z-index: 10;
     display: none;
 }
 
@@ -1154,7 +1154,7 @@ section#button-container .button.v13 .icon span:after {
 
 .md-modal-map {
 	position: fixed;
-	z-index: 2000;
+	z-index: 5;
 	visibility: hidden;
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
@@ -1185,35 +1185,33 @@ section#button-container .button.v13 .icon span:after {
 }
 
 .md-show ~ .md-overlay {
-	opacity: 1;
-	visibility: visible;
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Content styles */
 .md-content-map {
-	color: #fff;
-	background: #e74c3c;
-	position: relative;
-	border-radius: 3px;
-	margin: 0 auto;
+    color: #fff;
+    background: #e74c3c;
+    position: relative;
+    border-radius: 3px;
+    margin: 0 auto;
 }
 
 .md-content-map h3 {
-	margin: 0;
-	padding: 0.4em;
-	text-align: center;
-	font-size: 2.4em;
-	font-weight: 300;
-	opacity: 0.8;
-	background: rgba(0,0,0,0.1);
-	border-radius: 3px 3px 0 0;
+    margin: 0;
+    padding: 0.4em;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 300;
+    font-family: btn;
+    opacity: 0.8;
+    background: rgba(0,0,0,0.1);
+    border-radius: 3px 3px 0 0; 
 }
 
 .md-content-map > div {
-	padding: 15px 40px 30px;
-	margin: 0;
-	font-weight: 300;
-	font-size: 1.15em;
+    padding: 5px;
 }
 
 .md-content-map > div p {
@@ -1240,10 +1238,29 @@ section#button-container .button.v13 .icon span:after {
 #modal-6{
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%)
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 3px 12px -1px black;
 }
 
 #map {
     height: 400px;
     width: 400px;
+}
+
+.modal-6-close{
+    position: absolute;
+    z-index: 5;
+    right: 0;
+    margin: 0;
+    padding: 0.4em;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 300;
+    font-family: btn;
+    opacity: 0.8;
+    /* background: rgba(0,0,0,0.1); */
+    border-radius: 3px 3px 0 0;
+    cursor: pointer;
+    color: #fbe3e1;
+    font-weight: 900;
 }

@@ -1242,3 +1242,8 @@ section#button-container .button.v13 .icon span:after {
     top: 50%;
     transform: translate(-50%, -50%)
 }
+
+#map {
+    height: 400px;
+    width: 400px;
+}

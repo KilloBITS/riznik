@@ -1,13 +1,29 @@
 'use strict';
 let site = new Object();
-let openModal = (numModal) => {
+
+function writeCSS(css) {
+  var head = document.head || document.getElementsByTagName('head')[0],
+    style = document.createElement('style');
+
+  style.type = 'text/css';
+  if(style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+  head.appendChild(style);
+}
+
+let openModal = (numModal,index) => {
     $('.md-effect-10').fadeIn(300);
     if(site.modal){
         closeModal();
     }else{
         if(numModal === 'modal-10'){
             site.modal = numModal;
-            //.css({"z-index": "5"});
+            let position = $('.md-trigger:eq('+index+')').offset().left + ($('.md-trigger:eq('+index+')').width() / 2);
+//            writeCSS('.md-effect-10 .md-content:after{ left:'+position+'px}');
+            $('.content').css({"overflow": "hidden"});
             $('.head-menu').addClass('darkHeadMenu');
             $('#modal-10').addClass('md-show');
         }  
@@ -23,17 +39,45 @@ let closeModal = () => {
             setTimeout(() => {
                 $('.md-effect-10').hide();//.css({"z-index": "0"});
             }, 300);
+            $('.content').css({"overflow": "auto"});
             delete site.modal;
             break;
     }
 };
 
+
+    
 let design = () => {
     $('.content').removeClass('blur');
     $('#document-preload').fadeOut(250);
     
     $('.md-trigger').click(function(){
-        openModal($(this).attr('data-modal'));
+        openModal($(this).attr('data-modal'),$(this).index(this));
+    });
+    
+    $('#toAbout').click(function(){
+        let top = $("#about").offset().top;
+
+        $('.content').animate({scrollTop: top}, 1500);
+
+    });
+        
+    var wrapperMenu = document.querySelector('.wrapper-menu');
+
+    wrapperMenu.addEventListener('click', function(){
+      wrapperMenu.classList.toggle('open');
+      $('.mButton').toggle(150);
+//      $('.mobile-menu-btn').css({"background": "rgba(0, 0, 0, 0.95)"});
+    });
+    $(".content").scroll(function(){
+        console.log($(".content").scrollTop());
+        if($(".content").scrollTop() > 300){
+            $('.legend').css({"opacity":"1"});
+        }
+
+        if($(".content").scrollTop() > 500){
+            $('.myShops').css({"opacity":"1"});
+        }
     });
     var swiper = new Swiper(".swiper-container", swiperOptions);
     

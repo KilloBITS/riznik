@@ -365,8 +365,8 @@ body{
     transition: 0.7s;
     opacity: 0;
     cursor: default;
-    /*text-shadow: 1px 1px 0px #b3b3b3;*/
-    margin-top: 160px;
+    /* text-shadow: 1px 1px 0px #b3b3b3; */
+    margin-top: 94px;
     margin-bottom: 50px;
 }
 
@@ -1491,26 +1491,23 @@ section#button-container .button.v13 .icon span:after {
     opacity: 0;
     text-transform: uppercase;
     display: block;
-    color: #713900;
-    text-shadow: 1px 3px 6px #60584a, 0px -2px 1px #fff;
+    color: #dd6849;
+    /* text-shadow: 1px 3px 6px #60584a, 0px -2px 1px #fff; */
     font-weight: bold;
-    letter-spacing: -2px;
+    /* letter-spacing: -2px; */
 }
 
 .popular-text{
     position: absolute;
-    background: rgba(0, 0, 0, 0.4);
     font-family: btn;
     font-size: 36px;
     top: 40px;
-    padding: 11px 200px 10px 40px;
-    text-align: left;
-    width: 60%;
-    max-width: 850px;
+    width: 100%;
     right: 0;
     color: white;
     transition: 0.5s;
-    transform: translate(101%, 0);
+    text-align: center;
+    text-transform: uppercase;
 }
 
 #shops .popular-text{

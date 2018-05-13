@@ -197,7 +197,7 @@ let design = () => {
             $('.nb-text:eq(0)').css({"opacity": "1"});  
         }         
         
-        if($(".content").scrollTop() >= 425){
+        if($(".content").scrollTop() >= 285){
             setTimeout(function(){
                 $('.naws-container:eq(0)').css({"opacity": "1"});
             },250);
@@ -209,11 +209,11 @@ let design = () => {
             },650);
         } 
         
-        if($(".content").scrollTop() >= 700){
+        if($(".content").scrollTop() >= 555){
             $('.popular-text:eq(0)').css({"transform": "translate(0%,0)"});
         }
        
-        if($(".content").scrollTop() >= 1050){
+        if($(".content").scrollTop() >= 660){
             $('.legend').css({"opacity":"1"});
         }
         
@@ -292,4 +292,8 @@ var swiperOptions = {
 $(document).ready(() => {
     init();
     design();
+AOS.init({
+  duration: 1200,
+})
+
 });

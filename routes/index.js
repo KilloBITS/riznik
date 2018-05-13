@@ -9,7 +9,8 @@ var folder1 = __dirname + '/../publick/image/slide/';
 
 router.get('/', function(req, res, next){
     fs.readdir(folder1, (err, files) => {
-        res.render('index.ejs',{slides: files}); 
+//        console.log(global.main);
+        res.render('index.ejs',{slides: files, main_data: global.main}); 
     });    
     
 });

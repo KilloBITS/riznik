@@ -4,16 +4,183 @@
     }  
 }
 
+@media screen and (max-width: 1122px){
+    .nb-text{
+        width: 100%;
+        font-size: 19px;
+        padding: 0;
+        top: 25px;
+    }
+}
+
+@media screen and (max-width: 1260px){
+    .popular-text{
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 1001px){
+    .popular-text{
+        width: 90%;
+        font-size: 20px;
+    }
+    .data-content-head {
+        width: 100%;
+        height: 90px;
+    }
+    
+    .naws-container{
+        width: 95%;
+        margin: auto;
+        float: none;
+        margin-bottom: 25px;
+        height: auto;
+        max-height: 400px;
+    }
+    .news-image{
+        display: none;
+    }
+    
+    .legend-text{
+        width: 100%;
+        font-size: 14px;
+        /*margin-top: 120px;*/
+        text-align: justify;
+        max-height: 400px;
+        overflow: hidden;
+        box-shadow: inset 0px -20px 20px -12px black;
+        transition: 0.5s;
+    }
+    .btn-fullLegend{
+        display: block;
+    }
+    .news-title,.news-params,.news-image,.news-data-text{
+        float: none;
+    }
+    
+    .news-navigate{
+        top: -51px;
+        width: 80%;
+        height: 25px;
+        left: 50%;
+        transform: translate(-50%, 0);
+    }
+    .news-nav{
+        font-size: 65px;
+    }
+    
+    
+    .SHOPS-BLOCK{
+        margin-top: 94px;
+    }
+    #toTop{
+        width: 50px;
+        height: 50px;
+        background-size: 38px;
+    }
+    
+    .md-content-map{
+        width: 100%;
+        height: 100%;
+    }
+    .md-content-map > div{
+        width: 100%;
+        height: 100%;
+    }
+    
+    #map {
+        height: calc(100% - 59px);
+        width: 100%;
+    }
+    #modal-6 {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 2px 3px 12px -1px black;
+        width: 90%;
+        height: 75%;
+    }
+    .shops{
+        height: 160px;
+    }
+    .shopsPrev{
+        left: -7px;
+        top: 30%;
+    }
+    .shopsNext{
+        right: -32px;
+        top: 30%;
+    }
+    
+    .btn-fullLegend{
+        width: 100%;
+        color: white;
+        text-align: center;
+        padding-top: 16px;
+        font-size: 16px;
+    }
+}
+
 @media screen and (max-width: 845px){
+    .shopsBlockNAv{
+        display: none;
+    }
+    #news{
+        padding-bottom: 0px;
+    }
+    #news-block{
+        width: 100%;
+        /*height: 400px;*/
+    }
+    .toMap{
+        position: absolute;
+        bottom: 2px;
+        right: 15px;
+        width: 30px;
+        height: 40px;
+    }
+    
+    .data-content-head{
+        height: 69px;
+    }
+    .NEWS{
+        margin-right: auto;
+        width: 95%;
+        height: 390px;
+        margin: auto;
+        display: block;
+        float: inherit;
+    }
+    
+    #newsBlock{
+        width: 100%;
+        height: 75%;
+    }
+    
+    .news-block{
+        height: fit-content;
+    }
+    .naws-container{
+        opacity: 1;
+    }
+    
+    .popular-text{
+        font-size: 20px;
+    }
     .head-menu {
         display: none;
     }
     .legend{
         font-size: 12px;
+        opacity: 1;
+    }
+    .SHOPS-BLOCK{
+        opacity: 1;
     }
     .LOGOTYPE{
         width: 100px;
         height: 145px;
+        position: absolute;
     }
     .mobile-menu-btn{
         display: block;
@@ -22,7 +189,7 @@
         top: 0;
         height: 50px;
         width: 100%;
-        z-index: 5;
+        z-index: 6;
         background: rgba(0, 0, 0, 0.55);    
         padding: 5px;
         min-width: 320px;
@@ -55,6 +222,19 @@
         width: 110px;
         height: 110px;
     }
+    .news-logo{
+        display: none
+    }
+    #popular{
+        background-attachment: inherit;
+    }
+    .popular-text{
+        padding: 10px 0px 10px 15px;
+        font-size: 17px;
+    }
+    #shops .popular-text{
+        font-size: 20px;
+    }
     #analog-clock {
         width: 102px;
         height: 102px;
@@ -67,30 +247,16 @@
         font-size: 24px;
         line-height: 35px;
         padding: 0 23px;
-        display: none;
     }
     
     .about-data{
         width: 100%;
         box-shadow: none;
         background: rgba(255, 255, 255, 0);
+        margin-top: 140px;
     }
     
-    .wrapper-menu {
-        width: 40px;
-        height: 40px;
-        display: flex;
-        float: left;
-        flex-direction: column;
-        justify-content: space-between;
-        cursor: pointer;
-        transition: transform 330ms ease-out;
-        opacity: 0.65;
-    }
-
-    .wrapper-menu.open {
-        transform: rotate(-45deg);  
-    }
+   
 
     .line-menu {
         background-color: #fff;
@@ -148,9 +314,12 @@
         padding-top: 0;
         cursor: default;
     }
+    .legend-text {
+         margin-top: 120px;
+    }
     .shops {
         width: 90%;
-        height: 280px;
+        height: 155px;
         display: block;
         background: rgba(0, 0, 0, 0.16);
         border-radius: 5px;
@@ -189,14 +358,14 @@
         font-size: 16px;
     }    
 }
-/*
+
 
 
 @media screen and (max-width: 800px){
     .mButton{
         font-size: 24px;
     }    
-}*/
+}
 
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
 #slog1 {

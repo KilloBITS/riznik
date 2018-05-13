@@ -222,7 +222,7 @@ let design = () => {
             $('.nb-text:eq(1)').css({"opacity": "1"});
         }
         
-        if($(".content").scrollTop() >= 1370){
+        if($(".content").scrollTop() >= 1120){
             $('.SHOPS-BLOCK').css({"opacity": "1"});
         }      
     });

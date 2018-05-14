@@ -13,7 +13,9 @@
         <link href="style/index-style.css" rel="stylesheet" type="text/css"/>
         <link href="style/min.index-style.css" rel="stylesheet" type="text/css"/>
         
+        
         <script type="text/javascript" src="script/jquery-3.2.1.js"></script>
+        
         <script src="script/swiper.min.js" type="text/javascript"></script>    
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAO7fbt_nL8-D_B7S9XYtkYJr2QvJjFb1Y&callback=initMap"></script>
     </head>
@@ -77,13 +79,14 @@
                 <div class="mobile-menu-btn">
                    
                     <div class="mobile-menu">
-                        <div class="mButton md-trigger" data-modal="modal-10">Магазин</div>
-                        <div class="mButton md-trigger">Про нас</div>
+                        <div class="mButton md-trigger" data-modal="modal-10">Онлайн магазин</div>
+                       
                         <!--<div class="mButton md-trigger">Акції</div>-->
                     </div>
                 </div>
                 
                 <div class="auth-block">
+                    <div class="admin-title">Авторизація (для працівників)</div>
                     <div class="logData">
                         <input type="text" placeholder="Логін" id="login">
                     </div>
@@ -163,50 +166,7 @@
                     <div class="data-contents">
                         <div id="news-block">
                             <div class="navs-abso">
-                                <div class="naws-container">
-                                <div class="news-title">
-                                    <div class="news-title-icon"></div>
-                                    <div class="news-title-text">Відкриття магазину</div>
-                                </div>
-                                <div class="news-params">
-                                    <div class="news-date">13.05.2018</div>
-                                </div>
-                                <div class="news-image"></div>
-                                <div class="news-data-text">
-                                    ТАкой то тестовый текст, типо для новости и так даоее,
-                                    ну вобщем ничего прикольного. А так то все крут, делаем работаем и все получаеться.
-                                </div>
-                            </div>
                             
-                            <div class="naws-container">
-                                <div class="news-title">
-                                    <div class="news-title-icon"></div>
-                                    <div class="news-title-text">Відкриття магазину</div>
-                                </div>
-                                <div class="news-params">
-                                    <div class="news-date">13.05.2018</div>
-                                </div>
-                                <div class="news-image"></div>
-                                <div class="news-data-text">
-                                    ТАкой то тестовый текст, типо для новости и так даоее,
-                                    ну вобщем ничего прикольного. А так то все крут, делаем работаем и все получаеться.
-                                </div>
-                            </div>
-                            
-                            <div class="naws-container">
-                                <div class="news-title">
-                                    <div class="news-title-icon"></div>
-                                    <div class="news-title-text">Відкриття магазину</div>
-                                </div>
-                                <div class="news-params">
-                                    <div class="news-date">13.05.2018</div>
-                                </div>
-                                <div class="news-image"></div>
-                                <div class="news-data-text">
-                                    ТАкой то тестовый текст, типо для новости и так даоее,
-                                    ну вобщем ничего прикольного. А так то все крут, делаем работаем и все получаеться.
-                                </div>
-                            </div>
                             </div>                            
                             <div class="news-navigate">
                                 <div class="news-nav" id="news-prew"><</div>
@@ -225,6 +185,7 @@
                     
                     <div class="legend-text">
                         <%= main_data[0].legend %>
+                        <div class="legend-shadow"></div>
                     </div> 
                     <div class="btn-fullLegend">Показати повністю</div>
                 </div>
@@ -296,10 +257,27 @@
             </div>
             
             <div class="block" id="footers">
-                <div class="footers-left">
-                    
+                <div class="footers-left"> <!-- id="messageBTN" -->
+                    <div class="footer-btn" >
+                        Зворотній зв'язок
+                        <div id="closeFB">X</div>
+                        <div class="oz">
+                            <input type="text" class="input" id="inpName" placeholder="Імя">
+                            <input type="text" class="input" id="inpEmail" placeholder="Ваша пошта">
+                            <textarea class="input" id="inpText" placeholder="Ваше повідомлення"></textarea>
+                            <button id="messageBTN">Відправити</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="footers-right"></div>                
+                <div class="footers-right">
+                    <div class="rfoot locales">
+                        <div class="local" id="ua"></div>
+                        <div class="local" id="ru"></div>
+                    </div>
+                    <div class="rfoot">
+                        <div class="copyright">© Різник 2018р</div>
+                    </div>
+                </div>                
             </div>
             <div class="md-modal md-effect-10" id="modal-10">
                 <div class="md-content">
@@ -318,6 +296,7 @@
             </div>
         </div>     
         <div id="toTop"></div>
+        <script src="script/locales/lang.js" type="text/javascript"></script>
         <script type="text/javascript" src="script/index-script.js"></script>
     </body>        
 </html>

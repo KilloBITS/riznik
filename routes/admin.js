@@ -26,6 +26,9 @@ function parseAdmin(req, res, next) {
     });
 }
 
+
+
+
 router.get('/panel',parseAdmin, function(req, res, next){
     res.render('admin.ejs');  
 });

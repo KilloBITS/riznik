@@ -3,7 +3,6 @@ let site = new Object();
 let top1 = $("#about").offset().top;
 let top2 = $("#news").offset().top;
 
-
 function writeCSS(css) {
   var head = document.head || document.getElementsByTagName('head')[0],
     style = document.createElement('style');
@@ -27,7 +26,7 @@ let openModal = (numModal,index) => {
             let position = $('.md-trigger:eq('+index+')').offset().left + ($('.md-trigger:eq('+index+')').width() / 2);
 //            writeCSS('.md-effect-10 .md-content:after{ left:'+position+'px}');
             $('.content').css({"overflow": "hidden"});
-            $('.head-menu').addClass('darkHeadMenu');
+            $('.head-menu').css({"background":"rgba(0, 0, 0, 1)"});
             $('#modal-10').addClass('md-show');
         }  
     }
@@ -37,7 +36,7 @@ let openModal = (numModal,index) => {
 let closeModal = () => {
     switch(site.modal){
         case 'modal-10': 
-            $('.head-menu').removeClass('darkHeadMenu');
+            $('.head-menu').css({"background":"rgba(0, 0, 0, 0.4)"});
             $('#modal-10').removeClass('md-show');
             setTimeout(() => {
                 $('.md-effect-10').hide();//.css({"z-index": "0"});
@@ -84,8 +83,7 @@ let init = () => {
         var d = JSON.parse(data);
         if (d.code === '500') {            
             goodAuth(d,JSON.parse(data).url);
-        }
-        
+        }        
     });    
 };
 
@@ -99,26 +97,128 @@ let auth = () => {
 };
 
  function initMap(i) {
-//     49.826827,
-        var uluru = [{lat: 49.832343, lng: 24.0341354},{lat: 49.8339874, lng: 24.0082176}];
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 18,
-          center: uluru[i]
-        });
-        var marker = new google.maps.Marker({
-          position: uluru[i],
-          map: map
-        });
-      }
+    var uluru = [{lat: 49.832343, lng: 24.0341354},{lat: 49.8339874, lng: 24.0082176}];
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 18,
+      center: uluru[i]
+    });
+    var marker = new google.maps.Marker({
+      position: uluru[i],
+      map: map
+    });
+}
 
+var to;
+var currentNews,prewNews,nextNews;;
+let createNews = (data) => { 
+    if($('.content').width() < 800){
+        to = 0;
+    }else{
+        to = 2;
+    }
+    for(let i = 0; i < data.length; i++){
+        if(i <= to){
+           let naws_container = document.createElement('div');
+           naws_container.className = 'naws-container';
+           naws_container.innerHTML = '<div class="news-title">\n\
+                                            <div class="news-title-icon"></div>\n\
+                                            <div class="news-title-text">'+data[i].name+'</div>\n\
+                                        </div>\n\
+                                        <div class="news-params">\n\
+                                            <div class="news-date">'+data[i].date.substr(0,10)+'</div>\n\
+                                        </div>\n\
+                                        <div class="news-image" style="background-image: url(../../../content/news/'+data[i].image+')"></div>\n\
+                                        <div class="news-data-text">'+data[i].text+'</div>';
+           
+           $('.navs-abso').append(naws_container);  
+           currentNews = i;
+        }
+    }
+    if($('.naws-container').length > 2 ){
+        $('.news-navigate').show();
+    }
+    
+    $('#news-prew').click(function(){
+        console.log(currentNews);
+        if(currentNews > 0){
+            currentNews = currentNews -1 ;
+//            $('.naws-container:eq('+to+')').css({"opacity":"0"});
+//            setTimeout(function(){
+                $('.naws-container:eq('+to+')').remove()
+                let naws_container = document.createElement('div');
+                naws_container.className = 'naws-container';
+                naws_container.innerHTML = '<div class="news-title">\n\
+                                                <div class="news-title-icon"></div>\n\
+                                                <div class="news-title-text">'+data[currentNews].name+'</div>\n\
+                                            </div>\n\
+                                            <div class="news-params">\n\
+                                                <div class="news-date">'+data[currentNews].date.substr(0,10)+'</div>\n\
+                                            </div>\n\
+                                            <div class="news-image" style="background-image: url(../../../content/news/'+data[currentNews].image+')"></div>\n\
+                                            <div class="news-data-text">'+data[currentNews].text+'</div>';
+               $('.navs-abso').prepend(naws_container);  
+               $('.naws-container:eq(0)').css({"opacity":"1"});
+//            }, 800);
+        }
+    });
+    
+    $('#news-next').click(function(){
+        console.log(currentNews);
+        
+        if(currentNews < data.length-1){
+            currentNews = currentNews +1 ;
+            
+//            setTimeout(function(){
+                $('.naws-container:eq('+to+')').remove();
+                
+                let naws_container = document.createElement('div');
+                naws_container.className = 'naws-container';
+                naws_container.innerHTML = '<div class="news-title">\n\
+                                                <div class="news-title-icon"></div>\n\
+                                                <div class="news-title-text">'+data[currentNews].name+'</div>\n\
+                                            </div>\n\
+                                            <div class="news-params">\n\
+                                                <div class="news-date">'+data[currentNews].date.substr(0,10)+'</div>\n\
+                                            </div>\n\
+                                            <div class="news-image" style="background-image: url(../../../content/news/'+data[currentNews].image+')"></div>\n\
+                                            <div class="news-data-text">'+data[currentNews].text+'</div>';
+                
+               $('.navs-abso').append(naws_container);  
+               $('.naws-container:eq(2)').css({"opacity":"1"});
+//            }, 800);
+        }
+    });   
+};
+
+let loadDataSite = () => {
+    $.post('/sitedata',function(data){
+//        console.log(data);
+        createNews(data[0]);
+    });
+};
     
 let design = () => {
-    
-    
     $('.md-trigger').click(function(){
         openModal($(this).attr('data-modal'),$(this).index(this));
     });
     
+    $('.footer-btn').click(function(){
+        if(!$('.footer-btn').hasClass('openFootBtn')){        
+            $('.footer-btn').addClass('openFootBtn');
+            $('.content').animate({ scrollTop:10000 }, 1000);
+            $('.oz').show();
+            $('#closeFB').show(150);
+        }       
+    });
+    
+    $("#closeFB").click(function(){
+        setTimeout(function(){
+//             $('.content').animate({ scrollTop:10000 }, 1000);
+        $('.oz').hide();
+        $('#closeFB').hide(150);
+        $('.footer-btn').removeClass('openFootBtn');
+        },200);
+    });
     
     $('.scroll-to-start-icon').click(function(){       
         $('.content').animate({scrollTop: top2}, 1500);
@@ -139,23 +239,19 @@ let design = () => {
                 "max-height": "fit-content",
                 "box-shadow": "none"
             });//.css({
+            $('.legend-shadow').hide();
             clickerFull = false;
             $('.btn-fullLegend').html('Приховати');
         }else{
             $('.legend-text').css({
-                "max-height": "400px",
-                "box-shadow": "inset 0px -20px 20px -12px black"
-            });//.css({
+                "max-height": "400px"
+            });
+            $('.legend-shadow').show();
             clickerFull = true;
             $('.btn-fullLegend').html('Показати повністю');
-        }
-        
-        
+        }           
     });
-    
-    
-      
-        
+       
     $('.toMap').click(function(){
         var index = $('.toMap').index(this);
         
@@ -181,11 +277,17 @@ let design = () => {
    
     $(".content").scroll(function(){
         console.log($(".content").scrollTop());
-        if($(".content").scrollTop() > 950){
+        if($(".content").scrollTop() > 750){
             $('#toTop').show(250);
         }else{
             $('#toTop').hide(250);
-        }                
+        }     
+        
+        if($(".content").scrollTop() > 1400){
+            $('#toTop').css({"bottom":"75px"});
+        }else{
+            $('#toTop').css({"bottom":"20px"});
+        }
        
         if($(".content").scrollTop() >= $(document).height()){
             $('.head-menu').css({"background":"rgb(0, 0, 0)"});
@@ -235,9 +337,18 @@ let design = () => {
         $("#slog2").css({'transform':'translate(0%, 0)'});
     },1500);
     
+    loadDataSite();
     
-    $('.content').removeClass('blur');
-    $('#document-preload').fadeOut(250);
+    if(($('.legend-text').html().length > 1000) && ($('.content').width() < 800)){
+        $('.btn-fullLegend').show();
+        $('.legend-shadow').show();
+        
+    }
+    
+    setTimeout(function(){
+        $('.content').removeClass('blur');
+        $('#document-preload').fadeOut(250);
+    },2000);
 };
 
 var interleaveOffset = 0.5;
@@ -285,15 +396,7 @@ var swiperOptions = {
   }
 };
 
-
-
-
-
 $(document).ready(() => {
     init();
     design();
-AOS.init({
-  duration: 1200,
-})
-
 });

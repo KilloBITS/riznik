@@ -91,12 +91,56 @@ app.post('/auth', function(req, res){
     });
 });
 
-connection.query("SELECT * FROM `main` WHERE 1", function (error, result){
-    global.main = result;
-    console.log('Данные главной страницы получены!');
+app.post('/sitedata', function(req, res){
+    res.send([global.news, global.shops]);
 });
 
+let updateSiteData = () => {
+    connection.query("SELECT * FROM `main` WHERE 1", function (error, result){
+        global.main = result;
+        console.log('Данные главной страницы получены!');
+    });
+
+    connection.query("SELECT * FROM `news` WHERE 1", function (error, result){
+        global.news = result;
+        console.log('Новости получены!');
+    });
+
+    connection.query("SELECT * FROM `shops` WHERE 1", function (error, result){
+        global.shops = result;
+        console.log('Список магазинов получен!');
+    });
+};
+
+
+
+
+/*admin*/
+app.post('/legend', function(req, res){
+    if(req.body.typePost === '0'){
+        connection.query("SELECT `legend` FROM `main` WHERE 1", function (error, result){
+            res.send(result[0].legend);
+        });
+    }else{
+        connection.query("UPDATE `main` SET legend= '"+ req.body.text +"' WHERE 1", function (error, result){
+            res.send('Сохранено');
+            console.log(result);
+            updateSiteData();
+        });
+    }
+});
+
+app.post('/news', function(req, res){
+   
+    connection.query("SELECT * FROM `news` WHERE 1", function (error, result){
+        res.send(result);
+    });
+   
+});
+
+
 app.listen(80, function(){
+    updateSiteData();
     console.log('Started server from 80 port');
 });
 

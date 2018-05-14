@@ -14,12 +14,10 @@
 }
 
 @media screen and (max-width: 1260px){
-    .popular-text{
-        font-size: 25px;
-    }
+
 }
 
-@media screen and (max-width: 1001px){
+@media screen and (max-width: 800px){
     .popular-text{
         width: 90%;
         font-size: 20px;
@@ -38,22 +36,31 @@
         max-height: 400px;
     }
     .news-image{
-        display: none;
+        /*display: none;*/
     }
     
     .legend-text{
         width: 100%;
         font-size: 14px;
-        /*margin-top: 120px;*/
         text-align: justify;
         max-height: 400px;
         overflow: hidden;
-        box-shadow: inset 0px -20px 20px -12px black;
+        position: relative;
+        margin-bottom: 10px;
         transition: 0.5s;
+        padding: 5px;
+        border-radius: 6px;
     }
-    .btn-fullLegend{
-        display: block;
+    .legend-shadow{
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+        width: 100%;
+        height: 25px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: none;
     }
+    
     .news-title,.news-params,.news-image,.news-data-text{
         float: none;
     }
@@ -64,6 +71,7 @@
         height: 25px;
         left: 50%;
         transform: translate(-50%, 0);
+        display: none
     }
     .news-nav{
         font-size: 65px;
@@ -113,15 +121,22 @@
     }
     
     .btn-fullLegend{
-        width: 100%;
-        color: white;
+        /*width: 121px;*/ 
+        color: black;
         text-align: center;
-        padding-top: 16px;
+        padding: 10px;
         font-size: 16px;
+        z-index: 10;
+        /* position: relative; */
+        /* margin-top: 31px; */
+        margin: auto;
+        background: #00000085;
+        color: white;
+        white-space: pre;
     }
 }
 
-@media screen and (max-width: 845px){
+@media screen and (max-width: 800px){
     .shopsBlockNAv{
         display: none;
     }
@@ -132,12 +147,42 @@
         width: 100%;
         /*height: 400px;*/
     }
+    .navs-abso {
+        /* position: absolute; */
+        width: fit-content;
+        height: 100%;
+        width: 98%;
+        z-index: 5;
+        margin: auto;
+        overflow: hidden;
+    }
+    
+    .naws-container{
+        width: 100%;
+        margin: auto;
+        float: none;
+        margin-bottom: 25px;
+        height: auto;
+        max-height: 400px;
+            box-shadow: none;
+    }
+    .nb-text{
+        opacity: 1;
+    }
+    
+    .SHOPS-BLOCK {
+        margin-top: 70px;
+    }
+
     .toMap{
         position: absolute;
         bottom: 2px;
         right: 15px;
         width: 30px;
         height: 40px;
+    }
+    #wrapper{
+        width: 100%;
     }
     
     .data-content-head{
@@ -166,6 +211,8 @@
     
     .popular-text{
         font-size: 20px;
+        top: 25px;
+        
     }
     .head-menu {
         display: none;
@@ -189,11 +236,13 @@
         top: 0;
         height: 50px;
         width: 100%;
-        z-index: 6;
+        z-index: 8;
         background: rgba(0, 0, 0, 0.55);    
         padding: 5px;
         min-width: 320px;
     }
+    
+    
     .foot-R{
         width: 100%;
         padding: 0;
@@ -229,8 +278,10 @@
         background-attachment: inherit;
     }
     .popular-text{
-        padding: 10px 0px 10px 15px;
-        font-size: 17px;
+        padding: 0;
+        font-size: 30px;
+        text-align: center;
+        width: 100%;
     }
     #shops .popular-text{
         font-size: 20px;
@@ -256,7 +307,27 @@
         margin-top: 140px;
     }
     
-   
+    .operatop {
+        width: 13px;
+        height: 13px;
+    }
+    
+    .sPline{
+        font-family: btn;
+        color: rgb(212, 212, 212);
+        padding-left: 10px;
+        padding-top: 0px;
+        float: left;
+        display: inline-block;
+        width: 100%;
+        padding-left: 7px;
+        font-size: 12px;
+    }
+    
+    .numbers{
+        
+    }
+    
 
     .line-menu {
         background-color: #fff;
@@ -315,7 +386,7 @@
         cursor: default;
     }
     .legend-text {
-         margin-top: 120px;
+         margin-top: 78px;
     }
     .shops {
         width: 90%;
@@ -325,7 +396,6 @@
         border-radius: 5px;
         margin: auto;
         margin-top: 10px;
-        padding-top: 10px;
     }
     
     .sh1 {
@@ -333,10 +403,6 @@
     }
     .sh2 {
         float: none;
-    }
-    .sPhoto {
-        width: calc(100% - 17px);
-        height: calc(100% - 10px);
     }
     .sPinfo{
         opacity: 0.8;

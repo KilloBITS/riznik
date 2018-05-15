@@ -33,6 +33,9 @@
     transition: 0.5s;
 }
 
+.noneSVG{
+    display: none;
+}
 
 #myMenu{
     position: fixed;

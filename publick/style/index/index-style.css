@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'btn';
+    src: url('fonts/btn.otf');
+}
+@font-face {
+    font-family: 'btn2';
+    src: url('fonts/btn2.ttf');
+}
+@font-face {
+    font-family: 'btn3';
+    src: url('fonts/btn3.ttf');
+}
+
+.preload{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0);
+    z-index: 100;
+    transition: 0.5s;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#loadingImage{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+#loadingImage svg{
+    transition: 0.5s;
+}
+
+
+#myMenu{
+    position: fixed;
+    /* width: 25px; */
+    /* height: 300px; */
+    right: 25px;
+    top: 50%;
+    /* background: red; */
+    z-index: 1;
+    transform: translate(0, -50%);
+}
+
+#topPage{
+    background: black url(../../../image/1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.filter{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    top: 0;    
+}
+#legendPage{
+    background: white;
+}

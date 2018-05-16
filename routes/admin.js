@@ -1,7 +1,7 @@
 'use strict';
 /* global __dirname, config */
 let express = require('express');
-let router = express.Router();
+let router2 = express.Router();
 let fs = require('fs');
 var cookieParser = require('cookie-parser');
 let path = require('path');
@@ -9,7 +9,7 @@ var mysql = require('mysql');
 
 var folder1 = __dirname + '/../publick/image/slide/';
 
-router.use(cookieParser());
+router2.use(cookieParser());
 
 var connection = mysql.createConnection(global.SQLoptions);
 connection.connect();
@@ -29,9 +29,9 @@ function parseAdmin(req, res, next) {
 
 
 
-router.get('/panel',parseAdmin, function(req, res, next){
+router2.get('/panel',parseAdmin, function(req, res, next){
     res.render('admin.ejs');  
 });
 
-module.exports = router;
+module.exports = router2;
 

@@ -31,6 +31,10 @@ app.get('/shop', shop);
 let admin = require('./routes/admin');
 app.get('/panel', admin);
 
+app.get('*', function(req, res){
+    res.redirect('/');
+});
+
 app.listen(80, function(){
     console.log('Started server from 80 port');
 });

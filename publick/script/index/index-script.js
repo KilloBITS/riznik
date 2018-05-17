@@ -4,18 +4,51 @@ let page = {
     typeScroll: 0
 };
 
-$(function() {   
+$(function() {      
+    let loadGallery = () => {
+        $.post('/main',function(data){
+            page.gallery = data;
+            console.log(data);
+            for(let i = 0; i < data.length-1; i++){
+                let a = document.createElement('div');
+                a.className = 'img';
+                a.onclick = function(){
+                    var index = $('.img').index(this);
+                    if($(document).width() < 864){
+                        var W = 320;
+                        var H = 400;
+                    }else{
+                        var W = page.gallery[index].images.standard_resolution.width;
+                        var H = page.gallery[index].images.standard_resolution.height;
+                    }
+                    $('#imaaages').width(W).height(H).css({"background-image":"url(" + page.gallery[index].images.standard_resolution.url + ")"});
+                    $('.openImage').fadeIn(350);
+                };
+                $('.imageList').append(a);
+                $('.img:eq('+i+')').css({"background-image":"url(" + page.gallery[i].images.standard_resolution.url + ")"});
+            }
+        });
+        $("#closeImage").click(function(){
+            $('.openImage').fadeOut(350);
+        });
+        $('.arrows').click(function(){
+            $.fn.fullpage.moveSectionDown();
+        });
+    };
+    
     var hi = new Vivus('hi-there', {  // плавная загрузка логотипа
         type: 'delayed',
         duration: 200,
         animTimingFunction: Vivus.EASE_IN
     }, function(){
+        $.fn.fullpage.setAllowScrolling(true, 'down');
         console.log(logoSize())
         $('.preload').css({"background":"rgba(0, 0, 0, 0)"}).width('0').height('0');        
         $('#loadingImage svg').width(logoSize(40)[0]).height(logoSize(40)[1]);
-        $('.container-menu').fadeIn(1000);       
+        $('.container-menu').fadeIn(1000);  
+        
     });    
-    
+    loadGallery();
     let logoSize = (procent) => {  //размер логотипа
         let WinWidth = $('.section:eq(0)').width();
         let WinHeight = $('.section:eq(0)').height();
@@ -50,16 +83,16 @@ $(function() {
     });
    
     $('.noneSVG').fadeIn(5000);
-
+  
     $('#fullpage').fullpage({
             //Navigation
             menu: '#myMenu',
-            lockAnchors: false,
+            lockAnchors: true,
             anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
-            navigation: false,
+            navigation: true,
             navigationPosition: 'right',
-            navigationTooltips: ['firstSlide', 'secondSlide'],
-            showActiveTooltip: true,
+            navigationTooltips: ['Різник', 'Про нас', 'Фотогалерея'],
+            showActiveTooltip: false,
             slidesNavigation: true,
             slidesNavPosition: 'bottom',
 
@@ -83,7 +116,7 @@ $(function() {
             offsetSections: false,
             resetSliders: true,
             fadingEffect: false,
-            normalScrollElements: '#element1, .element2',
+            normalScrollElements: '.imageList',
             scrollOverflow: false,
             scrollOverflowReset: true,
             scrollOverflowOptions: null,
@@ -111,50 +144,16 @@ $(function() {
             //Custom selectors
             sectionSelector: '.section',
             slideSelector: '.slide',
-            lazyLoading: true,
+            lazyLoading: false,
 
             //events
-            onLeave: function(index, nextIndex, direction){
-//                console.log('onLeave'+index);
-//                if(index === 1){
-//                    minimLogo(true);
-//                }else if (index === 2 && page.typeScroll !== 'down'){
-//                    setTimeout(function(){
-//                        minimLogo(false);
-//                    },600);
-//                }
-            },
-            afterLoad: function(anchorLink, index){
-//                $('#fullpage').bind('mousewheel', function(event) {  
-//                    if(event.originalEvent.wheelDelta /120 > 0) {
-//                        page.typeScroll = 'up';
-//                    }else{
-//                        page.typeScroll = 'down';
-//                    }               
-//                });
-//                
-//                $( "#loadingImage" ).on( "swipe", function(){
-//                    console.log(11);
-//                    $.fn.fullpage.moveSectionDown();
-//                } );
-                
-            },
-            afterRender: function(){
-                
-            },
-            afterResize: function(){
-                
-            },
-            afterResponsive: function(isResponsive){
-                console.log('afterResponsive'+isResponsive);
-            },
-            afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){
-                console.log('afterSlideLoad'+index);
-            },
-            onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){
-                console.log('onSlideLeave'+index);
-                
-            }
+            onLeave: function(index, nextIndex, direction){},
+            afterLoad: function(anchorLink, index){},
+            afterRender: function(){},
+            afterResize: function(){},
+            afterResponsive: function(isResponsive){},
+            afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
+            onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){}
     });    
-//    $.fn.fullpage.setAllowScrolling(false, 'down');
+    $.fn.fullpage.setAllowScrolling(false, 'down');
 });

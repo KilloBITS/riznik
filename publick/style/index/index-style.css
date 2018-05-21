@@ -1,3 +1,5 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
+
 @font-face {
     font-family: 'btn';
     src: url('../fonts/btn.otf');
@@ -134,16 +136,108 @@
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.77);
+    background: rgba(0, 0, 0, 0.90);
     display: none;
 }
 
+.benu-center-block{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 1024px;
+}
+
+
+.page-menu-btn{
+    width: 100%;
+    font-size: 90px;
+    color: white;
+    text-align: center;
+    font-family: btn3;
+    font-weight: 900;
+    cursor: pointer;
+} 
+
+.page-menu-btn:hover{
+    color: wheat;
+}
 #topPage{
     background: black url(../../../image/1.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
+
+
+.footer-social-links{
+    font-size: 14px;
+    text-align: center;
+    position: absolute;
+    left: 10px;
+    bottom: 15px;
+    z-index: 5;
+}
+
+.footer-social-links a{
+   width: 35px;
+    height: 35px;
+    line-height: 35px !important;
+    position: relative;
+    margin: 0 10px;
+    text-align: center;
+    display: inline-block;
+    color: #fff;
+    
+    -webkit-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);  
+    -moz-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000); 
+    -o-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
+    -ms-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000); 
+    transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
+}
+.footer-social-links a i,
+.footer-social-links a span{
+    position: relative;
+    top: 4px;
+    left: 1px;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 23px;
+}
+.footer-social-links a:before{
+content: "";
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #fff;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
+    -moz-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
+    -o-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
+    -ms-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
+    transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
+}
+.footer-social-links a:hover{
+    color: #fff;
+}
+.footer-social-links a:hover:before{
+    background: #111;
+}
+
 .filter{
     position: absolute;
     width: 100%;
@@ -283,9 +377,11 @@
 }
 
 #legendText .lt{
-    width: 80%;
+    width: 100%;
+    max-width: 1024px;
     padding-top: 45px;
     margin: auto;
+    font-size: 34px;
 }
 
 #photoContent{
@@ -415,6 +511,91 @@
 
 #next{
     right: -30px;
+}
+
+
+.infoContent{
+    width: 100%;
+    float: left;
+    margin-top: 45px;
+}
+
+.info-page{
+    width: 100%;
+    max-width: 1024px;
+    margin: auto;
+}
+
+.left-info,.right-info{
+    width: calc(50% - 10px);
+
+}
+
+.left-info{
+    float:left;
+    border-right: 3px solid black;
+}
+
+.right-info{
+    float: right;
+}
+
+.shop{
+    padding: 10px;
+    /* border: 2px solid black; */
+    width: 95%;
+    margin-bottom: 10px;
+    /* border-radius: 5px; */
+    position: relative;
+    font-family: btn3;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+
+.partners{
+    width: 100%;
+    height: 230px;
+    float: left;
+    /* margin-top: 50px; */
+    background: black;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.partners-block{
+    width: 100%;
+    max-width: 1024px;
+    margin: auto;
+}
+
+.partner{
+    width: calc(25% - 25px);
+    height: 150px;
+    float: left;
+    display: inline-block;
+    margin: 12px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    cursor: pointer;
+}
+
+.contact{
+    font-family: btn3;
+}
+
+.partners .pageeTitle{
+    іcolor: white;
+    padding-top: 10px;
+}
+
+.mini-title{
+    width: 100%;
+    margin: 0 0 5px 0;
+    text-align: center;
+    font-family: btn3;
+    font-size: 20px;
 }
 
 @media screen and (max-width: 864px) {

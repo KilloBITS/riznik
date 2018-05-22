@@ -4,8 +4,10 @@ let page = {
     typeScroll: 0
 };
 
-$(function() {      
+$(function() {
+        
     let loadGallery = () => {
+        
         $.post('/main',function(data){
             page.gallery = data;
             console.log(data);
@@ -46,6 +48,8 @@ $(function() {
         $('.preload').css({"background":"rgba(0, 0, 0, 0)"}).width('0').height('0');        
         $('#loadingImage svg').width(logoSize(40)[0]).height(logoSize(40)[1]);
         $('.container-menu').fadeIn(1000);  
+        
+        
         
     });    
     loadGallery();
@@ -147,13 +151,22 @@ $(function() {
             lazyLoading: false,
 
             //events
-            onLeave: function(index, nextIndex, direction){},
+            onLeave: function(index, nextIndex, direction){
+                var vid = document.getElementById("video-background"); 
+                vid.play();
+            },
             afterLoad: function(anchorLink, index){},
-            afterRender: function(){},
+            afterRender: function(){
+                var vid = document.getElementById("video-background"); 
+                vid.play();
+            },
             afterResize: function(){},
             afterResponsive: function(isResponsive){},
             afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
             onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){}
     });    
     $.fn.fullpage.setAllowScrolling(false, 'down');
+    
+    var vid = document.getElementById("video-background"); 
+    vid.play();
 });

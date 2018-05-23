@@ -6,8 +6,7 @@ let page = {
 
 $(function() {
         
-    let loadGallery = () => {
-        
+    let loadGallery = () => {        
         $.post('/main',function(data){
             page.gallery = data;
             console.log(data);
@@ -37,20 +36,43 @@ $(function() {
             $.fn.fullpage.moveSectionDown();
         });
     };
+    let wheel = 0;
+    let maxWheel = 4;
+    var scrolling = function(){
+//        $('#topPage,.preload').bind('mousewheel', function(e){
+//            if(e.originalEvent.wheelDelta /120 > 0) {
+//                if(wheel > 0){
+//                    wheel = wheel - 1;
+//                    maxWheel = 4;
+//                }              
+//                console.log('scrolling up !' + wheel);
+//            }
+//            else{
+//                if(wheel < maxWheel){
+//                    wheel = wheel +1;                   
+//                }      
+//                
+//                if(wheel === maxWheel){
+//                    maxWheel = 6;
+//                }
+//                
+//                console.log('scrolling down !' + wheel);
+//            }
+//        });
+
+        let DWidth = $(document).width();
+        let DHeight = $(document).height();
+    };
     
     var hi = new Vivus('hi-there', {  // плавная загрузка логотипа
         type: 'delayed',
         duration: 200,
         animTimingFunction: Vivus.EASE_IN
-    }, function(){
-        $.fn.fullpage.setAllowScrolling(true, 'down');
-        console.log(logoSize())
+    }, function(){        
         $('.preload').css({"background":"rgba(0, 0, 0, 0)"}).width('0').height('0');        
         $('#loadingImage svg').width(logoSize(40)[0]).height(logoSize(40)[1]);
         $('.container-menu').fadeIn(1000);  
-        
-        
-        
+        scrolling();
     });    
     loadGallery();
     let logoSize = (procent) => {  //размер логотипа

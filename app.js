@@ -7,9 +7,6 @@ let http = require('http');
 var bParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
-	
-var MongoClient = require("mongodb").MongoClient;
-
 var InstagramAPI = require('instagram-api');
 //7725656041.1677ed0.5aade3d607d34211b0f95abefb37acd8
 var accessToken = '7725656041.1677ed0.5aade3d607d34211b0f95abefb37acd8';//5562828690.1677ed0.8acf44b1448249d1bdae3ca9bbba69dc

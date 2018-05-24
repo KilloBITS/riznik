@@ -118,8 +118,27 @@ $(function () {
     });
     
     $('#button-blue').click(function(){
+        $('.loadMSG').show();
         $.post('/sendMessage',{name:$('#name').val() , email:$('#email').val() ,msgText:$('#comment').val()}, function(data){
-            
+            if(data){
+                console.log(true)
+                $('.loadMSG').css({
+                    "background":"rgba(255, 255, 255, 0.74)",
+                    "color":"black"
+                }).html('Повідомлення відправлено :)');
+                setTimeout(function(){
+                    $('.loadMSG').fadeOut(300);
+                },2000);
+            }else{
+                console.log(false);
+                $('.loadMSG').css({
+                    "background":"rgba(255, 255, 255, 0.74)",
+                    "color":"red"
+                }).html('Повідомлення не відправлено :(');
+                setTimeout(function(){
+                    $('.loadMSG').fadeOut(300);
+                },2000);
+            }
         });
     });
 

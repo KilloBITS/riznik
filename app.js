@@ -78,12 +78,14 @@ function mailOptions(a,b,c,d){
 
 app.post('/sendMessage', function (req, res) {   
     let txt = req.body.msgText + '[Відпавник: '+req.body.name+', email: '+req.body.email+']';
-    let ml = new mailOptions(req.body.email, 'panriznik@gmail.com',  'Коментар користувача.', txt);
+    let ml = new mailOptions(req.body.email, 'mr.kalinuk@gmail.com',  'Коментар користувача.', txt); //panriznik@gmail.com
     transporter.sendMail(ml, function(error, info){
         if (error) {
             console.log(error);
+            res.send(false);
         } else {
             console.log('Email sent: ' + info.response);
+            res.send(true);
         }
     });
 });

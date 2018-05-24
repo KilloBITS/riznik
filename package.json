@@ -30,6 +30,7 @@
     "instagram-api": "^1.0.3",
     "mongodb": "^3.1.0-beta4",
     "mysql": "^2.15.0",
+    "nodemailer": "^4.6.5",
     "path": "^0.12.7"
   }
 }

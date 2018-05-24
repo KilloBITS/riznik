@@ -73,21 +73,23 @@
 .noneSVG{
     display: none;
 }
-
+.menu-btn{
+    display: none;
+}
 
 .menu-btn input[type='checkbox'] {
-  display: none;
+    display: none;
 }
 .menu-btn input[type='checkbox']:checked ~ .container-menu > .menu {
-  background: transparent;
+    background: transparent;
 }
 .menu-btn input[type='checkbox']:checked ~ .container-menu > .menu:before {
-  bottom: 0;
-  transform: rotate(45deg);
+    bottom: 0;
+    transform: rotate(45deg);
 }
 .menu-btn input[type='checkbox']:checked ~ .container-menu > .menu:after {
-  top: 0;
-  transform: rotate(-45deg);
+    top: 0;
+    transform: rotate(-45deg);
 }
 
 .container-menu {
@@ -174,14 +176,14 @@
 .footer-social-links{
     font-size: 14px;
     text-align: center;
-    position: absolute;
-    left: 10px;
+    position: fixed;
+    right: 10px;
     bottom: 15px;
     z-index: 5;
 }
 
 .footer-social-links a{
-   width: 35px;
+    width: 35px;
     height: 35px;
     line-height: 35px !important;
     position: relative;
@@ -189,7 +191,7 @@
     text-align: center;
     display: inline-block;
     color: #fff;
-    
+
     -webkit-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);  
     -moz-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000); 
     -o-transition: all 0.27s cubic-bezier(0.300, 0.100, 0.580, 1.000);
@@ -209,7 +211,7 @@
     font-size: 23px;
 }
 .footer-social-links a:before{
-content: "";
+    content: "";
     display: inline-block;
     width: 100%;
     height: 100%;
@@ -242,7 +244,7 @@ content: "";
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.65);
     top: 0;    
 }
 
@@ -266,33 +268,33 @@ content: "";
 
 @keyframes arrow
 {
-0% {opacity:0}
-40% {opacity:1}
-80% {opacity:0}
-100% {opacity:0}
+    0% {opacity:0}
+    40% {opacity:1}
+    80% {opacity:0}
+    100% {opacity:0}
 }
 
 @-webkit-keyframes arrow /*Safari and Chrome*/
 {
-0% {opacity:0}
-40% {opacity:1}
-80% {opacity:0}
-100% {opacity:0}
+    0% {opacity:0}
+    40% {opacity:1}
+    80% {opacity:0}
+    100% {opacity:0}
 }
 
 .arrows path.a1 {
-	animation-delay:-1s;
-	-webkit-animation-delay:-1s; /* Safari 和 Chrome */
+    animation-delay:-1s;
+    -webkit-animation-delay:-1s; /* Safari 和 Chrome */
 }
 
 .arrows path.a2 {
-	animation-delay:-0.5s;
-	-webkit-animation-delay:-0.5s; /* Safari 和 Chrome */
+    animation-delay:-0.5s;
+    -webkit-animation-delay:-0.5s; /* Safari 和 Chrome */
 }
 
 .arrows path.a3 {	
-	animation-delay:0s;
-	-webkit-animation-delay:0s; /* Safari 和 Chrome */
+    animation-delay:0s;
+    -webkit-animation-delay:0s; /* Safari 和 Chrome */
 }   
 .BlockContent{
     position: absolute;
@@ -328,41 +330,41 @@ content: "";
 
 
 #video-background {
-  position: fixed;
-  right: 0; 
-  bottom: 0;
-  min-width: 100%; 
-  min-height: 100%;
-  width: auto; 
-  height: auto;
-  z-index: 0;
+    position: fixed;
+    right: 0; 
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto;
+    z-index: 0;
 }
 
 @-webkit-keyframes sdb05 {
-  0% {
-    -webkit-transform: rotate(-45deg) translate(0, 0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: rotate(-45deg) translate(-20px, 20px);
-    opacity: 0;
-  }
+    0% {
+        -webkit-transform: rotate(-45deg) translate(0, 0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: rotate(-45deg) translate(-20px, 20px);
+        opacity: 0;
+    }
 }
 @keyframes sdb05 {
-  0% {
-    transform: rotate(-45deg) translate(0, 0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: rotate(-45deg) translate(-20px, 20px);
-    opacity: 0;
-  }
+    0% {
+        transform: rotate(-45deg) translate(0, 0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(-45deg) translate(-20px, 20px);
+        opacity: 0;
+    }
 }
 
 
@@ -463,6 +465,15 @@ content: "";
     background-size: cover;
     background-position: center;
     cursor: pointer;
+    filter: grayscale(60%);
+    transition: 0.3s;
+    outline: 1px dashed black;
+    outline-offset: -4px;
+    box-shadow: inset 0px 0px 5px black;
+}
+
+.img:hover{
+    filter: grayscale(0%);
 }
 
 .openImage{
@@ -481,7 +492,7 @@ content: "";
 }
 
 #imaaages{
-    
+
 }
 .white{
     color: white;
@@ -522,7 +533,7 @@ content: "";
 }
 
 #prew{
-   left: -30px; 
+    left: -30px; 
 }
 
 #next{
@@ -577,7 +588,7 @@ content: "";
     position: absolute;
     left: 0;
     bottom: 0;
-    
+
 }
 
 .partners-block{
@@ -624,13 +635,13 @@ content: "";
 
 
 #feedback-page{
-	text-align:center;
+    text-align:center;
 }
 
 #form-main{
-	width:100%;
-	float:left;
-	padding-top:0px;
+    width:100%;
+    float:left;
+    padding-top:0px;
 }
 
 #form-div {
@@ -728,8 +739,8 @@ input:focus, textarea:focus {
 }
 
 #button-blue:hover{
-	background-color: white;
-	color: black;
+    background-color: white;
+    color: black;
 }
 
 
@@ -760,7 +771,51 @@ input:focus, textarea:focus {
     width: 99%;
 }
 
+#dinamic-logo{
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    z-index: 1;
+    display: none;
+    padding: 15px;
+}
 
+.top-slong{
+    position: absolute;
+    right: 0;
+    font-family: btn;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-size: 35px;
+    /*transition: 0.5s;*/
+
+    /* opacity: 1; */
+    opacity: 0;
+}
+
+.top-slong.shows {
+    -webkit-animation: show 1s forwards;
+    animation: show 1s forwards;
+}
+
+#sl1{
+    top: 30%;
+}
+#sl2{
+    top: calc(30% + 55px);
+}
+
+@keyframes show {
+    from {
+        transform: translate(-2px, -25px);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0px, 0px);
+        opacity: 1;
+    }
+}
 @media screen and (max-width: 1230px) {
     #legendText .lt{
         font-size: 28px;
@@ -773,11 +828,11 @@ input:focus, textarea:focus {
         right: 5px;
         top: -6px;
     }
-    
+
     #legendText{
         font-size: 16px;
     }
-    
+
     .partner{
         width: 46px;
         height: 46px;
@@ -785,7 +840,7 @@ input:focus, textarea:focus {
     .partners{
         height: 95px;
     }
-    
+
     .pageeTitle {
         font-size: 25px;
         padding-top: 10px;
@@ -796,15 +851,21 @@ input:focus, textarea:focus {
         padding-top: 5px;
         font-size: 18px;
     }
-    
+
     .infoContent{
         margin-top: 7px;
-    }
-
-    .left-info, .right-info{
-        width: 100%;
+        height: calc(100% - 95px);
     }
     
+    .info-page {
+        height: calc(100% - 45px);
+    }
+    
+    .left-info, .right-info{
+        width: 100%;
+        height: 50%;
+    }
+
     .mini-title{
         font-size: 16px;
     }
@@ -812,11 +873,11 @@ input:focus, textarea:focus {
         padding: 6px;
         margin-bottom: 3px;
     }
-    
+
     .shop div{
         font-size: 12px;
     }
-    
+
     #form-div {
         left: 0;
         margin-right: 0;
@@ -825,13 +886,13 @@ input:focus, textarea:focus {
         padding-left: 0;
         padding-right: 0;
     }
-    
+
     .name {
         float: left;
         width: 50%;
         margin: 5px 0px;
     }
-    
+
     .name input {
         width: 95%;
         float: left;
@@ -841,17 +902,17 @@ input:focus, textarea:focus {
         width: 50%;
         margin: 5px 0px;
     }   
-    
+
     .email input {
         width: 95%;
         float: right;
     }
-    
+
     #name,#email,#comment{
         background-size: 12px 12px;
         background-position: 5px 5px;
     }
-    
+
     #button-blue {
         height: 17px;
         line-height: 0px;
@@ -867,27 +928,27 @@ input:focus, textarea:focus {
     #comment{
         height: 90px;
     }
-    
+
     #fp-nav.right {
         right: 0px;
         /* background: rgba(0, 0, 0, 0.22); */
         border-radius: 20px 0 0 20px;
         top: 90%;
     }
-    
+
     .page-menu-btn{
         font-size: 5ex;
     }
-    
+
     #legendText .lt{
         width: 94%;
         padding-top: 15px;
     }
-    
+
     #legendText .lt {
         font-size: 13px;
     }
-    
+
     #photoContent{
         margin-top: 22px;
     }
@@ -899,7 +960,7 @@ input:focus, textarea:focus {
         width: 32%;
         height: 32%;
     }
-    
+
     #imaaages {
         background-size: cover;
     }
@@ -922,4 +983,18 @@ input:focus, textarea:focus {
     #next {
         right: 10px;
     }
+    
+    #sl2 {
+        top: calc(30% + 75px);
+    }
+
+    .top-slong {
+        font-size: 25px;
+    }
+    
+    .footer-social-links{
+        right: 28px;
+        bottom: 27px;
+    }
+
 }

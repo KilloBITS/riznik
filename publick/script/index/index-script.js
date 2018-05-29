@@ -35,6 +35,14 @@ $(function () {
         $('.arrows').click(function () {
             $.fn.fullpage.moveSectionDown();
         });
+        
+        $('#prew').click(function(){
+            
+        });
+        
+        $('#next').click(function(){
+            
+        });
     };
 
     let minimLogo = (proc) => { //функция изменения размера при открітии меню или скролле
@@ -67,8 +75,7 @@ $(function () {
     var scrolling = function () {
         let DWidth = $(document).width();
         let DHeight = $(document).height();
-        console.log(DWidth);
-        console.log(DHeight);
+        $('.footer-social-links').css({"z-index":"5"});
         $('#topPage,.preload').bind('mousewheel', function (e) {
             if (e.originalEvent.wheelDelta / 120 > 0) { //up
                 minimLogo(false);
@@ -76,11 +83,21 @@ $(function () {
                 minimLogo(true);
             }
         });
-
-
     };
+    $(".page-menu-btn").click(function(){        
+        let index = $(".page-menu-btn").index(this);        
+//        if($(".page-menu-btn:("+index+")").hasClass('disabledBTN')){
+            console.log(index);
+            $(".container-menu").click();
+            $(".page-menu-btn").removeClass('activeBTN');
+            $.fn.fullpage.moveTo(index+1);
+            $(".page-menu-btn:eq("+index+")").addClass('activeBTN');
+//        }
+    });
+    
+  
 
-    var hi = new Vivus('hi-there', {// плавная загрузка логотипа
+    var hi = new Vivus('ddds', {// плавная загрузка логотипа
         type: 'delayed',
         duration: 200,
         animTimingFunction: Vivus.EASE_IN
@@ -91,7 +108,8 @@ $(function () {
         scrolling();
         
         if($(document).width() <= 864){
-            minimLogo(true);
+//            minimLogo(true);
+            $.fn.fullpage.setAllowScrolling(true, 'down');
         }
     });
     loadGallery();
@@ -143,6 +161,13 @@ $(function () {
     });
 
     $('.noneSVG').fadeIn(5000);
+    
+    let svgColor = (color, time) => {
+        setTimeout(function(){
+            $('#dinamic-logo svg .fil0').attr('style', "fill:"+color);
+            $('#dinamic-logo svg .fil1').attr('style', "stroke:"+color);
+        },time);
+    };
 
     $('#fullpage').fullpage({
         //Navigation
@@ -151,7 +176,7 @@ $(function () {
         anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
         navigation: true,
         navigationPosition: 'right',
-        navigationTooltips: ['Різник', 'Про нас', 'Фотогалерея'],
+        navigationTooltips: ['Різник', 'Про нас', 'Фотогалерея', 'Контакти'],
         navigationColor: "#000",
         showActiveTooltip: false,
         slidesNavigation: true,
@@ -211,8 +236,30 @@ $(function () {
         onLeave: function (index, nextIndex, direction) {
             var vid = document.getElementById("video-background");
             vid.play();
+                 
+            if(direction === 'up'){
+                var time = 1;
+            }else{
+                var time = 600;
+            }
+            
+            if(nextIndex === 4){
+                $('.footer-social-links').fadeOut(300);
+            }
+            
+            
+            switch(nextIndex){
+                case 1: svgColor('white', time);break;
+                case 2: svgColor('black', time);break;
+                case 3: svgColor('white', time);break;
+                case 4: svgColor('black', time);break;
+            };
         },
-        afterLoad: function (anchorLink, index) {},
+        afterLoad: function (anchorLink, index) {
+            if(index <= 3){                
+                $('.footer-social-links').fadeIn(300);            
+            }
+        },
         afterRender: function () {
             var vid = document.getElementById("video-background");
             vid.play();

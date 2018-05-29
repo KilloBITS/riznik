@@ -70,9 +70,19 @@
     transition: 0.5s;
 }
 
+.pll{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 999999999999999999;
+}
+
 .noneSVG{
     display: none;
 }
+
+
+
 .menu-btn{
     display: none;
 }
@@ -108,7 +118,7 @@
 .menu {
     height: 3px;
     width: 70%;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgb(128, 128, 128);
     margin: auto;
     transition: 0.3s;
     position: relative;
@@ -117,7 +127,7 @@
 .menu:before {
     height: 3px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgb(128, 128, 128);
     transition: 0.3s;
     position: absolute;
     content: '';
@@ -126,7 +136,7 @@
 .menu:after {
     height: 3px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgb(128, 128, 128);
     transition: 0.3s;
     position: absolute;
     content: '';
@@ -162,9 +172,21 @@
     cursor: pointer;
 } 
 
+.mapBTN{
+    cursor: pointer;
+    cursor: pointer;
+    text-align: end;
+    transition: 0.3s;
+}
+
+.mapBTN:hover{
+    color: #5e2c90;
+}
+
 .page-menu-btn:hover{
     color: wheat;
 }
+
 #topPage{
     background: black url(../../../image/1.jpg);
     background-size: cover;
@@ -172,14 +194,13 @@
     background-repeat: no-repeat;
 }
 
-
 .footer-social-links{
     font-size: 14px;
     text-align: center;
     position: fixed;
     right: 10px;
     bottom: 15px;
-    z-index: 5;
+    z-index: 0;
 }
 
 .footer-social-links a{

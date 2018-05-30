@@ -235,8 +235,8 @@ $(function () {
 
         //events
         onLeave: function (index, nextIndex, direction) {
-            var vid = document.getElementById("video-background");
-            vid.play();
+//            var vid = document.getElementById("video-background");
+//            vid.play();
                  
             if(direction === 'up'){
                 var time = 1;
@@ -262,8 +262,8 @@ $(function () {
             }
         },
         afterRender: function () {
-            var vid = document.getElementById("video-background");
-            vid.play();
+//            var vid = document.getElementById("video-background");
+//            vid.play();
         },
         afterResize: function () {},
         afterResponsive: function (isResponsive) {},
@@ -272,6 +272,6 @@ $(function () {
     });
     $.fn.fullpage.setAllowScrolling(false, 'down');
 
-    var vid = document.getElementById("video-background");
-    vid.play();
+//    var vid = document.getElementById("video-background");
+//    vid.play();
 });

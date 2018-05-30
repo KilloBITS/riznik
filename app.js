@@ -6,7 +6,6 @@ let app2 = express();
 let http = require('http');
 var bParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-
 var InstagramAPI = require('instagram-api');
 //7725656041.1677ed0.5aade3d607d34211b0f95abefb37acd8
 var accessToken = '7725656041.1677ed0.5aade3d607d34211b0f95abefb37acd8';//5562828690.1677ed0.8acf44b1448249d1bdae3ca9bbba69dc
@@ -20,6 +19,18 @@ instagramAPI.userSelf().then(function (result) {
 }, function (err) {
     console.log(err); // error info 
 });
+
+var mysql = require('mysql');
+global.SQLoptions =  {
+    host     : '52.15.32.16',
+    port     : 3306,
+    user     : 'riznik',
+    password : 'yaPn6eZQHBnBeOf8',
+    database : 'PanRiznyk'
+};
+
+var connection = mysql.createConnection(global.SQLoptions);
+connection.connect();
 
 global.instaImage = [];
 function insta() {
@@ -55,10 +66,11 @@ app.post('/main', function (req, res) {
     res.send(global.instaImage);
 });
 
-app.listen(80, function () {
-    console.log('Started server from 80 port');
-    insta();
-});
+
+let udateData = () => {
+    console.log('dataUpdated');
+};
+
 
 var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
@@ -79,6 +91,7 @@ function mailOptions(a,b,c,d){
 app.post('/sendMessage', function (req, res) {   
     let txt = req.body.msgText + '[Відпавник: '+req.body.name+', email: '+req.body.email+']';
     let ml = new mailOptions(req.body.email, 'panriznik@gmail.com',  'Коментар користувача.', txt); //panriznik@gmail.com
+    
     transporter.sendMail(ml, function(error, info){
         if (error) {
             console.log(error);
@@ -90,8 +103,18 @@ app.post('/sendMessage', function (req, res) {
     });
 });
 
+app.listen(80, function () {
+    console.log('Started server from 80 port');
+    insta();
+    udateData();
+});
+
+
 
 app2.use(express.static(__dirname + '/publick/'));
+app2.use(bParser.urlencoded({extended: true}));
+app2.use(bParser.json());
+app2.use(cookieParser());
 
 let auth = require('./routes/auth');
 app2.get('/', auth);
@@ -99,7 +122,43 @@ app2.get('/', auth);
 let panel = require('./routes/admin');
 app2.get('/panel', panel);
 
+var connection = mysql.createConnection(global.SQLoptions);
+connection.connect();
 
+function key_generator(len) {
+    var length = (len) ? (len) : (10);
+    var string = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"; //to upper 
+    var numeric = '01234567895645874684156873524357454151156468755154686002545641025374';
+    var password = "";
+    var character = "";
+    while (password.length < length) {
+         var entity1 = Math.ceil(string.length * Math.random() * Math.random());
+         var entity2 = Math.ceil(numeric.length * Math.random() * Math.random());
+         var hold = string.charAt(entity1);
+            hold = (entity1 % 2 === 0) ? (hold.toUpperCase()) : (hold);
+        character += hold;
+        character += numeric.charAt(entity2);
+        password = character;
+    }
+    return password;
+}
+
+app2.post('/auth', function(req, res, next){
+    connection.query('SELECT * FROM `Users` WHERE Name="' + req.body.L + '"', function (errors, results, fields) {
+        if (results.length > 0) {
+            if (results[0].password === req.body.P) {
+                var newKey = key_generator(35);
+                    res.cookie('AuthKEY', newKey);
+                    res.cookie('uID', results[0].id);
+                    res.send('{"code":500 , "loc": "/panel"}');
+            }else{
+                res.send('Неверный логин или пароль');
+            }          
+        } else {
+            res.send('Неверный логин или пароль');
+        }
+    });    
+});
 
 app2.listen(3000, function () {
     console.log('Started server from 3000 port');

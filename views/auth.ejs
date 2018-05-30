@@ -3,6 +3,7 @@
         <title>
             Авторизація
         </title>
+        <script src="script/jquery-3.2.1.js" type="text/javascript"></script>
         <style>
             body{
                 margin: 0;
@@ -59,11 +60,21 @@
     </head>
     <body>
         <div class="auth block">
-            <form action="/panel" method="GET">
-                <input type="text" name="login" placeholder="Логін">
-                <input type="text" name="pass" placeholder="Пароль">
+            <!--<form action="/panel" method="GET">-->
+                <input type="text" name="login" placeholder="Логін" id="log">
+                <input type="text" name="pass" placeholder="Пароль" id="pass">
                 <input type="submit" value="Вхід" id="authBtn" name="authBtn">
-            </form>
+            <!--</form>-->
+            <script>
+                $('#authBtn').click(function(){
+                    $.post('/auth', {L:$('#log').val() , P:$('#pass').val() } ,function(data){
+                        console.log(JSON.parse(data));
+                        if(parseInt(JSON.parse(data).code) === 500){
+                            document.location.href = JSON.parse(data).loc
+                        }
+                    })
+                });
+            </script>
         </div>
     </body>
 </html>

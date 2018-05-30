@@ -106,7 +106,8 @@ $(function () {
         $('#loadingImage svg').width(logoSize(40)[0]).height(logoSize(40)[1]);
         $('.container-menu').fadeIn(1000);
         scrolling();
-        
+        $('svg .fil1').attr("css", 'stroke: transparent')
+        $('svg .fil1').attr('style', "stroke: transparent");
         if($(document).width() <= 864){
 //            minimLogo(true);
             $.fn.fullpage.setAllowScrolling(true, 'down');
@@ -219,7 +220,7 @@ $(function () {
         controlArrows: true,
         verticalCentered: true,
         dragAndMove: true,
-        sectionsColor: ['black', '#fff', 'black', '#fff'],
+        sectionsColor: ['#0f0e35', '#fff', '#0f0e35', '#fff'],
         fixedElements: '#header, .footer',
         responsiveWidth: 0,
         responsiveHeight: 0,

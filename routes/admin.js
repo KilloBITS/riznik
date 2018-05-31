@@ -4,32 +4,24 @@ let express = require('express');
 let router2 = express.Router();
 var mysql = require('mysql');
 var bParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+
 router2.use(bParser.urlencoded({extended: true}));
 router2.use(bParser.json());
 
-//
-var connection = mysql.createConnection(global.SQLoptions);
-connection.connect();
+router2.use(cookieParser());
 
 
 function parseAdmin(req, res, next) {
-//    connection.query('SELECT * FROM `Users` WHERE Name="' + '10' + '"', function (errors, results, fields) {
-//        if (results.length > 0) {
-//            if (results[0].password === req.query['pass']) {
-//                next();
-//            }else{
-//                res.redirect('/');
-//            }          
-//        } else {
-//            res.redirect('/');
-//        }
-//    });
-//    res.redirect('/');
-next();
+    let AuthKEY = req.cookies.AuthKEY;
+    let uID = req.cookies.uID;
+    let users = 'userID' + req.cookies.uName;
+    if(global[users]){
+        next();
+    }else{
+       res.redirect('/'); 
+    }
 }
-
-
-
 
 router2.get('/panel',parseAdmin, function(req, res, next){    
     res.render('admin.ejs');  

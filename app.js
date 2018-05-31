@@ -22,7 +22,7 @@ instagramAPI.userSelf().then(function (result) {
 
 var mysql = require('mysql');
 global.SQLoptions =  {
-    host     : '52.15.32.16',
+    host     : '52.14.180.56',
     port     : 3306,
     user     : 'riznik',
     password : 'yaPn6eZQHBnBeOf8',
@@ -122,8 +122,7 @@ app2.get('/', auth);
 let panel = require('./routes/admin');
 app2.get('/panel', panel);
 
-var connection = mysql.createConnection(global.SQLoptions);
-connection.connect();
+
 
 function key_generator(len) {
     var length = (len) ? (len) : (10);
@@ -143,14 +142,44 @@ function key_generator(len) {
     return password;
 }
 
+
+function mailOptions2(a,b,c,d){
+    this.from = a,//'riznik.comment@gmail.com',
+    this.to = b,//'mr.kalinuk@gmail.com',
+    this.subject = c,//'Sending Email using Node.js',
+    this.text = d;//'That was easy!';
+}
+
+function randomInteger(min, max) {
+    var rand = min - 0.5 + Math.random() * (max - min + 1)
+    rand = Math.round(rand);
+    return rand;
+}
+    
 app2.post('/auth', function(req, res, next){
     connection.query('SELECT * FROM `Users` WHERE Name="' + req.body.L + '"', function (errors, results, fields) {
         if (results.length > 0) {
             if (results[0].password === req.body.P) {
-                var newKey = key_generator(35);
-                    res.cookie('AuthKEY', newKey);
-                    res.cookie('uID', results[0].id);
-                    res.send('{"code":500 , "loc": "/panel"}');
+                
+                                  
+                    let users = 'userID'+results[0].Name;
+                    global[users] = {a: true, b:[results[0]]};   
+                    let txt = randomInteger(100000, 999999).toString();
+                    let ml = new mailOptions2(req.body.email, results[0].email ,  'Код підтвердження: ', txt); //panriznik@gmail.com
+                    transporter.sendMail(ml, function(error, info){
+                        if (error) {
+                            console.log(error);
+                            res.send('Неверный логин или пароль');
+                        } else {
+                            console.log('Email sent: ' + info.response);
+                            let users1 = 'userSMS'+results[0].Name;
+                            global[users1] =  txt;
+                            res.send('{"code":500 , "data": "good"}');
+                        }
+                    });
+                    
+                    
+                    
             }else{
                 res.send('Неверный логин или пароль');
             }          
@@ -158,6 +187,24 @@ app2.post('/auth', function(req, res, next){
             res.send('Неверный логин или пароль');
         }
     });    
+});
+
+
+  
+app2.post('/authSMS', function(req, res, next){
+    let users1 = 'userSMS'+req.body.N;
+    let users = 'userID'+req.body.N;
+    let code = global[users1];
+    
+    if(code === req.body.S){
+        var newKey = key_generator(35);
+        res.cookie('AuthKEY', newKey);
+        res.cookie('uID', global[users].b[0].id);    
+        res.cookie('uName', global[users].b[0].Name);   
+        res.send('{"code":500 , "url": "/panel"}')
+    }
+    
+    
 });
 
 app2.listen(3000, function () {

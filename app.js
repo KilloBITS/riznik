@@ -69,6 +69,9 @@ app.post('/main', function (req, res) {
 
 let udateData = () => {
     console.log('dataUpdated');
+    connection.query('SELECT * FROM `MainConfig` WHERE 1', function (errors, results, fields) {
+        global.mainData = results[0];
+    });    
 };
 
 
@@ -201,10 +204,24 @@ app2.post('/authSMS', function(req, res, next){
         res.cookie('AuthKEY', newKey);
         res.cookie('uID', global[users].b[0].id);    
         res.cookie('uName', global[users].b[0].Name);   
-        res.send('{"code":500 , "url": "/panel"}')
+        res.send('{"code":500 , "url": "/panel"}');
+    }   
+});
+
+app2.post('/legend', function(req, res, next){
+    if(parseInt(req.body.typePost) === 1){
+        //сохранить легенду
+        connection.query('UPDATE `MainConfig` SET `Description`="'+req.body.text+'" WHERE 1', function (errors, results, fields) {
+            udateData();
+            res.send('Легенда сохранена');
+        });
+       
+       
+    }else{
+        connection.query('SELECT * FROM `MainConfig` WHERE 1', function (errors, results, fields) {
+            res.send(results[0].Description);
+        });        
     }
-    
-    
 });
 
 app2.listen(3000, function () {

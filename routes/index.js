@@ -8,11 +8,8 @@ let path = require('path');
 var folder1 = __dirname + '/../publick/image/slide/';
 
 router.get('/', function(req, res, next){
-    fs.readdir(folder1, (err, files) => {
-//        console.log(global.main);
-        res.render('index.ejs',{slides: files, main_data: global.main}); 
-    });    
-    
+    console.log(global.mainData);
+    res.render('index.ejs',{main_data: global.mainData}); 
 });
 
 module.exports = router;

@@ -202,11 +202,13 @@ viewBox="0 0 134495 199427"
                                     <div class="shop">
                                         <div class="adressa">Львів, вул.Коновальца 10</div>
                                         <div class="opened">з 09:00 до 20:00 <span>(Відчинено)</span> </div>
+                                        <div class="numberPhone">Телефон: +380961588212 </div>
                                         <div class="mapBTN">Показати на карті</div>
                                     </div>
                                     <div class="shop">
                                         <div class="adressa">Львів, вул.Костомарова 10Б</div>
                                         <div class="opened">з 09:00 до 20:00 (Незабаром відкриття)</div>
+                                        <div class="numberPhone">Телефон: +380961588232</div>
                                         <div class="mapBTN">Показати на карті</div>
                                     </div>
 
@@ -245,18 +247,12 @@ viewBox="0 0 134495 199427"
                                 <div class="partners">
                                     <div class="pageeTitle">Наші партнери</div>
                                     <div class="partners-block">
-                                        <a href="https://ijevangroup.am/" target="_blank">
-                                            <div class="partner" style="background-image: url(../../../image/data/partners/1.png)"></div>
+                                        <% for(var i = 0; i < partners.length; i++) { %>
+                                        <a href=" <%= partners[i].link %> " target="_blank" title="<%= partners[i].name %>">
+                                            <div class="partner" style="background-image: url(../../../image/data/partners/<%= partners[i].logo %>)"></div>
                                         </a>
-                                        <a href="https://www.boim.com.ua/" target="_blank">
-                                            <div class="partner" style="background-image:  url(../../../image/data/partners/2.png)"></div>
-                                        </a>
-                                        <a href="https://vina-trubetskogo.com.ua/" target="_blank">
-                                            <div class="partner" style="background-image: url(../../../image/data/partners/3.png)"></div>
-                                        </a>
-                                        <a href="http://erevan.lviv.ua/" target="_blank">
-                                            <div class="partner" style="background-image: url(../../../image/data/partners/4.png)"></div>
-                                        </a>                                          
+                                        <% } %>
+                                                         
                                     </div>
                                 </div>
                             </div>

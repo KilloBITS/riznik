@@ -43,6 +43,10 @@ function insta() {
     });
 }
 
+setInterval(function(){
+    insta();
+},(1000 * 60) * 60);
+
 
 //использование библиотек
 app.use(bParser.urlencoded({extended: true}));
@@ -71,6 +75,14 @@ let udateData = () => {
     console.log('dataUpdated');
     connection.query('SELECT * FROM `MainConfig` WHERE 1', function (errors, results, fields) {
         global.mainData = results[0];
+    });    
+};
+
+let udateData2 = () => {
+    console.log('dataUpdated2');
+    connection.query('SELECT * FROM `partners` WHERE 1', function (errors, results, fields) {
+        global.partners = results;
+//        console.log(results)
     });    
 };
 
@@ -110,10 +122,9 @@ app.listen(80, function () {
     console.log('Started server from 80 port');
     insta();
     udateData();
+    udateData2();
 });
-
-
-
+    
 app2.use(express.static(__dirname + '/publick/'));
 app2.use(bParser.urlencoded({extended: true}));
 app2.use(bParser.json());
@@ -124,8 +135,6 @@ app2.get('/', auth);
 
 let panel = require('./routes/admin');
 app2.get('/panel', panel);
-
-
 
 function key_generator(len) {
     var length = (len) ? (len) : (10);
@@ -145,7 +154,6 @@ function key_generator(len) {
     return password;
 }
 
-
 function mailOptions2(a,b,c,d){
     this.from = a,//'riznik.comment@gmail.com',
     this.to = b,//'mr.kalinuk@gmail.com',
@@ -154,7 +162,7 @@ function mailOptions2(a,b,c,d){
 }
 
 function randomInteger(min, max) {
-    var rand = min - 0.5 + Math.random() * (max - min + 1)
+    var rand = min - 0.5 + Math.random() * (max - min + 1);
     rand = Math.round(rand);
     return rand;
 }
@@ -162,27 +170,22 @@ function randomInteger(min, max) {
 app2.post('/auth', function(req, res, next){
     connection.query('SELECT * FROM `Users` WHERE Name="' + req.body.L + '"', function (errors, results, fields) {
         if (results.length > 0) {
-            if (results[0].password === req.body.P) {
-                
-                                  
-                    let users = 'userID'+results[0].Name;
-                    global[users] = {a: true, b:[results[0]]};   
-                    let txt = randomInteger(100000, 999999).toString();
-                    let ml = new mailOptions2(req.body.email, results[0].email ,  'Код підтвердження: ', txt); //panriznik@gmail.com
-                    transporter.sendMail(ml, function(error, info){
-                        if (error) {
-                            console.log(error);
-                            res.send('Неверный логин или пароль');
-                        } else {
-                            console.log('Email sent: ' + info.response);
-                            let users1 = 'userSMS'+results[0].Name;
-                            global[users1] =  txt;
-                            res.send('{"code":500 , "data": "good"}');
-                        }
-                    });
-                    
-                    
-                    
+            if (results[0].password === req.body.P) {               
+                let users = 'userID'+results[0].Name;
+                global[users] = {a: true, b:[results[0]]};   
+                let txt = randomInteger(100000, 999999).toString();
+                let ml = new mailOptions2(req.body.email, results[0].email ,  'Код підтвердження: ', txt); //panriznik@gmail.com
+                transporter.sendMail(ml, function(error, info){
+                    if (error) {
+                        console.log(error);
+                        res.send('Неверный логин или пароль');
+                    } else {
+                        console.log('Email sent: ' + info.response);
+                        let users1 = 'userSMS'+results[0].Name;
+                        global[users1] =  txt;
+                        res.send('{"code":500 , "data": "good"}');
+                    }
+                });                    
             }else{
                 res.send('Неверный логин или пароль');
             }          

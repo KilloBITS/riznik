@@ -7,15 +7,21 @@ let http = require('http');
 var bParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var InstagramAPI = require('instagram-api');
+
+//использование библиотек
+app.use(bParser.urlencoded({extended: true}));
+app.use(bParser.json());
+app.use(express.static(__dirname + '/publick/'));
+app.use(cookieParser());
+
 //7725656041.1677ed0.5aade3d607d34211b0f95abefb37acd8
 var accessToken = '7725656041.1677ed0.5aade3d607d34211b0f95abefb37acd8';//5562828690.1677ed0.8acf44b1448249d1bdae3ca9bbba69dc
 var instagramAPI = new InstagramAPI(accessToken);
 // instagram 
 instagramAPI.userSelf().then(function (result) {
-//     console.log(result.data); // user info 
-//     console.log(result.limit); // api limit 
-    // console.log(result.remaining) // api request remaining
-
+     console.log(result.data); // user info 
+     console.log(result.limit); // api limit 
+     console.log(result.remaining) // api request remaining
 }, function (err) {
     console.log(err); // error info 
 });
@@ -28,11 +34,9 @@ global.SQLoptions =  {
     password : 'yaPn6eZQHBnBeOf8',
     database : 'PanRiznyk'
 };
-
 var connection = mysql.createConnection(global.SQLoptions);
 connection.connect();
 
-global.instaImage = [];
 function insta() {
     global.instaImage = [];
     instagramAPI.userMedia("7725656041", accessToken).then(function (result) {  //5562828690  7725656041
@@ -43,34 +47,28 @@ function insta() {
     });
 }
 
+//Обновление инстаграмма каждый час
 setInterval(function(){
     insta();
 },(1000 * 60) * 60);
 
-
-//использование библиотек
-app.use(bParser.urlencoded({extended: true}));
-app.use(bParser.json());
-app.use(express.static(__dirname + '/publick/'));
-app.use(cookieParser());
-
+/*GET запроссы*/
 let index = require('./routes/index');
 app.get('/', index);
 
 let shop = require('./routes/shop');
 app.get('/shop', shop);
 
-
-
 app.get('*', function (req, res) {
     res.redirect('/');
 });
 
+/*Post запроссы*/
 app.post('/main', function (req, res) {
     res.send(global.instaImage);
 });
 
-
+//Обновление конфигураций страницы
 let udateData = () => {
     console.log('dataUpdated');
     connection.query('SELECT * FROM `MainConfig` WHERE 1', function (errors, results, fields) {
@@ -78,11 +76,11 @@ let udateData = () => {
     });    
 };
 
+//обновление партнеров
 let udateData2 = () => {
     console.log('dataUpdated2');
     connection.query('SELECT * FROM `partners` WHERE 1', function (errors, results, fields) {
         global.partners = results;
-//        console.log(results)
     });    
 };
 
@@ -103,10 +101,10 @@ function mailOptions(a,b,c,d){
     this.text = d;//'That was easy!';
 }
 
+// отправка сообщения
 app.post('/sendMessage', function (req, res) {   
     let txt = req.body.msgText + '[Відпавник: '+req.body.name+', email: '+req.body.email+']';
     let ml = new mailOptions(req.body.email, 'panriznik@gmail.com',  'Коментар користувача.', txt); //panriznik@gmail.com
-    
     transporter.sendMail(ml, function(error, info){
         if (error) {
             console.log(error);
@@ -125,14 +123,16 @@ app.listen(80, function () {
     udateData2();
 });
     
+    
+//работа сервера на порте 3000
 app2.use(express.static(__dirname + '/publick/'));
 app2.use(bParser.urlencoded({extended: true}));
 app2.use(bParser.json());
 app2.use(cookieParser());
 
+/*GET запросы*/
 let auth = require('./routes/auth');
 app2.get('/', auth);
-
 let panel = require('./routes/admin');
 app2.get('/panel', panel);
 
@@ -217,9 +217,7 @@ app2.post('/legend', function(req, res, next){
         connection.query('UPDATE `MainConfig` SET `Description`="'+req.body.text+'" WHERE 1', function (errors, results, fields) {
             udateData();
             res.send('Легенда сохранена');
-        });
-       
-       
+        });       
     }else{
         connection.query('SELECT * FROM `MainConfig` WHERE 1', function (errors, results, fields) {
             res.send(results[0].Description);

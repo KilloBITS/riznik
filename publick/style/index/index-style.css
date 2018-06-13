@@ -912,7 +912,7 @@ input:focus, textarea:focus {
     opacity: 0;
     margin: auto;
     width: fit-content;
-    display: none; 
+    /*display: none;*/ 
 }
 
 .shops-main-btn:hover{

@@ -7,6 +7,55 @@ and open the template in the editor.
     Created on : 06.06.2018, 9:31:20
     Author     : User8
 */
+@font-face {
+    font-family: 'btn';
+    src: url('../fonts/btn.otf');
+}
+@font-face {
+    font-family: 'btn2';
+    src: url('../fonts/btn2.ttf');
+}
+@font-face {
+    font-family: 'btn3';
+    src: url('../fonts/btn3.ttf');
+}
+
+@font-face {
+    font-family: 'skill';
+    src: url('../fonts/skill.ttf');
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #2b2b2b;
+}
+
+::-webkit-scrollbar
+{
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background-color: #ffffff;
+    border: 1px solid #282828;
+}
+
+::-webkit-input-placeholder{
+    color: #c3c3c3;
+}
+::-moz-placeholder{
+    color: #c3c3c3;
+}/* Firefox 19+ */
+:-moz-placeholder{
+    color: #c3c3c3;
+}/* Firefox 18- */
+:-ms-input-placeholder{
+    color: #c3c3c3;
+}
+
 body{
     margin: 0;
     width: 100%;
@@ -16,5 +65,39 @@ body{
 .head-menu{
     width: 100%;
     height: 50px;
-    background: #0f0e35;
+    /* background: #0f0e35; */
+    z-index: 9999;
+    position: fixed;
 }
+
+.hm-block{
+    width: fit-content;
+    margin: auto;
+}
+
+.hm-btn{
+    display: inline-block;
+    padding: 10px;
+    font-size: 20px;
+    font-family: btn;
+    cursor: pointer;
+}
+
+.block{
+position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding-top: 50px;
+    overflow-y: scroll;
+}
+
+.content{
+    width: 100%;
+    height: 100%;
+    max-width: 1024px;
+    /*background: red;*/
+    margin: auto;
+}
+

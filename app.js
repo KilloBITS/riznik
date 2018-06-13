@@ -84,6 +84,19 @@ let udateData2 = () => {
     });    
 };
 
+//обновление магазинов
+let udateData3 = () => {
+    console.log('dataUpdated3');
+    connection.query('SELECT * FROM `shops` WHERE 1', function (errors, results, fields) {
+        global.shops = results;
+    });    
+};
+
+
+app.post('/getShops', function(req, res){
+    res.send(global.shops);
+});
+
 
 var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
@@ -118,9 +131,10 @@ app.post('/sendMessage', function (req, res) {
 
 app.listen(80, function () {
     console.log('Started server from 80 port');
-    insta();
-    udateData();
-    udateData2();
+    insta(); //инстаграмм
+    udateData();  //основнгые параметры
+    udateData2(); //партнеры
+    udateData3(); //магазины
 });
     
     

@@ -5,6 +5,18 @@ let page = {
 };
 
 $(function () {
+    function initMap(uluru) {
+//        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 18,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          icon: 'image/marker.gif'
+        });
+    }
 
     let loadGallery = () => {
         $.post('/main', function (data) {
@@ -56,7 +68,8 @@ $(function () {
                 $('#dinamic-logo svg').width(logoSize(91)[0]).height(logoSize(83)[1]);
                 $('#dinamic-logo').show();
                 $('#loadingImage svg').hide(150);
-                $('.top-slong').addClass('shows');                
+                $('.top-slong').addClass('shows');  
+                $('.shops-main-btn').addClass('shows');
                 $.fn.fullpage.setAllowScrolling(true, 'down');                
             }, 500);
 
@@ -67,6 +80,7 @@ $(function () {
             $('.preload').css({"top": "50%", "left": "50%"});
             $('#loadingImage').css({"transform": "translate(-50%,-50%)"});
             $('.top-slong').removeClass('shows');
+            $('.shops-main-btn').removeClass('shows');
             $('.menu-btn').fadeOut(300);
             $.fn.fullpage.setAllowScrolling(false, 'down');
         }
@@ -95,7 +109,59 @@ $(function () {
 //        }
     });
     
-  
+    $('.map-closed').click(function(){
+        $.fn.fullpage.setAllowScrolling(true, 'down');
+        $.fn.fullpage.setAllowScrolling(true, 'up');
+        $('.dark-back').fadeOut(400);
+        $('.map-modal').fadeOut(400);
+    });
+    
+    var getShops = () => {
+        $.post('/getShops', function(shops){
+            console.log(shops);
+            for(let i = 0; i < shops.length; i++){
+                let vs = document.createElement('div');
+                vs.className = 'shop';
+                $('.shops').append(vs);
+                
+                let adressa = document.createElement('div');
+                adressa.className = 'adressa';
+                adressa.innerHTML = shops[i].adress;
+                $('.shop:eq('+i+')').append(adressa);
+                
+                switch(parseInt(shops[i].enabledShops)){
+                    case 1:var sOpened = 'Відчинено' ;break;
+                    case 2:var sOpened = 'Зачинено' ;break;
+                    case 3:var sOpened = 'Незабаром відкриття' ;break;
+                }
+                
+                let opened = document.createElement('div');
+                opened.className = 'opened';
+                opened.innerHTML = 'з '+ shops[i].toTime +' до '+shops[i].doTime+' <span>('+sOpened+')</span>';
+                $('.shop:eq('+i+')').append(opened);
+                
+                let numberPhone = document.createElement('div');
+                numberPhone.className = 'numberPhone';
+                numberPhone.innerHTML = '+' + shops[i].phone;
+                $('.shop:eq('+i+')').append(numberPhone);
+                
+                
+                let mapBTN = document.createElement('div');
+                mapBTN.className = 'mapBTN';
+                mapBTN.innerHTML = 'Показати на карті';
+                mapBTN.onclick = function(){
+                    var index = $('.mapBTN').index(this);
+                    $.fn.fullpage.setAllowScrolling(false, 'down');
+                    $.fn.fullpage.setAllowScrolling(false, 'up');
+                    $('.dark-back').fadeIn(400);
+                    $('.map-modal').fadeIn(400);                    
+                    initMap(JSON.parse(shops[index].map));
+                };
+                $('.shop:eq('+i+')').append(mapBTN);                
+            }
+        });
+    };
+      
 
     var hi = new Vivus('ddds', {// плавная загрузка логотипа
         type: 'delayed',
@@ -106,12 +172,14 @@ $(function () {
         $('#loadingImage svg').width(logoSize(40)[0]).height(logoSize(40)[1]);
         $('.container-menu').fadeIn(1000);
         scrolling();
-        $('svg .fil1').attr("css", 'stroke: transparent')
+        $('svg .fil1').attr("css", 'stroke: transparent');
         $('svg .fil1').attr('style', "stroke: transparent");
         if($(document).width() <= 864){
 //            minimLogo(true);
+            $('.menu-btn').fadeIn(300);
             $.fn.fullpage.setAllowScrolling(true, 'down');
         }
+        getShops();
     });
     loadGallery();
 
@@ -159,6 +227,11 @@ $(function () {
                 },2000);
             }
         });
+    });
+    
+    $('.mapBTN').click(function(){
+        var index = $('.mapBTN').index(this)
+//       {lat: -25.363, lng: 131.044} 
     });
 
     $('.noneSVG').fadeIn(5000);
@@ -274,4 +347,12 @@ $(function () {
 
 //    var vid = document.getElementById("video-background");
 //    vid.play();
+//    var day = new Date();
+//    
+//    if((day.getHours() > 9) || (day.getHours() < 20)){
+//        $('.opened span').html('(Відчинено)');
+//    }else{
+//        $('.opened span').html('(Зачинено)');
+//    }
+    
 });

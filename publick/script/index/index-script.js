@@ -87,16 +87,16 @@ $(function () {
     };
 
     var scrolling = function () {
-        let DWidth = $(document).width();
-        let DHeight = $(document).height();
+//        let DWidth = $(document).width();
+//        let DHeight = $(document).height();
         $('.footer-social-links').css({"z-index":"5"});
-        $('#topPage,.preload').bind('mousewheel', function (e) {
-            if (e.originalEvent.wheelDelta / 120 > 0) { //up
+//        $('#topPage,.preload').bind('mousewheel', function (e) {
+//            if (e.originalEvent.wheelDelta / 120 > 0) { //up
                 minimLogo(false);
-            } else {//down
-                minimLogo(true);
-            }
-        });
+//            } else {//down
+//                minimLogo(true);
+//            }
+//        });
     };
     $(".page-menu-btn").click(function(){        
         let index = $(".page-menu-btn").index(this);        
@@ -171,13 +171,16 @@ $(function () {
         $('.preload').css({"background": "rgba(0, 0, 0, 0)"}).width('0').height('0');
         $('#loadingImage svg').width(logoSize(40)[0]).height(logoSize(40)[1]);
         $('.container-menu').fadeIn(1000);
-        scrolling();
+//        scrolling();
+        
         $('svg .fil1').attr("css", 'stroke: transparent');
         $('svg .fil1').attr('style', "stroke: transparent");
         if($(document).width() <= 864){
 //            minimLogo(true);
             $('.menu-btn').fadeIn(300);
             $.fn.fullpage.setAllowScrolling(true, 'down');
+        }else{
+            minimLogo(true);
         }
         getShops();
     });

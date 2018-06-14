@@ -2,10 +2,11 @@
             <defs>
             <style type="text/css">
                 <![CDATA[
-                .str0 {stroke:black;stroke-width:1157.19}
+                .str0 {stroke-width:1157.19}
                 .fil1 {fill:none;fill-rule:nonzero}
                 .fil0 {fill:#FEFEFE;fill-rule:nonzero}
-        
+                .whiteSVG{fill: #b09536;}
+                .blackSVG{fill: #b09536;}
                 ]]>
             </style>
             </defs>

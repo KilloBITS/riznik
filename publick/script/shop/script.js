@@ -1,3 +1,5 @@
+var shops = new Object();
+
 var design = function(){
     $('.btnMenu').click(function(){
         let index = $('.btnMenu').index(this);
@@ -11,14 +13,36 @@ var design = function(){
         }
     });
     
-    $('.callTitle').click(function(){
-        if($('.callBtn').hasClass('openCall')){
-            $('.callBtn').removeClass('openCall');
-        }else{
-            $('.callBtn').addClass('openCall');
-        }
-        
+    $('.filter-btn').click(function(){
+        let index = $('.filter-btn').index(this);
+        $('.filter-btn').removeClass('btnActive');
+        $('.filter-btn:eq('+index+')').addClass('btnActive');
     });
+    
+    $('.selectArea').click(function(){
+        if(!shops.SA){
+            var index = $('.selectArea').index(this);
+            $('.sel:eq('+index+')').fadeIn(200);
+            shops.SA = true;
+        }else{
+            var index = $('.selectArea').index(this);
+            $('.sel:eq('+index+')').fadeOut(200);
+            shops.SA = false;
+        }        
+    });
+    
+    
+    $('.basket').click(function(){
+         if(!shops.basket){
+            $('.basket-WIN').css({"left": ($('.basket').offset().left - ($('.basket-WIN').width()-45)) + "px"}).fadeIn(300);
+            shops.basket = true;
+        }else{
+            $('.basket-WIN').css({"left": ($('.basket').offset().left - ($('.basket-WIN').width()-45)) + "px"}).fadeOut(300);
+            shops.basket = false;
+        }
+    });
+    
+   
 };
 
 var loadMainPage = function(){
@@ -31,6 +55,8 @@ var loadMainPage = function(){
 var loadPricePage = function(){
     $('.content:eq(1)').show();
     
+    $('.content-preload:eq(1)').fadeOut(400);
+    
 };
 
 var loadOtherPage = function(){
@@ -40,6 +66,7 @@ var loadOtherPage = function(){
 
 var mainLoad = function(){
     $('.btnMenu:eq(0)').addClass('btnActive');    
+    $('.content:eq(0)').show();
     loadMainPage();    
 };
 

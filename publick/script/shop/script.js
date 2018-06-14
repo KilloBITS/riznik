@@ -42,6 +42,14 @@ var design = function(){
         }
     });
     
+    $('.selOption').click(function(){
+        $('.sel').fadeOut(200);
+        var index = $('.selOption').index(this);
+        
+        $('#sort').html($('.selOption:eq('+index+')').html())
+        shops.SA = false;
+    });
+    
    
 };
 

@@ -113,6 +113,21 @@ var design = function(){
             $('.demoCart').remove();
         },1300);
     });
+    
+    $('.basket-check').click(function(){
+        $('.basket-WIN').css({
+            "left":"50%",
+            "top":"50%",
+            "transform":"translate(-50%, -50%)",
+            "width":"800px",
+            "height":"700px"
+        });
+        
+        $('.basket-list').css({
+            "width":"50%",
+            "margin-left":"10px"            
+        });
+    });    
 };
 
 var loadMainPage = function(){

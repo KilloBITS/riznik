@@ -95,7 +95,7 @@ var design = function(){
             $('.demoCart').css({
                 "width":"35px",
                 "height":"35px",
-                "left": "calc(100% - 40px)",
+                "left": "calc(100% - 90px)",
                 "top": 5 + 'px'
             });
             $('.basket div').html(parseInt($('.basket div').html()) + 1);

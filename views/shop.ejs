@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Онлайн магазин</title>
+        <title>≡ Онлайн магазин "Різник"</title>
         <link href="style/shops/style.css" rel="stylesheet" type="text/css"/>
         
         <link rel="icon" type="image/png" href="../../../image/icons/16.png" sizes="16x16">
@@ -17,7 +17,7 @@
         <div class="head">
             <div class="title"></div>
             <div class="menu">
-                <div class="btnMenu">Головна</div>
+                <a href="/"><div class="btnMenu">Головна</div></a>
                 <div class="btnMenu">Продукція</div>
                 <!--<div class="btnMenu">Новини</div>-->
                 <div class="btnMenu">Оплата та доставка</div>                
@@ -34,13 +34,16 @@
         
         <div class="basket-WIN">
             <div class="basket-title">Кошик</div>
-            <div class="basket-list"></div>
+            <div class="basket-list">
+                
+            </div>
             <div class="basket-sum"></div>
+            <div class="basket-check">Замовити</div>
         </div>
         
         <div class="content">
             <div class="content-preload"></div>
-            1
+           
             <div class="main-top">
                 
             </div>
@@ -106,6 +109,7 @@
                     </div>
                     <div class="tovar-right">
                         <div class="tovar-title">Ковбаса "Кільцева"</div>
+                        <div class="tovarID">035681</div>
                         <div class="tovar-text">
                             Ковбаса́ — м'ясний продукт з ковбасного фаршу 
                             в штучній чи натуральній оболонці, чи без неї, 
@@ -151,6 +155,7 @@
                     </div>
                     <div class="tovar-right">
                         <div class="tovar-title">Сало</div>
+                         <div class="tovarID">035689</div>
                         <div class="tovar-text">
                             Ковбаса́ — м'ясний продукт з ковбасного фаршу 
                             в штучній чи натуральній оболонці, чи без неї, 
@@ -196,6 +201,7 @@
                     </div>
                     <div class="tovar-right">
                         <div class="tovar-title">Якісь ковбаски</div>
+                         <div class="tovarID">034251</div>
                         <div class="tovar-text">
                             Ковбаса́ — м'ясний продукт з ковбасного фаршу 
                             в штучній чи натуральній оболонці, чи без неї, 
@@ -241,6 +247,7 @@
                     </div>
                     <div class="tovar-right">
                         <div class="tovar-title">Якісь ковбаски</div>
+                         <div class="tovarID">321654</div>
                         <div class="tovar-text">
                             Ковбаса́ — м'ясний продукт з ковбасного фаршу 
                             в штучній чи натуральній оболонці, чи без неї, 
@@ -286,6 +293,7 @@
                     </div>
                     <div class="tovar-right">
                         <div class="tovar-title">Якісь ковбаски</div>
+                         <div class="tovarID">122891</div>
                         <div class="tovar-text">
                             Ковбаса́ — м'ясний продукт з ковбасного фаршу 
                             в штучній чи натуральній оболонці, чи без неї, 
@@ -331,6 +339,7 @@
                     </div>
                     <div class="tovar-right">
                         <div class="tovar-title">Якісь ковбаски</div>
+                         <div class="tovarID">356681</div>
                         <div class="tovar-text">
                             Ковбаса́ — м'ясний продукт з ковбасного фаршу 
                             в штучній чи натуральній оболонці, чи без неї, 
@@ -376,6 +385,7 @@
                     </div>
                     <div class="tovar-right">
                         <div class="tovar-title">Якісь ковбаски</div>
+                         <div class="tovarID">555555</div>
                         <div class="tovar-text">
                             Ковбаса́ — м'ясний продукт з ковбасного фаршу 
                             в штучній чи натуральній оболонці, чи без неї, 
@@ -455,7 +465,7 @@
                 <div class="page-control">
                     <div class="pages">
                         <div class="prewPage"></div>
-                        <div class="page">1</div>
+                        <div class="page pageActive">1</div>
                         <div class="page">2</div>
                         <div class="page">3</div>
                         <div class="page">4</div>
@@ -469,12 +479,101 @@
         <div class="content">
             <div class="content-preload"></div>
             <div class="title-block">Оплата та доставка</div>
-            3
+            <div class="dataOfForm">                
+                <div class="lineOfText">
+                    <div class="minIMG" id="payment"></div>
+                    <div class="minTXT">Оплата</div>
+                </div>  
+                
+                <div class="blockMIN">
+                    <p>
+                        <b>
+                            <div class="minIMG" id="cash"></div>
+                            Грошовими коштами (готівкою) при отриманні товару
+                        </b><br><br>
+
+                        Оплата готівкою здійснюється в момент доставки замовлення. Покупець передає гроші експедитору-касиру і отримує замовлений товар і пакет документів (товарний чек або накладну (документи, які підтверджують покупку), гарантійний талон, інструкцію по експлуатації). Увага! Оплата товару здійснюється тільки в гривнях.
+                    </p>
+                </div>
+                
+                <div class="blockMIN">
+                    <p>
+                        <b>
+                            <div class="minIMG" id="noncash"></div>
+                            Безготівкова оплата
+                        </b><br><br>
+
+                        За замовленням клієнта, співробітник Інтернет магазину оформляє рахунок-фактуру і відправляє її покупцеві (електронна пошта). На підставі рахунку-фактури покупець здійснює оплату за реквізитами, вказаними в рахунку-фактурі через банківську установу на протязі 3-х днів з дати виставлення рахунку. Після надходження грошей на рахунок Інтернет магазина з покупцем зв'язується співробітник Інтернет магазину і погоджує зручний час і місце доставки. Експедитор-касир доставляє оплачений товар і всі необхідні супровідні документи за адресою, вказаною покупцем.
+                    </p>
+                </div>
+                
+                <div class="blockMIN">
+                    <p>
+                    
+                        <b>
+                            <div class="minIMG" id="card"></div>
+                            Оплата картою
+                        </b><br><br>
+
+                        За замовленням клієнта на сайті і оплачує замовлення картою банку або за допомогою Веб Мані. З покупцем зв'язується співробітник Інтернет магазину і підтверджує оплату і наявність товару. Співробітник Інтернет магазину зв'язується з покупцем і погоджує зручний час і місце доставки. Експедитор-касир доставляє оплачений товар і всі необхідні супровідні документи за адресою, вказаною покупцем.
+                    </p>
+                </div>
+                
+                
+            </div>
+            <div class="dataOfForm">                
+                <div class="lineOfText">
+                    <div class="minIMG" id="delivery"></div>
+                    <div class="minTXT">Доставка</div>
+                </div> 
+                
+                 <div class="blockMIN">
+                    <p>
+                        <b>
+                            <div class="minIMG" id="deliveryS"></div>
+                            Самовивіз
+                        </b><br><br>
+                        Можливість забрати товар самовивозом в наших магазинів у місті Львів.
+                    </p>
+                </div>
+                
+                 <div class="blockMIN">
+                    <p>
+                        <b>
+                            <div class="minIMG" id="courier"></div>
+                            Доставка кур'єром
+                        </b><br><br>
+
+                        Доставка кур'єром здійснюється з 09:00 до 21:00 в межах міста Львів.
+                    </p>
+                </div>
+                
+                 <div class="blockMIN">
+                    <p>
+                        <b>
+                            <div class="minIMG" id="newPost"></div>
+                            Нова пошта
+                        </b><br><br>
+
+                        Доставка Новою поштою в будь які міста України. <br><br>
+                        Ціна доставки згідно тарифій Нової пошти.
+                    </p>
+                </div>
+            </div>
+            
         </div> 
         
         <div class="call-btn">Задати питання</div>
         <div class="call-block"></div>
+        <div class="checkout-modal-block">
+            <div class="checkout-modal">
+                <iframe src="/checkout">
 
+                </iframe>
+            </div>
+        </div>
+        
+        
         <div class="footer">
             <div class="Copyright">
                 Copyright © Riznyk (2018)

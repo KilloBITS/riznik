@@ -128,6 +128,10 @@ var design = function(){
             "margin-left":"10px"            
         });
     });    
+    
+    $('.details').click(function(){
+        document.location.href='/product'
+    });
 };
 
 var loadMainPage = function(){

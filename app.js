@@ -59,8 +59,8 @@ app.get('/', index);
 let shop = require('./routes/shop');
 app.get('/shop', shop);
 
-let checkout = require('./routes/checkout');
-app.get('/checkout', checkout);
+let checkout = require('./routes/product');
+app.get('/product', checkout);
 
 app.get('*', function (req, res) {
     res.redirect('/');

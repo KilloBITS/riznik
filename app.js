@@ -7,6 +7,7 @@ let http = require('http');
 var bParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var InstagramAPI = require('instagram-api');
+var validator = require('validator');
 
 //использование библиотек
 app.use(bParser.urlencoded({extended: true}));
@@ -19,20 +20,20 @@ var accessToken = '7725656041.1677ed0.5aade3d607d34211b0f95abefb37acd8';//556282
 var instagramAPI = new InstagramAPI(accessToken);
 // instagram 
 instagramAPI.userSelf().then(function (result) {
-     console.log(result.data); // user info 
-     console.log(result.limit); // api limit 
-     console.log(result.remaining) // api request remaining
+//     console.log(result.data); // user info 
+//     console.log(result.limit); // api limit 
+//     console.log(result.remaining) // api request remaining
 }, function (err) {
     console.log(err); // error info 
 });
 
 var mysql = require('mysql');
-global.SQLoptions =  {
-    host     : '52.14.180.56',
-    port     : 3306,
-    user     : 'riznik',
-    password : 'yaPn6eZQHBnBeOf8',
-    database : 'PanRiznyk'
+global.SQLoptions = {
+    host: '52.14.180.56',
+    port: 3306,
+    user: 'riznik',
+    password: 'yaPn6eZQHBnBeOf8',
+    database: 'PanRiznyk'
 };
 var connection = mysql.createConnection(global.SQLoptions);
 connection.connect();
@@ -46,11 +47,6 @@ function insta() {
         }
     });
 }
-
-//Обновление инстаграмма каждый час
-setInterval(function(){
-    insta();
-},(1000 * 60) * 60);
 
 /*GET запроссы*/
 let index = require('./routes/index');
@@ -76,7 +72,7 @@ let udateData = () => {
     console.log('dataUpdated');
     connection.query('SELECT * FROM `MainConfig` WHERE 1', function (errors, results, fields) {
         global.mainData = results[0];
-    });    
+    });
 };
 
 //обновление партнеров
@@ -84,7 +80,7 @@ let udateData2 = () => {
     console.log('dataUpdated2');
     connection.query('SELECT * FROM `partners` WHERE 1', function (errors, results, fields) {
         global.partners = results;
-    });    
+    });
 };
 
 //обновление магазинов
@@ -92,10 +88,10 @@ let udateData3 = () => {
     console.log('dataUpdated3');
     connection.query('SELECT * FROM `shops` WHERE 1', function (errors, results, fields) {
         global.shops = results;
-    });    
+    });
 };
 
-app.post('/getShops', function(req, res){
+app.post('/getShops', function (req, res) {
     res.send(global.shops);
 });
 
@@ -108,27 +104,39 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-function mailOptions(a,b,c,d){
-    this.from = a,//'riznik.comment@gmail.com',
-    this.to = b,//'mr.kalinuk@gmail.com',
-    this.subject = c,//'Sending Email using Node.js',
-    this.text = d;//'That was easy!';
+function mailOptions(a, b, c, d) {
+    this.from = a, //'riznik.comment@gmail.com',
+            this.to = b, //'mr.kalinuk@gmail.com',
+            this.subject = c, //'Sending Email using Node.js',
+            this.text = d;//'That was easy!';
 }
 
 // отправка сообщения
-app.post('/sendMessage', function (req, res) {   
-    let txt = req.body.msgText + '[Відпавник: '+req.body.name+', email: '+req.body.email+']';
-    let ml = new mailOptions(req.body.email, 'panriznik@gmail.com',  'Коментар користувача.', txt); //panriznik@gmail.com
-    transporter.sendMail(ml, function(error, info){
-        if (error) {
-            console.log(error);
-            res.send(false);
-        } else {
-            console.log('Email sent: ' + info.response);
-            res.send(true);
-        }
-    });
+app.post('/sendMessage', function (req, res) {
+    if (validator.isEmail(req.body.email)) {
+        let txt = req.body.msgText + '[Відпавник: ' + req.body.name + ', email: ' + req.body.email + ']';
+        let ml = new mailOptions(req.body.email, 'panriznik@gmail.com', 'Коментар користувача.', txt); //panriznik@gmail.com
+        transporter.sendMail(ml, function (error, info) {
+            if (error) {
+                console.log(error);
+                res.send(false);
+            } else {
+                console.log('Email sent: ' + info.response);
+                res.send(true);
+            }
+        });
+    }else{
+        res.send(false);
+    }
 });
+
+//Обновление инстаграмма и данных каждый час
+setInterval(function () {
+    insta();
+    udateData();  //основнгые параметры
+    udateData2(); //партнеры
+    udateData3(); //магазины
+}, (1000 * 60) * 60);
 
 app.listen(80, function () {
     console.log('Started server from 80 port');
@@ -137,8 +145,8 @@ app.listen(80, function () {
     udateData2(); //партнеры
     udateData3(); //магазины
 });
-    
-    
+
+
 //работа сервера на порте 3000
 app2.use(express.static(__dirname + '/publick/'));
 app2.use(bParser.urlencoded({extended: true}));
@@ -158,10 +166,10 @@ function key_generator(len) {
     var password = "";
     var character = "";
     while (password.length < length) {
-         var entity1 = Math.ceil(string.length * Math.random() * Math.random());
-         var entity2 = Math.ceil(numeric.length * Math.random() * Math.random());
-         var hold = string.charAt(entity1);
-            hold = (entity1 % 2 === 0) ? (hold.toUpperCase()) : (hold);
+        var entity1 = Math.ceil(string.length * Math.random() * Math.random());
+        var entity2 = Math.ceil(numeric.length * Math.random() * Math.random());
+        var hold = string.charAt(entity1);
+        hold = (entity1 % 2 === 0) ? (hold.toUpperCase()) : (hold);
         character += hold;
         character += numeric.charAt(entity2);
         password = character;
@@ -169,11 +177,11 @@ function key_generator(len) {
     return password;
 }
 
-function mailOptions2(a,b,c,d){
-    this.from = a,//'riznik.comment@gmail.com',
-    this.to = b,//'mr.kalinuk@gmail.com',
-    this.subject = c,//'Sending Email using Node.js',
-    this.text = d;//'That was easy!';
+function mailOptions2(a, b, c, d) {
+    this.from = a, //'riznik.comment@gmail.com',
+            this.to = b, //'mr.kalinuk@gmail.com',
+            this.subject = c, //'Sending Email using Node.js',
+            this.text = d;//'That was easy!';
 }
 
 function randomInteger(min, max) {
@@ -181,62 +189,62 @@ function randomInteger(min, max) {
     rand = Math.round(rand);
     return rand;
 }
-    
-app2.post('/auth', function(req, res, next){
+
+app2.post('/auth', function (req, res, next) {
     connection.query('SELECT * FROM `Users` WHERE Name="' + req.body.L + '"', function (errors, results, fields) {
         if (results.length > 0) {
-            if (results[0].password === req.body.P) {               
-                let users = 'userID'+results[0].Name;
-                global[users] = {a: true, b:[results[0]]};   
+            if (results[0].password === req.body.P) {
+                let users = 'userID' + results[0].Name;
+                global[users] = {a: true, b: [results[0]]};
                 let txt = randomInteger(100000, 999999).toString();
-                let ml = new mailOptions2(req.body.email, results[0].email ,  'Код підтвердження: ', txt); //panriznik@gmail.com
-                transporter.sendMail(ml, function(error, info){
+                let ml = new mailOptions2(req.body.email, results[0].email, 'Код підтвердження: ', txt); //panriznik@gmail.com
+                transporter.sendMail(ml, function (error, info) {
                     if (error) {
                         console.log(error);
                         res.send('Неверный логин или пароль');
                     } else {
                         console.log('Email sent: ' + info.response);
-                        let users1 = 'userSMS'+results[0].Name;
-                        global[users1] =  txt;
+                        let users1 = 'userSMS' + results[0].Name;
+                        global[users1] = txt;
                         res.send('{"code":500 , "data": "good"}');
                     }
-                });                    
-            }else{
+                });
+            } else {
                 res.send('Неверный логин или пароль');
-            }          
+            }
         } else {
             res.send('Неверный логин или пароль');
         }
-    });    
+    });
 });
 
 
-  
-app2.post('/authSMS', function(req, res, next){
-    let users1 = 'userSMS'+req.body.N;
-    let users = 'userID'+req.body.N;
+
+app2.post('/authSMS', function (req, res, next) {
+    let users1 = 'userSMS' + req.body.N;
+    let users = 'userID' + req.body.N;
     let code = global[users1];
-    
-    if(code === req.body.S){
+
+    if (code === req.body.S) {
         var newKey = key_generator(35);
         res.cookie('AuthKEY', newKey);
-        res.cookie('uID', global[users].b[0].id);    
-        res.cookie('uName', global[users].b[0].Name);   
+        res.cookie('uID', global[users].b[0].id);
+        res.cookie('uName', global[users].b[0].Name);
         res.send('{"code":500 , "url": "/panel"}');
-    }   
+    }
 });
 
-app2.post('/legend', function(req, res, next){
-    if(parseInt(req.body.typePost) === 1){
+app2.post('/legend', function (req, res, next) {
+    if (parseInt(req.body.typePost) === 1) {
         //сохранить легенду
-        connection.query('UPDATE `MainConfig` SET `Description`="'+req.body.text+'" WHERE 1', function (errors, results, fields) {
+        connection.query('UPDATE `MainConfig` SET `Description`="' + req.body.text + '" WHERE 1', function (errors, results, fields) {
             udateData();
             res.send('Легенда сохранена');
-        });       
-    }else{
+        });
+    } else {
         connection.query('SELECT * FROM `MainConfig` WHERE 1', function (errors, results, fields) {
             res.send(results[0].Description);
-        });        
+        });
     }
 });
 

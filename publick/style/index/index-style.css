@@ -15,7 +15,7 @@
 
 @font-face {
     font-family: 'skill';
-    src: url('../fonts/skill.ttf');
+    src: url('../fonts/title.ttf');
 }
 
 ::-webkit-scrollbar-track
@@ -910,9 +910,9 @@ input:focus, textarea:focus {
     cursor: pointer;
     transition: 0.3s;
     opacity: 0;
-    margin: auto;
+    margin: 19px auto;
     width: fit-content;
-    /*display: none;*/ 
+    /* display: none; */
 }
 
 .shops-main-btn:hover{
@@ -945,9 +945,10 @@ a{
 }
 .shops-main-btn div{
     color: #b09536;
-    font-size: 35px;
-    font-family: btn2;
-    padding: 10px 25px;
+    font-size: 44px;
+    font-family: skill;
+    padding: 6px 37px;
+    font-weight: bold;
 }
 @media screen and (max-width: 1230px) {
     #legendText .lt{

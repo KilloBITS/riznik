@@ -95,11 +95,9 @@ let udateData3 = () => {
     });    
 };
 
-
 app.post('/getShops', function(req, res){
     res.send(global.shops);
 });
-
 
 var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({

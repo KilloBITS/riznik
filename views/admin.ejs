@@ -12,49 +12,42 @@
         <script type="text/javascript" src="script/panel/admin.script.js"></script>
     </head>
     <body>
-        <div class="content">
-            <div class="header">
-                <div class="head-btn">Головна сторінка</div>
-                <div class="head-btn">Магазин</div>
-            </div>
-            <div class="contents">
-                <div class="data-form" id="main">
-                    <div class="block legend">
-                        <div class="block-title">Легенда</div>
-                        <div class="block-content">
-                            <textarea id="legend"></textarea>                         
-                            <button id="sendLegend">Зберегти</button>
-                        </div>
-                    </div>
-                    <div class="block news">
-                        <div class="block-title">Юзери</div>
-                        <div class="block-content">
-                            <div class="news-cont" id="newsList">
-                                
-                            </div>
-                            <div class="news-cont">
-                                <div class="tt">Нік</div>
-                                <input type="text" id="news1">
-                                <div class="tt">Електрона пошта</div>
-                                <input type="text" id="news2">
-                                <div class="tt">Пароль</div>
-                                <textarea type="text" id="news3"></textarea>
-                                <div class="tt">Ранг</div>
-                                <input type="text" id="news4">
-                                
-                                <div class="btn-panel">
-                                    <div class="btn" id="newsSAVE">Зберегти змінни</div>
-                                    <div class="btn" id="newsDELETE">Видалити юзера</div>
-                                    <div class="btn" id="newsADD">Додати Юзера</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+        <header role="banner">
+            <h1>Панель управління</h1>
+            <ul class="utilities">
+                <li class="users"><a href="#">Мій аккаунт</a></li>
+                <li class="logout warn"><a href="">Вихід</a></li>
+            </ul>
+        </header>
+
+        <nav role="navigation">
+            <ul class="main">
+                <li class="dashboard"><a href="#">Головна сторінка</a></li>
+                <li class="write"><a href="#">Магазин</a></li>
+                
+                <li class="users"><a href="#">Юзери</a></li>
+            </ul>
+        </nav>
+
+        <main role="main">
+            <section class="panel important">
+                <h2>Легенда</h2>
+                <textarea id="leg"></textarea>
+                <div class="buttonLine">
+                    <div>
+                        <input type="submit" value="Зберегти" id="submitLeg"/>
+                    </div> 
                 </div>
-                <div class="data-form"></div>
-            </div>
-            <div class="bottom"></div>
-        </div>
+            </section>
+            <section class="panel">
+                <h2>Статистика</h2>
+                <ul>
+                    <li><b>0 </b> відвідувачів</li>
+                    <li><b>0</b> покупок.</li>
+                   
+                </ul>
+            </section>                  
+        </main>
+        <footer role="contentinfo">Riznyk</footer>
     </body>    
 </html>

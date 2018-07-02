@@ -130,6 +130,13 @@ app.post('/sendMessage', function (req, res) {
     }
 });
 
+app.post('/getUsersLength', function(req, res){
+    connection.query('SELECT * FROM `ipAdress` WHERE 1 ', function (errors, results, fields) {
+        console.log(results);
+        res.send(results.length.toString());
+    });
+});
+
 //Обновление инстаграмма и данных каждый час
 setInterval(function () {
     insta();

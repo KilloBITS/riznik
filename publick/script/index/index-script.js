@@ -183,6 +183,10 @@ $(function () {
             minimLogo(true);
         }
         getShops();
+        
+        $.post('/getUsersLength', function(data){
+            $('.num-users').html(data)
+        })
     });
     loadGallery();
 

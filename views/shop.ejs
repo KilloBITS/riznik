@@ -128,11 +128,13 @@
                                 <div class="nayavnist green">
                                     Є в наявності
                                 </div>
-                                <% }else if(tovar[i].length > 0){ %>
+                                <% } %> 
+                                <% if(tovar[i].length > 0 && tovar[i].length < 10){ %>
                                 <div class="nayavnist yellow">
                                     Товар закінчується
                                 </div>
-                                <% } else if(tovar[i].length == 0){ %>
+                                <% } %> 
+                                <% if(tovar[i].length == 0){ %>
                                 <div class="nayavnist red">
                                     Немає в наявності
                                 </div>

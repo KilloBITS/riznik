@@ -91,6 +91,17 @@ let udateData3 = () => {
     });
 };
 
+function updateData4(){
+    console.log('dataUpdated4');
+    connection.query('SELECT * FROM `tovar` WHERE 1', function (errors, results, fields) {
+        global.tovar = results;        
+    });
+};
+
+app.post('/tovar', function(req, res){
+    res.send(JSON.stringify(global.tovar));
+});
+
 app.post('/getShops', function (req, res) {
     res.send(global.shops);
 });
@@ -137,12 +148,15 @@ app.post('/getUsersLength', function(req, res){
     });
 });
 
+
+
 //Обновление инстаграмма и данных каждый час
 setInterval(function () {
     insta();
     udateData();  //основнгые параметры
     udateData2(); //партнеры
     udateData3(); //магазины
+    updateData4()
 }, (1000 * 60) * 60);
 
 app.listen(80, function () {
@@ -151,6 +165,7 @@ app.listen(80, function () {
     udateData();  //основнгые параметры
     udateData2(); //партнеры
     udateData3(); //магазины
+    updateData4();
 });
 
 

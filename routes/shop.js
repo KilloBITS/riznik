@@ -8,7 +8,7 @@ let path = require('path');
 var folder1 = __dirname + '/../publick/image/slide/';
 
 router.get('/shop', function(req, res, next){
-    res.render('shop.ejs');  
+    res.render('shop.ejs', {tovar: global.tovar});  
 });
 
 module.exports = router;

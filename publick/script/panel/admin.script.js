@@ -5,6 +5,12 @@ let design = () => {
             alert(data);
         });
     });
+
+    $('.bluBTN').click(function () {
+        let index = $('.bluBTN').index(this);
+        $('.panelBlock').hide();
+        $('.panelBlock:eq(' + index + ')').show();
+    });
 }
 
 let initLegend = () => {
@@ -13,9 +19,9 @@ let initLegend = () => {
     });
 };
 
-
-
 $(document).ready(function () {
     design();
     initLegend();
+
+    $('.bluBTN:eq(0)').click();
 });

@@ -94,6 +94,9 @@
                         </div>
                     </div>
                 </div>
+
+
+                <% for(var i = 0; i < tovar.length; i++) { %>
                 <div class="tovar">
                     <div class="tovar-left">
                         <div class="tovar-logo" style="    background-image: url(../../../content/tovarImage/1.jpg);">
@@ -111,26 +114,30 @@
                         </div>
                     </div>
                     <div class="tovar-right">
-                        <div class="tovar-title">Ковбаса "Кільцева"</div>
-                        <div class="tovarID">035681</div>
+                        <div class="tovar-title"><%= tovar[i].name %></div>
+                        <div class="tovarID"><%= tovar[i].id %></div>
                         <div class="tovar-text">
-                            Ковбаса́ — м'ясний продукт з ковбасного фаршу 
-                            в штучній чи натуральній оболонці, чи без неї, 
-                            піддані термічній обробці або ферментації до 
-                            готовності для споживання. До складу фаршу, 
-                            залежно від рецептури, входять, крім основної 
-                            сировини (м'ясо, шпик, іноді подрібнене м'ясо птиці чи риби),
-                            кухонна сіль, сироватка чи плазма крові, іноді сира кров, 
-                            білковий стабілізатор, знежирене чи сухе молоко, яйцепродукти, 
-                            прянощі, а як зв'язуючі речовини — крохмаль, звичайний та 
-                            модифікований і борошно. До певних сортів додають також крупи та лівер.
+                            <%= tovar[i].text %>
                         </div>
                         <div class="tovar-right-bottom">
                             <div class="price">
-                                Ціна: 150.00
+                                Ціна: <%= tovar[i].price %> .00
                             </div>
                             <div class="addCart">
-                                <div class="nayavnist green">Є в наявності</div>
+                                <% if(tovar[i].length > 10){ %>
+                                <div class="nayavnist green">
+                                    Є в наявності
+                                </div>
+                                <% }else if(tovar[i].length > 0){ %>
+                                <div class="nayavnist yellow">
+                                    Товар закінчується
+                                </div>
+                                <% } else if(tovar[i].length == 0){ %>
+                                <div class="nayavnist red">
+                                    Немає в наявності
+                                </div>
+                                <% } %>   
+                                
                                 <div class="button bGreen">Додати в кошик</div>
                             </div>
                             <div class="details">
@@ -139,327 +146,10 @@
                         </div>
                     </div>
                 </div>
+                <% } %>
 
-                <div class="tovar">
-                    <div class="tovar-left">
-                        <div class="tovar-logo" style="    background-image: url(../../../content/tovarImage/2.jpg);">
 
-                        </div>
-                        <div class="tovar-stars">
-                            <div class="stars-title">Оцінка покупців</div>
-                            <div class="stars">
-                                <div class="star st2"><span>1</span></div>
-                                <div class="star st2"><span>2</span></div>
-                                <div class="star st2"><span>3</span></div>
-                                <div class="star st2"><span>4</span></div>
-                                <div class="star st2"><span>5</span></div>
-                            </div>                            
-                        </div>
-                    </div>
-                    <div class="tovar-right">
-                        <div class="tovar-title">Сало</div>
-                        <div class="tovarID">035689</div>
-                        <div class="tovar-text">
-                            Ковбаса́ — м'ясний продукт з ковбасного фаршу 
-                            в штучній чи натуральній оболонці, чи без неї, 
-                            піддані термічній обробці або ферментації до 
-                            готовності для споживання. До складу фаршу, 
-                            залежно від рецептури, входять, крім основної 
-                            сировини (м'ясо, шпик, іноді подрібнене м'ясо птиці чи риби),
-                            кухонна сіль, сироватка чи плазма крові, іноді сира кров, 
-                            білковий стабілізатор, знежирене чи сухе молоко, яйцепродукти, 
-                            прянощі, а як зв'язуючі речовини — крохмаль, звичайний та 
-                            модифікований і борошно. До певних сортів додають також крупи та лівер.
-                        </div>
-                        <div class="tovar-right-bottom">
-                            <div class="price">
-                                Ціна: 100.00
-                            </div>
-                            <div class="addCart">
-                                <div class="nayavnist green">Є в наявності</div>
-                                <div class="button bGreen">Додати в кошик</div>
-                            </div>
-                            <div class="details">
-                                Детальна інформація
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="tovar">
-                    <div class="tovar-left">
-                        <div class="tovar-logo" style="    background-image: url(../../../content/tovarImage/3.jpg);">
-
-                        </div>
-                        <div class="tovar-stars">
-                            <div class="stars-title">Оцінка покупців</div>
-                            <div class="stars">
-                                <div class="star st2"><span>1</span></div>
-                                <div class="star st1"><span>2</span></div>
-                                <div class="star st1"><span>3</span></div>
-                                <div class="star st1"><span>4</span></div>
-                                <div class="star st1"><span>5</span></div>
-                            </div>                            
-                        </div>
-                    </div>
-                    <div class="tovar-right">
-                        <div class="tovar-title">Якісь ковбаски</div>
-                        <div class="tovarID">034251</div>
-                        <div class="tovar-text">
-                            Ковбаса́ — м'ясний продукт з ковбасного фаршу 
-                            в штучній чи натуральній оболонці, чи без неї, 
-                            піддані термічній обробці або ферментації до 
-                            готовності для споживання. До складу фаршу, 
-                            залежно від рецептури, входять, крім основної 
-                            сировини (м'ясо, шпик, іноді подрібнене м'ясо птиці чи риби),
-                            кухонна сіль, сироватка чи плазма крові, іноді сира кров, 
-                            білковий стабілізатор, знежирене чи сухе молоко, яйцепродукти, 
-                            прянощі, а як зв'язуючі речовини — крохмаль, звичайний та 
-                            модифікований і борошно. До певних сортів додають також крупи та лівер.
-                        </div>
-                        <div class="tovar-right-bottom">
-                            <div class="price">
-                                Ціна: 50.00
-                            </div>
-                            <div class="addCart">
-                                <div class="nayavnist red">Немає в наявності</div>
-                                <div class="button bGreen disBtn">Додати в кошик</div>
-                            </div>
-                            <div class="details">
-                                Детальна інформація
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tovar">
-                    <div class="tovar-left">
-                        <div class="tovar-logo" style="    background-image: url(../../../content/tovarImage/3.jpg);">
-
-                        </div>
-                        <div class="tovar-stars">
-                            <div class="stars-title">Оцінка покупців</div>
-                            <div class="stars">
-                                <div class="star st2"><span>1</span></div>
-                                <div class="star st1"><span>2</span></div>
-                                <div class="star st1"><span>3</span></div>
-                                <div class="star st1"><span>4</span></div>
-                                <div class="star st1"><span>5</span></div>
-                            </div>                            
-                        </div>
-                    </div>
-                    <div class="tovar-right">
-                        <div class="tovar-title">Якісь ковбаски</div>
-                        <div class="tovarID">321654</div>
-                        <div class="tovar-text">
-                            Ковбаса́ — м'ясний продукт з ковбасного фаршу 
-                            в штучній чи натуральній оболонці, чи без неї, 
-                            піддані термічній обробці або ферментації до 
-                            готовності для споживання. До складу фаршу, 
-                            залежно від рецептури, входять, крім основної 
-                            сировини (м'ясо, шпик, іноді подрібнене м'ясо птиці чи риби),
-                            кухонна сіль, сироватка чи плазма крові, іноді сира кров, 
-                            білковий стабілізатор, знежирене чи сухе молоко, яйцепродукти, 
-                            прянощі, а як зв'язуючі речовини — крохмаль, звичайний та 
-                            модифікований і борошно. До певних сортів додають також крупи та лівер.
-                        </div>
-                        <div class="tovar-right-bottom">
-                            <div class="price">
-                                Ціна: 50.00
-                            </div>
-                            <div class="addCart">
-                                <div class="nayavnist red">Немає в наявності</div>
-                                <div class="button bGreen disBtn">Додати в кошик</div>
-                            </div>
-                            <div class="details">
-                                Детальна інформація
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tovar">
-                    <div class="tovar-left">
-                        <div class="tovar-logo" style="    background-image: url(../../../content/tovarImage/3.jpg);">
-
-                        </div>
-                        <div class="tovar-stars">
-                            <div class="stars-title">Оцінка покупців</div>
-                            <div class="stars">
-                                <div class="star st2"><span>1</span></div>
-                                <div class="star st1"><span>2</span></div>
-                                <div class="star st1"><span>3</span></div>
-                                <div class="star st1"><span>4</span></div>
-                                <div class="star st1"><span>5</span></div>
-                            </div>                            
-                        </div>
-                    </div>
-                    <div class="tovar-right">
-                        <div class="tovar-title">Якісь ковбаски</div>
-                        <div class="tovarID">122891</div>
-                        <div class="tovar-text">
-                            Ковбаса́ — м'ясний продукт з ковбасного фаршу 
-                            в штучній чи натуральній оболонці, чи без неї, 
-                            піддані термічній обробці або ферментації до 
-                            готовності для споживання. До складу фаршу, 
-                            залежно від рецептури, входять, крім основної 
-                            сировини (м'ясо, шпик, іноді подрібнене м'ясо птиці чи риби),
-                            кухонна сіль, сироватка чи плазма крові, іноді сира кров, 
-                            білковий стабілізатор, знежирене чи сухе молоко, яйцепродукти, 
-                            прянощі, а як зв'язуючі речовини — крохмаль, звичайний та 
-                            модифікований і борошно. До певних сортів додають також крупи та лівер.
-                        </div>
-                        <div class="tovar-right-bottom">
-                            <div class="price">
-                                Ціна: 50.00
-                            </div>
-                            <div class="addCart">
-                                <div class="nayavnist red">Немає в наявності</div>
-                                <div class="button bGreen disBtn">Додати в кошик</div>
-                            </div>
-                            <div class="details">
-                                Детальна інформація
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tovar">
-                    <div class="tovar-left">
-                        <div class="tovar-logo" style="    background-image: url(../../../content/tovarImage/3.jpg);">
-
-                        </div>
-                        <div class="tovar-stars">
-                            <div class="stars-title">Оцінка покупців</div>
-                            <div class="stars">
-                                <div class="star st2"><span>1</span></div>
-                                <div class="star st1"><span>2</span></div>
-                                <div class="star st1"><span>3</span></div>
-                                <div class="star st1"><span>4</span></div>
-                                <div class="star st1"><span>5</span></div>
-                            </div>                            
-                        </div>
-                    </div>
-                    <div class="tovar-right">
-                        <div class="tovar-title">Якісь ковбаски</div>
-                        <div class="tovarID">356681</div>
-                        <div class="tovar-text">
-                            Ковбаса́ — м'ясний продукт з ковбасного фаршу 
-                            в штучній чи натуральній оболонці, чи без неї, 
-                            піддані термічній обробці або ферментації до 
-                            готовності для споживання. До складу фаршу, 
-                            залежно від рецептури, входять, крім основної 
-                            сировини (м'ясо, шпик, іноді подрібнене м'ясо птиці чи риби),
-                            кухонна сіль, сироватка чи плазма крові, іноді сира кров, 
-                            білковий стабілізатор, знежирене чи сухе молоко, яйцепродукти, 
-                            прянощі, а як зв'язуючі речовини — крохмаль, звичайний та 
-                            модифікований і борошно. До певних сортів додають також крупи та лівер.
-                        </div>
-                        <div class="tovar-right-bottom">
-                            <div class="price">
-                                Ціна: 50.00
-                            </div>
-                            <div class="addCart">
-                                <div class="nayavnist red">Немає в наявності</div>
-                                <div class="button bGreen disBtn">Додати в кошик</div>
-                            </div>
-                            <div class="details">
-                                Детальна інформація
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tovar">
-                    <div class="tovar-left">
-                        <div class="tovar-logo" style="    background-image: url(../../../content/tovarImage/3.jpg);">
-
-                        </div>
-                        <div class="tovar-stars">
-                            <div class="stars-title">Оцінка покупців</div>
-                            <div class="stars">
-                                <div class="star st2"><span>1</span></div>
-                                <div class="star st1"><span>2</span></div>
-                                <div class="star st1"><span>3</span></div>
-                                <div class="star st1"><span>4</span></div>
-                                <div class="star st1"><span>5</span></div>
-                            </div>                            
-                        </div>
-                    </div>
-                    <div class="tovar-right">
-                        <div class="tovar-title">Якісь ковбаски</div>
-                        <div class="tovarID">555555</div>
-                        <div class="tovar-text">
-                            Ковбаса́ — м'ясний продукт з ковбасного фаршу 
-                            в штучній чи натуральній оболонці, чи без неї, 
-                            піддані термічній обробці або ферментації до 
-                            готовності для споживання. До складу фаршу, 
-                            залежно від рецептури, входять, крім основної 
-                            сировини (м'ясо, шпик, іноді подрібнене м'ясо птиці чи риби),
-                            кухонна сіль, сироватка чи плазма крові, іноді сира кров, 
-                            білковий стабілізатор, знежирене чи сухе молоко, яйцепродукти, 
-                            прянощі, а як зв'язуючі речовини — крохмаль, звичайний та 
-                            модифікований і борошно. До певних сортів додають також крупи та лівер.
-                        </div>
-                        <div class="tovar-right-bottom">
-                            <div class="price">
-                                Ціна: 50.00
-                            </div>
-                            <div class="addCart">
-                                <div class="nayavnist red">Немає в наявності</div>
-                                <div class="button bGreen disBtn">Додати в кошик</div>
-                            </div>
-                            <div class="details">
-                                Детальна інформація
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tovar">
-                    <div class="tovar-left">
-                        <div class="tovar-logo" style="    background-image: url(../../../content/tovarImage/3.jpg);">
-
-                        </div>
-                        <div class="tovar-stars">
-                            <div class="stars-title">Оцінка покупців</div>
-                            <div class="stars">
-                                <div class="star st2"><span>1</span></div>
-                                <div class="star st1"><span>2</span></div>
-                                <div class="star st1"><span>3</span></div>
-                                <div class="star st1"><span>4</span></div>
-                                <div class="star st1"><span>5</span></div>
-                            </div>                            
-                        </div>
-                    </div>
-                    <div class="tovar-right">
-                        <div class="tovar-title">Якісь ковбаски</div>
-                        <div class="tovar-text">
-                            Ковбаса́ — м'ясний продукт з ковбасного фаршу 
-                            в штучній чи натуральній оболонці, чи без неї, 
-                            піддані термічній обробці або ферментації до 
-                            готовності для споживання. До складу фаршу, 
-                            залежно від рецептури, входять, крім основної 
-                            сировини (м'ясо, шпик, іноді подрібнене м'ясо птиці чи риби),
-                            кухонна сіль, сироватка чи плазма крові, іноді сира кров, 
-                            білковий стабілізатор, знежирене чи сухе молоко, яйцепродукти, 
-                            прянощі, а як зв'язуючі речовини — крохмаль, звичайний та 
-                            модифікований і борошно. До певних сортів додають також крупи та лівер.
-                        </div>
-                        <div class="tovar-right-bottom">
-                            <div class="price">
-                                Ціна: 50.00
-                            </div>
-                            <div class="addCart">
-                                <div class="nayavnist red">Немає в наявності</div>
-                                <div class="button bGreen disBtn">Додати в кошик</div>
-                            </div>
-                            <div class="details">
-                                Детальна інформація
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
 

@@ -4,6 +4,17 @@ var shops = new Object(); //переменная параметров
  //объект корзины
 var tovar = [];
 
+
+var loadtTovar = () => {
+    $.post('/tovar', function(data){
+        console.log(JSON.parse(data));
+        for(let i = 0; i < JSON.parse(data).length; i++){
+            
+        }
+    });
+};
+
+
 var updateCart = function(name, id, price, img){   
     var cartS = new Object();
     cartS.nameTovar = name;
@@ -95,7 +106,7 @@ var design = function(){
             $('.demoCart').css({
                 "width":"35px",
                 "height":"35px",
-                "left": "calc(100% - 90px)",
+                "left": $('.basket').offset().left  + 'px',
                 "top": 5 + 'px'
             });
             $('.basket div').html(parseInt($('.basket div').html()) + 1);
@@ -140,6 +151,8 @@ var loadMainPage = function(){
 };
 
 var loadPricePage = function(){
+    
+    loadtTovar();
     $('.content:eq(1)').show();    
     $('.content-preload:eq(1)').fadeOut(400);
     

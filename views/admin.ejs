@@ -11,7 +11,7 @@
         <script type="text/javascript" src="script/jquery-3.2.1.js"></script>
         <script type="text/javascript" src="script/panel/admin.script.js"></script>
     </head>
-    <body>
+    <body style="margin:0;">
         <header role="banner">
             <h1>Панель управління</h1>
             <ul class="utilities">
@@ -22,14 +22,13 @@
 
         <nav role="navigation">
             <ul class="main">
-                <li class="dashboard"><a href="#">Головна сторінка</a></li>
-                <li class="write"><a href="#">Магазин</a></li>
-                
-                <li class="users"><a href="#">Юзери</a></li>
+                <li class="bluBTN dashboard"><a href="#">Головна сторінка</a></li>
+                <li class="bluBTN write"><a href="#">Магазин</a></li>
+                <li class="bluBTN users"><a href="#">Юзери</a></li>
             </ul>
         </nav>
 
-        <main role="main">
+        <main role="main" class="panelBlock mains">
             <section class="panel important">
                 <h2>Легенда</h2>
                 <textarea id="leg"></textarea>
@@ -44,10 +43,46 @@
                 <ul>
                     <li><b>0 </b> відвідувачів</li>
                     <li><b>0</b> покупок.</li>
-                   
+
+                </ul>
+            </section>    
+            <section class="panel">
+                <h2>Робота сайту</h2>
+                <ul>
+                    <li><b>Головна сторінка</b> (Активна)</li>
+                    <li><b>Магазин</b> (Розробка)</li>
+
+                </ul>
+            </section> 
+        </main>
+
+        <main role="main" class="panelBlock shops">
+            <section class="panel important">
+                <h2>Товари</h2>
+                <div class="section50">
+                    <div class="listbox">
+                        <div class="listItems"></div>
+                    </div>
+                </div>
+                
+                <div class="buttonLine">
+                    <div>
+                        <input type="submit" value="Додати товар" id="AddTovar"/>
+                    </div> 
+                </div>
+            </section>
+            
+            <section class="panel">
+                <h2>Статистика</h2>
+                <ul>
+                    <li><b>0 </b> відвідувачів</li>
+                    <li><b>0</b> покупок.</li>
+
                 </ul>
             </section>                  
         </main>
         <footer role="contentinfo">Riznyk</footer>
+        
+        <div class=""></div>
     </body>    
 </html>

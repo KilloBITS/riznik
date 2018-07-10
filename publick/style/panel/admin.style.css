@@ -13,6 +13,7 @@ body {
     background: #f1f2f7;
     font-family: 'Open Sans', arial, sans-serif;
     color: darkslategray;
+    overflow: hidden;
 }
 
 body.login {
@@ -132,6 +133,7 @@ footer[role=contentinfo] {
     -ms-border-radius: .3rem;
     border-radius: .3rem;
     margin: 1%;
+    transition: 0.3s;
 }
 .panel > h2, .panel > ul {
     margin: 1rem;
@@ -462,9 +464,11 @@ td {
 
 .listbox{
     width: 400px;
-    height: 500px;
+    height: 670px;
     border-right: 2px solid;
     margin-bottom: 20px;
+    overflow-y: scroll;
+    float: left;
 }
 
 .listItems{
@@ -472,4 +476,220 @@ td {
     height: 50px;
     background: #eaeaea;
     border-bottom: 1px solid #ababab;
+    cursor: pointer;
+    padding-left: 10px;
+    background-position: 100%;
+    background-repeat: no-repeat;
+}
+
+.listItems:hover{
+    background: wheat;
+    background-position: 100%;
+    background-repeat: no-repeat;
+}
+
+.listID{
+    float: left;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.listNAME{
+    float: left;
+    width: 100%;
+}
+
+.ListSearch{
+    /* position: absolute; */
+    height: 50px;
+    width: 100%;
+    width: 400px;
+    background: white;
+    top: 0;
+    left: 0;
+}
+
+.section50{
+    position: relative;
+    padding-left: 20px;
+}
+
+.ListSearch input{
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #c7c7c7;
+    text-align: center;
+    font-size: 18px;
+}
+
+.dataTovar{
+    float: left;
+    width: 50%;
+    margin-left: 50px;
+    max-width: 600px;
+}
+
+.lineData{
+    float: left;
+    width: 100%;
+    height: 50px;
+    border: 1px solid #b3b3b3;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.lineData input{
+    position: absolute;
+    width: 100%;
+    height: 35px;
+    bottom: 0;
+    border: 0;
+    border-bottom: 2px solid #c1c1c1;
+    padding-left: 10px;
+}
+
+.lineData span{
+    position: absolute;
+    left: 10px;
+    background: white;
+    padding: 0px 14px;
+    border: 1px solid #b3b3b3;
+    border-radius: 5px;
+    top: -11px;
+}
+
+#text{
+    resize: none;
+    position: absolute;
+    width: 100%;
+    height: 100px;
+    bottom: 0;
+    border: 0;
+    border-bottom: 2px solid #c1c1c1;
+    padding-left: 10px;
+}
+
+#ttt{
+    height: 120px;
+}
+
+.btnNew{
+    position: absolute;
+    top: -50px;
+    right: 0;
+    cursor: pointer;
+    border: 1px solid silver;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+#newTovar{
+    right: 200px;
+}
+
+#deleteTovar{
+    right: 33px;
+}
+
+.addNewTovar{
+    position: absolute;
+    background: white;
+    z-index: 100000000;
+    width: 500px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    padding: 22px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 11px 0px rgba(0, 0, 0, 0.37);
+    display: none;
+}
+
+.addNewTovar .dataTovar{
+    width: 100%;
+    margin: 0;
+}
+
+.bbttnn{
+    float: left;
+    border: 1px solid #929292;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background: #d8d8d8;
+    color: black;
+    cursor: pointer;
+}
+
+#photo{
+    height: 200px;
+    width: 200px;
+}
+
+.betaImage{
+    width: 100%;
+    height: 100%;
+    background: aliceblue;
+    background-size: cover;
+    background-position: center;
+}
+
+#lineID, #lineName, #linePrice{
+    width: calc(100% - 250px);
+    margin-left: 45px;
+}
+
+.closeNewTovar{
+    position: absolute;
+    right: -17px;
+    top: -17px;
+    background: red;
+    width: 34px;
+    height: 34px;
+    border-radius: 25px;
+    text-align: center;
+    line-height: 29px;
+    color: white;
+    font-size: 23px;
+    font-family: cursive;
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+.updateImage{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    line-height: 40px;
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: 12px;
+    background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQxOS4yIDQxOS4yIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0MTkuMiA0MTkuMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIzMnB4IiBoZWlnaHQ9IjMycHgiPgo8Zz4KCTxnPgoJCTxnPgoJCQk8Y2lyY2xlIGN4PSIxNTgiIGN5PSIxNDQuNCIgcj0iMjguOCIgZmlsbD0iI0ZGRkZGRiIvPgoJCQk8cGF0aCBkPSJNMzk0LjQsMjUwLjRjLTEzLjYtMTIuOC0zMC44LTIxLjItNDkuNi0yMy42VjgwLjRjMC0xNS42LTYuNC0yOS42LTE2LjQtNDBDMzE4LDMwLDMwNCwyNCwyODguNCwyNGgtMjMyICAgICBjLTE1LjYsMC0yOS42LDYuNC00MCwxNi40QzYsNTAuOCwwLDY0LjgsMCw4MC40djE4NC40VjI4MnYzNy4yYzAsMTUuNiw2LjQsMjkuNiwxNi40LDQwYzEwLjQsMTAuNCwyNC40LDE2LjQsNDAsMTYuNGgyMjQuNCAgICAgYzE0LjgsMTIsMzMuMiwxOS42LDUzLjYsMTkuNmMyMy42LDAsNDQuOC05LjYsNjAtMjQuOGMxNS4yLTE1LjIsMjQuOC0zNi40LDI0LjgtNjBDNDE5LjIsMjg2LjgsNDA5LjYsMjY1LjYsMzk0LjQsMjUwLjR6ICAgICAgTTIxLjIsODAuNGMwLTkuNiw0LTE4LjQsMTAuNC0yNC44YzYuNC02LjQsMTUuMi0xMC40LDI0LjgtMTAuNGgyMzJjOS42LDAsMTguNCw0LDI0LjgsMTAuNGM2LjQsNi40LDEwLjQsMTUuMiwxMC40LDI0Ljh2MTI0LjggICAgIGwtNTkuMi01OC44Yy00LTQtMTAuOC00LjQtMTUuMiwwTDE2MCwyMzZsLTYwLjQtNjAuOGMtNC00LTEwLjgtNC40LTE1LjIsMGwtNjMuMiw2NFY4MC40eiBNNTYsMzU0Ljh2LTAuNCAgICAgYy05LjYsMC0xOC40LTQtMjQuOC0xMC40Yy02LTYuNC0xMC0xNS4yLTEwLTI0LjhWMjgydi0xMi44TDkyLjQsMTk4bDYwLjQsNjAuNGM0LDQsMTAuOCw0LDE1LjIsMGw4OS4yLTg5LjZsNTguNCw1OC44ICAgICBjLTEuMiwwLjQtMi40LDAuOC0zLjYsMS4yYy0xLjYsMC40LTMuMiwwLjgtNS4yLDEuNmMtMS42LDAuNC0zLjIsMS4yLTQuOCwxLjZjLTEuMiwwLjQtMiwwLjgtMy4yLDEuNmMtMS42LDAuOC0yLjgsMS4yLTQsMiAgICAgYy0yLDEuMi00LDIuNC02LDMuNmMtMS4yLDAuOC0yLDEuMi0zLjIsMmMtMC44LDAuNC0xLjIsMC44LTIsMS4yYy0zLjYsMi40LTYuOCw1LjItOS42LDguNGMtMTUuMiwxNS4yLTI0LjgsMzYuNC0yNC44LDYwICAgICBjMCw2LDAuOCwxMS42LDIsMTcuNmMwLjQsMS42LDAuOCwyLjgsMS4yLDQuNGMxLjIsNCwyLjQsOCw0LDEydjAuNGMxLjYsMy4yLDMuMiw2LjgsNS4yLDkuNkg1NnogTTM3OC44LDM1NS4yICAgICBjLTExLjYsMTEuNi0yNy4yLDE4LjQtNDQuOCwxOC40Yy0xNi44LDAtMzIuNC02LjgtNDMuNi0xNy42Yy0xLjYtMS42LTMuMi0zLjYtNC44LTUuMmMtMS4yLTEuMi0yLjQtMi44LTMuNi00ICAgICBjLTEuNi0yLTIuOC00LjQtNC02LjhjLTAuOC0xLjYtMS42LTIuOC0yLjQtNC40Yy0wLjgtMi0xLjYtNC40LTItNi44Yy0wLjQtMS42LTEuMi0zLjYtMS42LTUuMmMtMC44LTQtMS4yLTguNC0xLjItMTIuOCAgICAgYzAtMTcuNiw3LjItMzMuMiwxOC40LTQ0LjhjMTEuNi0xMS42LDI3LjItMTguNCw0NC44LTE4LjRjMTcuNiwwLDMzLjIsNy4yLDQ0LjgsMTguNGMxMS42LDExLjIsMTguNCwyNy4yLDE4LjQsNDQuOCAgICAgQzM5Ny4yLDMyOCwzOTAsMzQzLjYsMzc4LjgsMzU1LjJ6IiBmaWxsPSIjRkZGRkZGIi8+CgkJCTxwYXRoIGQ9Ik0zNjguOCwyOTkuNmgtMjQuNHYtMjQuNGMwLTYtNC44LTEwLjgtMTAuOC0xMC44cy0xMC44LDQuOC0xMC44LDEwLjh2MjQuNGgtMjQuNGMtNiwwLTEwLjgsNC44LTEwLjgsMTAuOCAgICAgczQuOCwxMC44LDEwLjgsMTAuOGgyNC40djI0LjRjMCw2LDQuOCwxMC44LDEwLjgsMTAuOHMxMC44LTQuOCwxMC44LTEwLjh2LTI0LjRoMjQuNGM2LDAsMTAuOC00LjgsMTAuOC0xMC44ICAgICBTMzc0LjgsMjk5LjYsMzY4LjgsMjk5LjZ6IiBmaWxsPSIjRkZGRkZGIi8+CgkJPC9nPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=);
+    background-repeat: no-repeat;
+    background-size: 25px;
+    background-position: 7px;
+    opacity: 0;
+}
+
+.betaImage:hover .updateImage{
+    opacity: 1;
+}
+
+
+
+.disabled{
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: gray; /* IE 6-9 */
+     pointer-events: none;
+    opacity: 0.4;
 }

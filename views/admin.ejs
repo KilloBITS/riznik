@@ -23,7 +23,7 @@
         <nav role="navigation">
             <ul class="main">
                 <li class="bluBTN dashboard"><a href="#">Головна сторінка</a></li>
-                <li class="bluBTN write"><a href="#">Магазин</a></li>
+                <li class="bluBTN write"><a href="#">Товари</a></li>
                 <li class="bluBTN users"><a href="#">Юзери</a></li>
             </ul>
         </nav>
@@ -60,29 +60,82 @@
             <section class="panel important">
                 <h2>Товари</h2>
                 <div class="section50">
-                    <div class="listbox">
-                        <div class="listItems"></div>
+                    <div class="btnNew" id="newTovar">Додати новий товар</div>
+                    <div class="btnNew" id="deleteTovar">Видалити товар</div>
+                    <div class="ListSearch">
+                        <input type="text" id="listSearch" placeholder="Пошук (введіть ID або Назву товару)">
+                    </div>
+                    <div class="listbox">                        
+                        <% for(var i = 0; i < tovar.length; i++) { %>
+                        <div class="listItems">
+                            <div class="listID"><%= tovar[i].id %></div>
+                            <div class="listNAME"><%= tovar[i].name %></div>
+                        </div>
+                        <% } %>                
+                    </div>
+                    
+                    
+                    <div class="dataTovar disabled" >
+                        <div class="lineData" id="photo">
+                            <span>Зображення</span>
+                            <div class="betaImage">
+                                <div class="updateImage">Вибрати зображення</div>
+                            </div>
+                        </div>
+                        <div class="lineData" id="lineID">
+                            <span>ID</span>
+                            <input class="input" type="text">
+                        </div>
+                        <div class="lineData" id="lineName">
+                            <span>Назва</span>
+                            <input class="input" type="text">
+                        </div>
+                        <div class="lineData" id="linePrice">
+                            <span>Ціна</span>
+                            <input class="input" type="text">
+                        </div>
+                        <div class="lineData">
+                            <span>Категорія</span>
+                            <input class="input" type="text">
+                        </div>
+                        <div class="lineData" id="ttt">
+                            <span>Опис</span>
+                            <textarea class="input" id="text"></textarea>
+                        </div>
+                    </div>
+                </div>            
+            </section>
+
+            <div class="addNewTovar">
+                <div class="closeNewTovar">X</div>
+                <div class="dataTovar">
+                    <div class="lineData">
+                        <span>ID</span>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="lineData">
+                        <span>Назва</span>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="lineData">
+                        <span>Ціна</span>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="lineData">
+                        <span>Категорія</span>
+                        <input class="input" type="text">
+                    </div>
+                    <div class="lineData" id="ttt">
+                        <span>Опис</span>
+                        <textarea class="input" id="text"></textarea>
                     </div>
                 </div>
                 
-                <div class="buttonLine">
-                    <div>
-                        <input type="submit" value="Додати товар" id="AddTovar"/>
-                    </div> 
-                </div>
-            </section>
-            
-            <section class="panel">
-                <h2>Статистика</h2>
-                <ul>
-                    <li><b>0 </b> відвідувачів</li>
-                    <li><b>0</b> покупок.</li>
-
-                </ul>
-            </section>                  
+                <div class="bbttnn">Зберегти</div>
+            </div>              
         </main>
         <footer role="contentinfo">Riznyk</footer>
-        
+
         <div class=""></div>
     </body>    
 </html>

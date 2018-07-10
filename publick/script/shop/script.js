@@ -37,6 +37,9 @@ var getCart = function(){
 
 var design = function(){
     $('.btnMenu').click(function(){
+        $('.BuyTovar').fadeOut(300);
+        $('.tovar').fadeIn(200);
+        $('.btnMenuDemo').hide();
         let index = $('.btnMenu').index(this);
         $('.btnMenu').removeClass('btnActive');
         $('.btnMenu:eq('+index+')').addClass('btnActive');
@@ -141,7 +144,17 @@ var design = function(){
     });    
     
     $('.details').click(function(){
-        document.location.href='/product'
+//        document.location.href='/product';
+        let ID = $('.' + $('.details:eq('+$('.details').index(this)+')').parents()[1].className + ' .tovarID:eq('+$('.details').index(this)+')').html();
+        $('.content-preload').fadeIn(100);
+        $('.BuyTovar').fadeIn(300);
+        $('.tovar').fadeOut(300);
+        $('.btnMenu').removeClass('btnActive');
+        $('#tovarname').html('Перегляд товару').addClass('btnActive').fadeIn(300).click();
+        $('.BuyTovar iframe').attr("src","/product/&tovar="+ID);
+        setTimeout(function(){
+            $('.content-preload').fadeOut(300);
+        },1000);
     });
 };
 

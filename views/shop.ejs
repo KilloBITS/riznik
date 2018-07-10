@@ -21,7 +21,8 @@
                     <a href="/"><div class="btnMenu">Головна</div></a>
                     <div class="btnMenu">Продукція</div>
                     <!--<div class="btnMenu">Новини</div>-->
-                    <div class="btnMenu">Оплата та доставка</div>                
+                    <div class="btnMenu">Оплата та доставка</div>          
+                    <div class="btnMenuDemo" id="tovarname">товар</div>         
                 </div>
                 <div class="btnHead auth" title="Вхід"></div> 
                 <div class="btnHead basket" title="Кошик пустий">
@@ -49,7 +50,14 @@
         <div class="content">
             <div class="content-preload"></div>
             <div class="title-block">Наша продукція</div>
+             <div class="BuyTovar">
+                    <iframe >
+                        
+                    </iframe>
+                </div>
+            
             <div class="dataOfForm">
+                
                 <div class="filters">
                     <div class="filters-block">
                         <div class="filter-btn btnActive">Всі</div>
@@ -89,6 +97,8 @@
                         </div>
                     </div>
                 </div>
+                
+               
                 <% for(var i = 0; i < tovar.length; i++) { %>
                 <div class="tovar">
                     <div class="tovar-left">

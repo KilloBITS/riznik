@@ -26,7 +26,7 @@ function parseAdmin(req, res, next) {
 }
 
 router2.get('/panel',parseAdmin, function(req, res, next){    
-    res.render('admin.ejs');  
+    res.render('admin.ejs', {tovar: global.tovar});  
 });
 
 module.exports = router2;

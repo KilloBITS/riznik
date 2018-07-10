@@ -8,6 +8,7 @@ var bParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var InstagramAPI = require('instagram-api');
 var validator = require('validator');
+var mysql = require('mysql');
 
 //использование библиотек
 app.use(bParser.urlencoded({extended: true}));
@@ -27,14 +28,8 @@ instagramAPI.userSelf().then(function (result) {
     console.log(err); // error info 
 });
 
-var mysql = require('mysql');
-global.SQLoptions = {
-    host: '52.14.180.56',
-    port: 3306,
-    user: 'riznik',
-    password: 'yaPn6eZQHBnBeOf8',
-    database: 'PanRiznyk'
-};
+
+global.SQLoptions = {host: '52.14.180.56',port: 3306,user: 'riznik',password: 'yaPn6eZQHBnBeOf8',database: 'PanRiznyk'};
 var connection = mysql.createConnection(global.SQLoptions);
 connection.connect();
 
@@ -56,7 +51,7 @@ let shop = require('./routes/shop');
 app.get('/shop', shop);
 
 let checkout = require('./routes/product');
-app.get('/product', checkout);
+app.get('/product/*', checkout);
 
 app.get('*', function (req, res) {
     res.redirect('/');
@@ -68,7 +63,7 @@ app.post('/main', function (req, res) {
 });
 
 //Обновление конфигураций страницы
-let udateData = () => {
+let updateData = () => {
     console.log('dataUpdated');
     connection.query('SELECT * FROM `MainConfig` WHERE 1', function (errors, results, fields) {
         global.mainData = results[0];
@@ -76,7 +71,7 @@ let udateData = () => {
 };
 
 //обновление партнеров
-let udateData2 = () => {
+let updateData2 = () => {
     console.log('dataUpdated2');
     connection.query('SELECT * FROM `partners` WHERE 1', function (errors, results, fields) {
         global.partners = results;
@@ -84,7 +79,7 @@ let udateData2 = () => {
 };
 
 //обновление магазинов
-let udateData3 = () => {
+let updateData3 = () => {
     console.log('dataUpdated3');
     connection.query('SELECT * FROM `shops` WHERE 1', function (errors, results, fields) {
         global.shops = results;
@@ -106,40 +101,9 @@ app.post('/getShops', function (req, res) {
     res.send(global.shops);
 });
 
-var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'riznik.comment@gmail.com',
-        pass: 'qazwsx159357'
-    }
-});
-
-function mailOptions(a, b, c, d) {
-    this.from = a, //'riznik.comment@gmail.com',
-            this.to = b, //'mr.kalinuk@gmail.com',
-            this.subject = c, //'Sending Email using Node.js',
-            this.text = d;//'That was easy!';
-}
-
 // отправка сообщения
-app.post('/sendMessage', function (req, res) {
-    if (validator.isEmail(req.body.email)) {
-        let txt = req.body.msgText + '[Відпавник: ' + req.body.name + ', email: ' + req.body.email + ']';
-        let ml = new mailOptions(req.body.email, 'panriznik@gmail.com', 'Коментар користувача.', txt); //panriznik@gmail.com
-        transporter.sendMail(ml, function (error, info) {
-            if (error) {
-                console.log(error);
-                res.send(false);
-            } else {
-                console.log('Email sent: ' + info.response);
-                res.send(true);
-            }
-        });
-    }else{
-        res.send(false);
-    }
-});
+let msg = require('./controllers/sendIndexMessage');
+app.post('/sendMessage', msg);
 
 app.post('/getUsersLength', function(req, res){
     connection.query('SELECT * FROM `ipAdress` WHERE 1 ', function (errors, results, fields) {
@@ -147,8 +111,6 @@ app.post('/getUsersLength', function(req, res){
         res.send(results.length.toString());
     });
 });
-
-
 
 //Обновление инстаграмма и данных каждый час
 setInterval(function () {
@@ -162,11 +124,45 @@ setInterval(function () {
 app.listen(80, function () {
     console.log('Started server from 80 port');
     insta(); //инстаграмм
-    udateData();  //основнгые параметры
-    udateData2(); //партнеры
-    udateData3(); //магазины
+    updateData();  //основнгые параметры
+    updateData2(); //партнеры
+    updateData3(); //магазины
     updateData4();
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //работа сервера на порте 3000
@@ -180,6 +176,24 @@ let auth = require('./routes/auth');
 app2.get('/', auth);
 let panel = require('./routes/admin');
 app2.get('/panel', panel);
+
+
+app2.post('/tovarData', function(req,res){
+    var id = req.body.id;
+    connection.query('SELECT * FROM `tovar` WHERE id="'+id+'"', function (errors, results, fields) {
+        res.send(results);    
+    });
+});
+
+app2.post('/UpdateDataTovar',function(req,res){
+    var d = req.body.data;
+    connection.query('UPDATE `tovar` SET `type`="'+d.type+'",`name`="'+d.name+'",`text`="'+d.text+'",`price`="'+d.price+'" WHERE id="'+d.id+'"', function (errors, results, fields) {
+        
+    });
+
+console.log(d);
+res.send('Зміни збереженно для товару: ' + d.name);
+});
 
 function key_generator(len) {
     var length = (len) ? (len) : (10);
@@ -239,8 +253,6 @@ app2.post('/auth', function (req, res, next) {
         }
     });
 });
-
-
 
 app2.post('/authSMS', function (req, res, next) {
     let users1 = 'userSMS' + req.body.N;

@@ -9,7 +9,14 @@ var cookieParser = require('cookie-parser');
 var InstagramAPI = require('instagram-api');
 var validator = require('validator');
 var mysql = require('mysql');
-
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'riznik.comment@gmail.com',
+        pass: 'qazwsx159357'
+    }
+});
 //использование библиотек
 app.use(bParser.urlencoded({extended: true}));
 app.use(bParser.json());
@@ -188,11 +195,8 @@ app2.post('/tovarData', function(req,res){
 app2.post('/UpdateDataTovar',function(req,res){
     var d = req.body.data;
     connection.query('UPDATE `tovar` SET `type`="'+d.type+'",`name`="'+d.name+'",`text`="'+d.text+'",`price`="'+d.price+'" WHERE id="'+d.id+'"', function (errors, results, fields) {
-        
+        res.send('Зміни збереженно для товару: ' + d.name);
     });
-
-console.log(d);
-res.send('Зміни збереженно для товару: ' + d.name);
 });
 
 function key_generator(len) {

@@ -18,6 +18,7 @@ $(function () {
         });
     }
 
+var indexIMG = 0;
     let loadGallery = () => {
         $.post('/main', function (data) {
             page.gallery = data;
@@ -27,6 +28,7 @@ $(function () {
                 a.className = 'img';
                 a.onclick = function () {
                     var index = $('.img').index(this);
+                    indexIMG = index;
                     if ($(document).width() < 864) {
                         var W = 320;
                         var H = 400;
@@ -49,11 +51,34 @@ $(function () {
         });
         
         $('#prew').click(function(){
-            
+            if(indexIMG > 0){
+                indexIMG = indexIMG-1;
+            }
+           
+            if ($(document).width() < 864) {
+                var W = 320;
+                var H = 400;
+            } else {
+                var W = page.gallery[indexIMG].images.standard_resolution.width;
+                var H = page.gallery[indexIMG].images.standard_resolution.height;
+            }
+            $('#imaaages').width(W).height(H).css({"background-image": "url(" + page.gallery[indexIMG].images.standard_resolution.url + ")"});
         });
         
         $('#next').click(function(){
             
+            if(indexIMG < $('.img').size()){
+                indexIMG++;
+            }
+            
+            if ($(document).width() < 864) {
+                var W = 320;
+                var H = 400;
+            } else {
+                var W = page.gallery[indexIMG].images.standard_resolution.width;
+                var H = page.gallery[indexIMG].images.standard_resolution.height;
+            }
+            $('#imaaages').width(W).height(H).css({"background-image": "url(" + page.gallery[indexIMG].images.standard_resolution.url + ")"});
         });
     };
 

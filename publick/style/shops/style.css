@@ -259,8 +259,7 @@ body{
     position: relative;
 }
 
-
-.tovar{
+.tovarDB{
     width: 100%;
     height: 300px;
     margin: 20px 0 0 0;
@@ -270,6 +269,14 @@ body{
     transition: 0.5s;
     position: relative;
     border-bottom: 1px solid;
+}
+
+.tovar{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid;
+    transition: 0.5s;
 }
 
 .tovar:hover{
@@ -548,10 +555,16 @@ body{
     line-height: 50px;
     color: white;
     font-size: 21px;
+    transition: 0.5s;
+}
+
+.centerPage{
+    float: left;
 }
 
 .pageActive{
     background-color: #201f3a;
+    transform: rotateY(360deg); 
 }
 
 
@@ -750,6 +763,10 @@ body{
     background: #d0d0d0;
 }
 
+.basket-item div{
+    cursor: default;
+}
+
 .basket-icon{
     width: 40px;
     height: 40px;
@@ -790,7 +807,7 @@ body{
     margin-left: 2px;
 }
 
-.basket-item-delete{
+.basket-item .basket-item-delete{
     background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij4KPHBvbHlnb24gc3R5bGU9ImZpbGw6I0UyMUIxQjsiIHBvaW50cz0iNDA0LjE3NiwwIDI1NiwxNDguMTc2IDEwNy44MjQsMCAwLDEwNy44MjQgMTQ4LjE3NiwyNTYgMCw0MDQuMTc2IDEwNy44MjQsNTEyIDI1NiwzNjMuODI0ICAgNDA0LjE3Niw1MTIgNTEyLDQwNC4xNzYgMzYzLjgyNCwyNTYgNTEyLDEwNy44MjQgIi8+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=);
     width: 20px;
     height: 20px;
@@ -819,8 +836,14 @@ body{
 }
 
 .disBtn{
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
     filter: grayscale(100%);
-    cursor: default;
+    filter: gray; /* IE 6-9 */
+    pointer-events: none;
+    opacity: 0.4;
 }
 
 

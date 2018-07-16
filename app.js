@@ -128,10 +128,10 @@ var path = require('path'),
 //Обновление инстаграмма и данных каждый час
 setInterval(function () {
     insta();
-    udateData();  //основнгые параметры
-    udateData2(); //партнеры
-    udateData3(); //магазины
-    updateData4()
+    updateData();  //основнгые параметры
+    updateData2(); //партнеры
+    updateData3(); //магазины
+    updateData4();
 }, (1000 * 60) * 60);
 
 app.listen(80, function () {
@@ -295,13 +295,17 @@ app2.post('/legend', function (req, res, next) {
 app2.post('/upload', function (req, res) {
     var base64Data = req.body.imgagesBASE.replace(/^data:image\/png;base64,/, "");
     let base64Image = req.body.imgagesBASE.split(';base64,').pop();
-    
-    require("fs").writeFile("./publick/content/tovarImage/"+req.body.tovarID+".jpg", base64Image, {encoding: 'base64'}, function(err) {
-    console.log('File created');
+    require("fs").writeFile("./publick/content/tovarImage/" + req.body.tovarID + ".jpg", base64Image, {encoding: 'base64'}, function (err) {
+        console.log('File created');
+    });
+    res.send("Upload completed!");
 });
 
-    res.send("Upload completed!");
-
+app2.post('/getUsersLength', function (req, res) {
+    connection.query('SELECT * FROM `ipAdress` WHERE 1 ', function (errors, results, fields) {
+        console.log(results);
+        res.send(results.length.toString());
+    });
 });
 
 app2.listen(3000, function () {

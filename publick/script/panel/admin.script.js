@@ -13,7 +13,7 @@ let design = () => {
     });
 
     $('.listItems').click(function () {
-        
+
         $('.dataTovar').removeClass('disabled');
         var index = $('.listItems').index(this);
         $('.listItems').css({"background-image": "none"});
@@ -41,44 +41,40 @@ let design = () => {
         $('.panel').css({"filter": "blur(0px)"});
         $('.addNewTovar').fadeOut(300);
     });
-    
+
     var FocusData;
 
     $('.lineData input, .lineData textarea').focusout(function () {
-        if($(this).val() !== FocusData){
+        if ($(this).val() !== FocusData) {
             var dataObj = new Object();
             dataObj.id = $('.section50 .lineData:eq(1) input').val();
             dataObj.name = $('.section50 .lineData:eq(2) input').val();
             dataObj.price = $('.section50 .lineData:eq(3) input').val();
             dataObj.text = $('.section50 .lineData:eq(5) textarea').val();
             dataObj.type = $('.section50 .lineData:eq(4) input').val();
-            $.post('/UpdateDataTovar',{data: dataObj},function(data){
+            $.post('/UpdateDataTovar', {data: dataObj}, function (data) {
                 console.log(data)
             });
-        }else{
+        } else {
             console.log('good data')
         }
     });
 
     $(".lineData input, .lineData textarea").focus(function () {
         FocusData = $(this).val();
-//        console.log(FocusData)
     });
-    
-    
-       
+
     $('#listSearch').on('input keyup', function (e) {
-        
         var result;
         var data = $("#listSearch").val();
         console.log(data);
         if (data.length >= 1) {
             for (var i = 0; i < $('.listItems').length; i++) {
-                if (($('.listItems:eq('+i+') .listNAME').html().toLowerCase().indexOf(data.toLowerCase()) !== -1) || ($('.listItems:eq('+i+') .listID').html().toLowerCase().indexOf(data.toLowerCase()) !== -1)) {
+                if (($('.listItems:eq(' + i + ') .listNAME').html().toLowerCase().indexOf(data.toLowerCase()) !== -1) || ($('.listItems:eq(' + i + ') .listID').html().toLowerCase().indexOf(data.toLowerCase()) !== -1)) {
                     result = i;
-                    $('.listItems:eq('+i+')').show();
+                    $('.listItems:eq(' + i + ')').show();
                 } else {
-                    $('.listItems:eq('+i+')').hide();
+                    $('.listItems:eq(' + i + ')').hide();
                 }
             }
         } else {
@@ -95,6 +91,10 @@ let initLegend = () => {
     $.post('/legend', {typePost: 0}, function (data) {
         $('#leg').html(data);
     });
+
+    $.post('/getUsersLength', function (data) {
+        $('.kilUse b').html(data)
+    })
 };
 
 $(document).ready(function () {

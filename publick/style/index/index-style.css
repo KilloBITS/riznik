@@ -184,6 +184,10 @@
     transition: 0.3s;
 }
 
+.shop div.mapBTN{
+    cursor: pointer;
+}
+
 .mapBTN:hover{
     color: #5e2c90;
 }
@@ -285,7 +289,7 @@
 }
 
 .arrows path {
-    stroke: #ffffff;
+    stroke: #b09436;
     fill: transparent;
     stroke-width: 1px;	
     animation: arrow 2s infinite;
@@ -604,6 +608,9 @@
     background: rgba(0, 0, 0, 0.08);
 }
 
+.shop div{
+    cursor: default;
+}
 
 .partners{
     width: 100%;
@@ -657,6 +664,7 @@
     text-align: center;
     font-family: btn3;
     font-size: 20px;
+    cursor: default;
 }
 
 
@@ -1167,5 +1175,5 @@ a{
 .text-users{
     float: left;
     cursor: default;
-    
+
 }

@@ -64,6 +64,27 @@ let design = () => {
         FocusData = $(this).val();
 //        console.log(FocusData)
     });
+    
+    
+       
+    $('#listSearch').on('input keyup', function (e) {
+        
+        var result;
+        var data = $("#listSearch").val();
+        console.log(data);
+        if (data.length >= 1) {
+            for (var i = 0; i < $('.listItems').length; i++) {
+                if (($('.listItems:eq('+i+') .listNAME').html().toLowerCase().indexOf(data.toLowerCase()) !== -1) || ($('.listItems:eq('+i+') .listID').html().toLowerCase().indexOf(data.toLowerCase()) !== -1)) {
+                    result = i;
+                    $('.listItems:eq('+i+')').show();
+                } else {
+                    $('.listItems:eq('+i+')').hide();
+                }
+            }
+        } else {
+            $('.listItems').show();
+        }
+    });
 };
 
 let listBoxItemsClick = () => {

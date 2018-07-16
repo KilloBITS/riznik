@@ -650,7 +650,7 @@ body{
     float: right;
     width: 100px;
     height: 18px;
-    background: #dadada;
+    background: #ffffff;
     margin-top: 5px;
     margin-right: 7px;
     border-radius: 3px;
@@ -870,6 +870,28 @@ body{
     display: none;
 }
 
+.toTopBtn{
+    position: fixed;
+    right: 10px;
+    bottom: 40px;
+    background: rgba(176, 147, 55, 0.60) url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDQzMy41IDQzMy41IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0MzMuNSA0MzMuNTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxnIGlkPSJmaWxlLXVwbG9hZCI+CgkJPHBvbHlnb24gcG9pbnRzPSIxNDAuMjUsMzMxLjUgMjkzLjI1LDMzMS41IDI5My4yNSwxNzguNSAzOTUuMjUsMTc4LjUgMjE2Ljc1LDAgMzguMjUsMTc4LjUgMTQwLjI1LDE3OC41ICAgIiBmaWxsPSIjMjAxZjNhIi8+CgkJPHJlY3QgeD0iMzguMjUiIHk9IjM4Mi41IiB3aWR0aD0iMzU3IiBoZWlnaHQ9IjUxIiBmaWxsPSIjMjAxZjNhIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==);
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.3s;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40px;
+    display: none;
+}
+
+.toTopBtn:hover{
+    background: rgba(176, 147, 55, 0.90) url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDQzMy41IDQzMy41IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0MzMuNSA0MzMuNTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxnIGlkPSJmaWxlLXVwbG9hZCI+CgkJPHBvbHlnb24gcG9pbnRzPSIxNDAuMjUsMzMxLjUgMjkzLjI1LDMzMS41IDI5My4yNSwxNzguNSAzOTUuMjUsMTc4LjUgMjE2Ljc1LDAgMzguMjUsMTc4LjUgMTQwLjI1LDE3OC41ICAgIiBmaWxsPSIjMjAxZjNhIi8+CgkJPHJlY3QgeD0iMzguMjUiIHk9IjM4Mi41IiB3aWR0aD0iMzU3IiBoZWlnaHQ9IjUxIiBmaWxsPSIjMjAxZjNhIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 40px;
+}
 
 
 
@@ -877,9 +899,101 @@ body{
 
 
 
+.call-btn-active{
+    width: 400px;
+    height: 600px;
+    background: #b09337;
+    left: 25px;
+    top: 50%;
+    transform: translate(0%, -50%);
+    color: white;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.36);
+    cursor: default;
+}
 
+.call-btn-data{
+    width: calc(100% - 6px);
+    height: calc(100% - 34px);
+    background: white;
+    margin: auto;
+    cursor: default;
+}
 
+.call-close{
+    position: absolute;
+    right: 6px;
+    top: -2px;
+    font-size: 20px;
+    font-family: cursive;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+    display: none;
+}
 
+.call-close:hover{
+    color: red;
+}
+
+.call-msg-block{
+    width: 100%;
+    float: left;
+    height: calc(100% - 36px);
+}
+
+.call-msg{
+    width: calc(100% - 5px);
+    border-bottom: 1px solid silver;
+    float: left;
+    display: inline-block;
+    color: black;
+    text-align: left;
+    padding-left: 5px;
+    font-size: 10px;
+}
+
+.call-send-block{
+    float: left;
+    width: 100%;
+    height: 36px;
+}
+
+#call-send-msg{
+    float: left;
+    width: calc(100% - 50px);
+    height: 30px;
+    border: 0;
+    border-top: 1px solid silver;
+    padding-left: 10px;
+    font-size: 16px;
+    font-family: btn2;
+}
+
+#call-send-btn{
+    background: white url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMS4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDE0IDE0IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxNCAxNDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIzMnB4IiBoZWlnaHQ9IjMycHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik03LDlMNS4yNjgsNy40ODRsLTQuOTUyLDQuMjQ1QzAuNDk2LDExLjg5NiwwLjczOSwxMiwxLjAwNywxMmgxMS45ODYgICAgYzAuMjY3LDAsMC41MDktMC4xMDQsMC42ODgtMC4yNzFMOC43MzIsNy40ODRMNyw5eiIgZmlsbD0iI2IwOTMzNyIvPgoJCTxwYXRoIGQ9Ik0xMy42ODQsMi4yNzFDMTMuNTA0LDIuMTAzLDEzLjI2MiwyLDEyLjk5MywySDEuMDA3QzAuNzQsMiwwLjQ5OCwyLjEwNCwwLjMxOCwyLjI3M0w3LDggICAgTDEzLjY4NCwyLjI3MXoiIGZpbGw9IiNiMDkzMzciLz4KCQk8cG9seWdvbiBwb2ludHM9IjAsMi44NzggMCwxMS4xODYgNC44MzMsNy4wNzkgICAiIGZpbGw9IiNiMDkzMzciLz4KCQk8cG9seWdvbiBwb2ludHM9IjkuMTY3LDcuMDc5IDE0LDExLjE4NiAxNCwyLjg3NSAgICIgZmlsbD0iI2IwOTMzNyIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=);
+    width: 40px;
+    height: 36px;
+    border: 0;
+    border-top: 1px solid silver;
+    float: left;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: 26px;
+    background-position: center;
+}
+
+.top-msg{
+    text-align: center;
+    line-height: 15px;
+    font-weight: 900;
+    font-size: 12px;
+    color: #585858;
+    background: #d6d6d6;
+}
+
+input{
+    outline:none;
+}
 
 
 .footer{

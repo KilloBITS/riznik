@@ -24,7 +24,7 @@
             <ul class="main">
                 <li class="bluBTN dashboard"><a href="#">Головна сторінка</a></li>
                 <li class="bluBTN write"><a href="#">Товари</a></li>
-                <li class="bluBTN users"><a href="#">Юзери</a></li>
+                <li class="bluBTN users"><a href="#">Пользователи</a></li>
             </ul>
         </nav>
 
@@ -65,7 +65,8 @@
                     <div class="ListSearch">
                         <input type="text" id="listSearch" placeholder="Пошук (введіть ID або Назву товару)">
                     </div>
-                    <div class="listbox">                        
+                    <div class="listbox">  
+                
                         <% for(var i = 0; i < tovar.length; i++) { %>
                         <div class="listItems">
                             <div class="listID"><%= tovar[i].id %></div>
@@ -73,13 +74,36 @@
                         </div>
                         <% } %>                
                     </div>
-                    
-                    
+
+
                     <div class="dataTovar disabled" >
                         <div class="lineData" id="photo">
                             <span>Зображення</span>
                             <div class="betaImage">
-                                <div class="updateImage">Вибрати зображення</div>
+                                <p style="display: none;"><input type="file" name="file" id="file" /></p>
+                                <img>
+                                <div class="updateImage" id="updateImage">Вибрати зображення</div>
+                                <script type="text/javascript">
+                                    window.addEventListener('load', function () {
+                                        var image = document.getElementById('updateImage');
+                                        var file = document.getElementById('file');
+                                        image.addEventListener('click', function () {
+                                            file.click();
+                                        }, false);                         
+                                        file.addEventListener('change', function () {
+                                            if (this.files && this.files[0]) {
+                                                var reader = new FileReader();
+                                                reader.onload = function (e) {
+                                                    $.post('/upload', {imgagesBASE: e.target.result, tovarID: $('#lineID input').val()}, function (data) {
+                                                        console.log(data);
+                                                        $('.betaImage').css({"background-image": "url(" + e.target.result + ")"});
+                                                    });
+                                                };
+                                                reader.readAsDataURL(this.files[0]);
+                                            }
+                                        }, false);
+                                    }, false);
+                                </script>
                             </div>
                         </div>
                         <div class="lineData" id="lineID">
@@ -130,7 +154,7 @@
                         <textarea class="input" id="text"></textarea>
                     </div>
                 </div>
-                
+
                 <div class="bbttnn">Зберегти</div>
             </div>              
         </main>

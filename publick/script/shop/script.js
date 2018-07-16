@@ -1,6 +1,7 @@
 'use strict';
 
 var shops = new Object(); //переменная параметров
+shops.openCall = 0;
 //объект корзины
 var tovar = [];
 
@@ -36,7 +37,7 @@ var getCart = function () {
 
 
 var design = function () {
-   var prewList, nextList;
+    var prewList, nextList;
 
     $('.page').click(function () {
         $('.page').removeClass('pageActive');
@@ -44,16 +45,15 @@ var design = function () {
         $('.page:eq(' + index + ')').addClass('pageActive');
 
         console.log(10 * parseInt($(this).html()));
-            
-        for(let i = 0; i < shops.tovLengthData; i++){
-            if(i < (parseInt($(this).html()) * 10) && i >= ((parseInt($(this).html()) * 10) - 10)){
-                $('.tovarDB:eq('+i+')').show();
-            }         
-            else
+
+        for (let i = 0; i < shops.tovLengthData; i++) {
+            if (i < (parseInt($(this).html()) * 10) && i >= ((parseInt($(this).html()) * 10) - 10)) {
+                $('.tovarDB:eq(' + i + ')').show();
+            } else
             {
-                $('.tovarDB:eq('+i+')').hide();
-            }            
-        } 
+                $('.tovarDB:eq(' + i + ')').hide();
+            }
+        }
         $('.content').animate({scrollTop: 0}, 500);
         return false;
     });
@@ -118,7 +118,6 @@ var design = function () {
     $('.selOption').click(function () {
         $('.sel').fadeOut(200);
         var index = $('.selOption').index(this);
-
         $('#sort').html($('.selOption:eq(' + index + ')').html())
         shops.SA = false;
     });
@@ -183,6 +182,62 @@ var design = function () {
         setTimeout(function () {
             $('.content-preload').fadeOut(300);
         }, 1000);
+    });
+
+    $('.content').scroll((e) => {
+        var scroll = $('.content:eq(1)').scrollTop();
+        if (scroll > 400) {
+            if (!$('.toTopBtn').is(':visible')) {
+                $('.toTopBtn').fadeIn(300);
+            }
+
+        } else {
+            if ($('.toTopBtn').is(':visible')) {
+                $('.toTopBtn').fadeOut(300);
+            }
+        }
+    });
+
+    $('.toTopBtn').click(() => {
+        $('.content:eq(1)').animate({
+            scrollTop: 0
+        }, 700);
+    });
+
+    $('.call-btn').click(() => {
+        if (shops.openCall == 0) {
+            if (!$('.call-btn').hasClass('call-btn-active')) {
+                $('.call-btn').addClass('call-btn-active');
+                $('.call-btn-data, .call-close').fadeIn(300);
+            }
+            setTimeout(() => {
+                shops.openCall = 1;
+            }, 1000);
+        }
+    });
+
+    $('.call-close').click(() => {
+        if (shops.openCall == 1) {
+            if ($('.call-btn').hasClass('call-btn-active')) {
+                $('.call-btn').removeClass('call-btn-active');
+                $('.call-btn-data, .call-close').fadeOut(300);
+            }
+            setTimeout(() => {
+                shops.openCall = 0;
+            }, 1000);
+        }
+    });
+
+    $(document).mouseup(function (e) { // событие клика по веб-документу
+        var div = $(".sel"); // тут указываем ID элемента        
+        if (!div.is(e.target) // если клик был не по нашему блоку
+                && div.has(e.target).length === 0 && !$(".sort").is(e.target)) { // и не по его дочерним элементам
+            div.fadeOut(300); // скрываем его
+            setTimeout(() => {
+                shops.SA = false;
+            }, 500);
+            
+        }
     });
 };
 

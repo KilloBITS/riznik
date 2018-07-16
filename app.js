@@ -36,7 +36,7 @@ instagramAPI.userSelf().then(function (result) {
 });
 
 
-global.SQLoptions = {host: '52.14.180.56',port: 3306,user: 'riznik',password: 'yaPn6eZQHBnBeOf8',database: 'PanRiznyk'};
+global.SQLoptions = {host: '52.14.180.56', port: 3306, user: 'riznik', password: 'yaPn6eZQHBnBeOf8', database: 'PanRiznyk'};
 var connection = mysql.createConnection(global.SQLoptions);
 connection.connect();
 
@@ -71,7 +71,7 @@ app.post('/main', function (req, res) {
 
 //Обновление конфигураций страницы
 let updateData = () => {
-    console.log('dataUpdated');
+    console.log('Конфигурации обновлены!');
     connection.query('SELECT * FROM `MainConfig` WHERE 1', function (errors, results, fields) {
         global.mainData = results[0];
     });
@@ -79,7 +79,7 @@ let updateData = () => {
 
 //обновление партнеров
 let updateData2 = () => {
-    console.log('dataUpdated2');
+    console.log('Партнеры обновлены');
     connection.query('SELECT * FROM `partners` WHERE 1', function (errors, results, fields) {
         global.partners = results;
     });
@@ -87,20 +87,21 @@ let updateData2 = () => {
 
 //обновление магазинов
 let updateData3 = () => {
-    console.log('dataUpdated3');
+    console.log('Магазины обновлены!');
     connection.query('SELECT * FROM `shops` WHERE 1', function (errors, results, fields) {
         global.shops = results;
     });
 };
 
-function updateData4(){
-    console.log('dataUpdated4');
+function updateData4() {
+    console.log('Товары обновлены!');
     connection.query('SELECT * FROM `tovar` WHERE 1', function (errors, results, fields) {
-        global.tovar = results;        
+        global.tovar = results;
     });
-};
+}
+;
 
-app.post('/tovar', function(req, res){
+app.post('/tovar', function (req, res) {
     res.send(JSON.stringify(global.tovar));
 });
 
@@ -112,12 +113,17 @@ app.post('/getShops', function (req, res) {
 let msg = require('./controllers/sendIndexMessage');
 app.post('/sendMessage', msg);
 
-app.post('/getUsersLength', function(req, res){
+app.post('/getUsersLength', function (req, res) {
     connection.query('SELECT * FROM `ipAdress` WHERE 1 ', function (errors, results, fields) {
         console.log(results);
         res.send(results.length.toString());
     });
 });
+
+var path = require('path'),
+        fs = require('fs');
+
+
 
 //Обновление инстаграмма и данных каждый час
 setInterval(function () {
@@ -129,7 +135,7 @@ setInterval(function () {
 }, (1000 * 60) * 60);
 
 app.listen(80, function () {
-    console.log('Started server from 80 port');
+    console.log('Сервер на 80 порте запущен! ');
     insta(); //инстаграмм
     updateData();  //основнгые параметры
     updateData2(); //партнеры
@@ -174,10 +180,9 @@ app.listen(80, function () {
 
 //работа сервера на порте 3000
 app2.use(express.static(__dirname + '/publick/'));
-app2.use(bParser.urlencoded({extended: true}));
-app2.use(bParser.json());
 app2.use(cookieParser());
-
+app2.use(bParser.json({limit: '50mb'}));
+app2.use(bParser.urlencoded({limit: '50mb', extended: true}));
 /*GET запросы*/
 let auth = require('./routes/auth');
 app2.get('/', auth);
@@ -185,16 +190,16 @@ let panel = require('./routes/admin');
 app2.get('/panel', panel);
 
 
-app2.post('/tovarData', function(req,res){
+app2.post('/tovarData', function (req, res) {
     var id = req.body.id;
-    connection.query('SELECT * FROM `tovar` WHERE id="'+id+'"', function (errors, results, fields) {
-        res.send(results);    
+    connection.query('SELECT * FROM `tovar` WHERE id="' + id + '"', function (errors, results, fields) {
+        res.send(results);
     });
 });
 
-app2.post('/UpdateDataTovar',function(req,res){
+app2.post('/UpdateDataTovar', function (req, res) {
     var d = req.body.data;
-    connection.query('UPDATE `tovar` SET `type`="'+d.type+'",`name`="'+d.name+'",`text`="'+d.text+'",`price`="'+d.price+'" WHERE id="'+d.id+'"', function (errors, results, fields) {
+    connection.query('UPDATE `tovar` SET `type`="' + d.type + '",`name`="' + d.name + '",`text`="' + d.text + '",`price`="' + d.price + '" WHERE id="' + d.id + '"', function (errors, results, fields) {
         res.send('Зміни збереженно для товару: ' + d.name);
     });
 });
@@ -286,6 +291,19 @@ app2.post('/legend', function (req, res, next) {
     }
 });
 
+
+app2.post('/upload', function (req, res) {
+    var base64Data = req.body.imgagesBASE.replace(/^data:image\/png;base64,/, "");
+    let base64Image = req.body.imgagesBASE.split(';base64,').pop();
+    
+    require("fs").writeFile("./publick/content/tovarImage/"+req.body.tovarID+".jpg", base64Image, {encoding: 'base64'}, function(err) {
+    console.log('File created');
+});
+
+    res.send("Upload completed!");
+
+});
+
 app2.listen(3000, function () {
-    console.log('Started server from 3000 port');
+    console.log('Сервер на 3000 порте запущен');
 });

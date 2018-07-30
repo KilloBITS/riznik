@@ -2,12 +2,13 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>≡ Онлайн магазин "Різник"</title>
-        <link href="style/shops/style.css" rel="stylesheet" type="text/css"/>
-
+        <title>≡ Онлайн магазин "Різник"</title>    
         <link rel="icon" type="image/png" href="../../../image/icons/16.png" sizes="16x16">
         <link rel="icon" type="image/png" href="../../../image/icons/32.png" sizes="32x32">
         <link rel="icon" type="image/png" href="../../../image/icons/96.png" sizes="96x96">
+
+        <link href="style/shops/style.css" rel="stylesheet" type="text/css"/>
+        <link href="style/shops/min.style.css" rel="stylesheet" type="text/css"/>
 
         <script src="script/jquery-3.2.1.js" type="text/javascript"></script>
         <script src="script/jquery.min.js" type="text/javascript"></script>
@@ -103,198 +104,198 @@
                 <script>
                     shops.tovLengthData = <%= tovar.length %>;
                 </script>
-                
+
                 <% for(var i = 0; i < tovar.length; i++) { %>
-                
+
                 <% if(i < 10){ %> 
                 <div class="tovarDB">
-                <% } else { %>
-                <div class="tovarDB" style="display: none;">
-                <% } %>
-                
-                    <div class="tovar">
-                        <div class="tovar-left">
+                    <% } else { %>
+                    <div class="tovarDB" style="display: none;">
+                        <% } %>
 
-                            <div class="tovar-logo" style="background-image: url(../../../content/tovarImage/<%= tovar[i].id %>.jpg);">
+                        <div class="tovar">
+                            <div class="tovar-left">
 
-                            </div>
-                            <div class="tovar-stars">
-                                <div class="stars-title">Оцінка покупців</div>
-                                <div class="stars">
-                                    <div class="star st2"><span>1</span></div>
-                                    <div class="star st2"><span>2</span></div>
-                                    <div class="star st2"><span>3</span></div>
-                                    <div class="star st1"><span>4</span></div>
-                                    <div class="star st1"><span>5</span></div>
-                                </div>                            
-                            </div>
-                        </div>
-                        <div class="tovar-right">
-                            <div class="tovar-title"><%= tovar[i].name %></div>
-                            <div class="tovarID"><%= tovar[i].id %></div>
-                            <div class="tovar-text">
-                                <%= tovar[i].text %>
-                            </div>
-                            <div class="tovar-right-bottom">
-                                <div class="price">
-                                    Ціна: <%= tovar[i].price %> .00
+                                <div class="tovar-logo" style="background-image: url(../../../content/tovarImage/<%= tovar[i].id %>.jpg);">
+
                                 </div>
-                                <div class="addCart">
-                                    <% if(tovar[i].length > 10){ %>
-                                    <div class="nayavnist green">
-                                        Є в наявності
-                                    </div>
-                                    <% } %> 
-                                    <% if(tovar[i].length > 0 && tovar[i].length < 10){ %>
-                                    <div class="nayavnist yellow">
-                                        Товар закінчується
-                                    </div>
-                                    <% } %> 
-                                    <% if(tovar[i].length == 0){ %>
-                                    <div class="nayavnist red">
-                                        Немає в наявності
-                                    </div>
-                                    <% } %>   
-
-                                    <% if(tovar[i].length == 0){ %>
-                                    <div class="button bGreen disBtn">Додати в кошик</div>                                
-                                    <% } else { %>
-                                    <div class="button bGreen">Додати в кошик</div>
-                                    <% } %>
+                                <div class="tovar-stars">
+                                    <div class="stars-title">Оцінка покупців</div>
+                                    <div class="stars">
+                                        <div class="star st2"><span>1</span></div>
+                                        <div class="star st2"><span>2</span></div>
+                                        <div class="star st2"><span>3</span></div>
+                                        <div class="star st1"><span>4</span></div>
+                                        <div class="star st1"><span>5</span></div>
+                                    </div>                            
                                 </div>
-                                <div class="details">
-                                    Детальна інформація
+                            </div>
+                            <div class="tovar-right">
+                                <div class="tovar-title"><%= tovar[i].name %></div>
+                                <div class="tovarID"><%= tovar[i].id %></div>
+                                <div class="tovar-text">
+                                    <%= tovar[i].text %>
+                                </div>
+                                <div class="tovar-right-bottom">
+                                    <div class="price">
+                                        Ціна: <%= tovar[i].price %> .00
+                                    </div>
+                                    <div class="addCart">
+                                        <% if(tovar[i].length > 10){ %>
+                                        <div class="nayavnist green">
+                                            Є в наявності
+                                        </div>
+                                        <% } %> 
+                                        <% if(tovar[i].length > 0 && tovar[i].length < 10){ %>
+                                        <div class="nayavnist yellow">
+                                            Товар закінчується
+                                        </div>
+                                        <% } %> 
+                                        <% if(tovar[i].length == 0){ %>
+                                        <div class="nayavnist red">
+                                            Немає в наявності
+                                        </div>
+                                        <% } %>   
+
+                                        <% if(tovar[i].length == 0){ %>
+                                        <div class="button bGreen disBtn">Додати в кошик</div>                                
+                                        <% } else { %>
+                                        <div class="button bGreen">Додати в кошик</div>
+                                        <% } %>
+                                    </div>
+                                    <div class="details">
+                                        Детальна інформація
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <% } %>   
-                
-                <div class="page-control">
-                    <div class="pages">
-                        <div class="prewPage"></div>
-                        <div class="centerPage"></div>
-                        <div class="toPage"></div>
+                    <% } %>   
+
+                    <div class="page-control">
+                        <div class="pages">
+                            <div class="prewPage"></div>
+                            <div class="centerPage"></div>
+                            <div class="toPage"></div>
+                        </div>
                     </div>
-                </div>
-                
-                <script>
-                    var pageLength = Math.ceil(shops.tovLengthData / 10);                    
-                    for(var np = 0; np < pageLength; np++){
-                        var npp = np+1;
-                        $('.centerPage').append('<div class="page">'+npp+'</div>');                        
-                    };
-                    $('.page:eq(0)').addClass('pageActive');
-                    
-                    
-                </script>
-                
-                <!--<div id="demo"></div>-->
-            </div>
-        </div> 
-        <div class="content">
-            <div class="content-preload"></div>
-            <div class="title-block">Оплата та доставка</div>
-            <div class="dataOfForm">                
-                <div class="lineOfText">
-                    <div class="minIMG" id="payment"></div>
-                    <div class="minTXT">Оплата</div>
-                </div>  
-                <div class="blockMIN">
-                    <p>
-                        <b>
-                            <div class="minIMG" id="cash"></div>
-                            Грошовими коштами (готівкою) при отриманні товару
-                        </b>
-                        <br>
-                        <br>
 
-                        Оплата готівкою здійснюється в момент доставки замовлення. Покупець передає гроші експедитору-касиру і отримує замовлений товар і пакет документів (товарний чек або накладну (документи, які підтверджують покупку), гарантійний талон, інструкцію по експлуатації). Увага! Оплата товару здійснюється тільки в гривнях.
-                    </p>
-                </div>
-                <div class="blockMIN">
-                    <p>
-                        <b>
-                            <div class="minIMG" id="noncash"></div>
-                            Безготівкова оплата
-                        </b>
-                        <br>
-                        <br>
-                        За замовленням клієнта, співробітник Інтернет магазину оформляє рахунок-фактуру і відправляє її покупцеві (електронна пошта). На підставі рахунку-фактури покупець здійснює оплату за реквізитами, вказаними в рахунку-фактурі через банківську установу на протязі 3-х днів з дати виставлення рахунку. Після надходження грошей на рахунок Інтернет магазина з покупцем зв'язується співробітник Інтернет магазину і погоджує зручний час і місце доставки. Експедитор-касир доставляє оплачений товар і всі необхідні супровідні документи за адресою, вказаною покупцем.
-                    </p>
-                </div>
-
-                <div class="blockMIN">
-                    <p>
-
-                        <b>
-                            <div class="minIMG" id="card"></div>
-                            Оплата картою
-                        </b><br><br>
-
-                        За замовленням клієнта на сайті і оплачує замовлення картою банку або за допомогою Веб Мані. З покупцем зв'язується співробітник Інтернет магазину і підтверджує оплату і наявність товару. Співробітник Інтернет магазину зв'язується з покупцем і погоджує зручний час і місце доставки. Експедитор-касир доставляє оплачений товар і всі необхідні супровідні документи за адресою, вказаною покупцем.
-                    </p>
-                </div>
-            </div>
-            <div class="dataOfForm">                
-                <div class="lineOfText">
-                    <div class="minIMG" id="delivery"></div>
-                    <div class="minTXT">Доставка</div>
-                </div> 
-                <div class="blockMIN">
-                    <p>
-                        <b>
-                            <div class="minIMG" id="deliveryS"></div>
-                            Самовивіз
-                        </b><br><br>
-                        Можливість забрати товар самовивозом в наших магазинів у місті Львів.
-                    </p>
-                </div>
-                <div class="blockMIN">
-                    <p>
-                        <b>
-                            <div class="minIMG" id="courier"></div>
-                            Доставка кур'єром
-                        </b><br><br>
-
-                        Доставка кур'єром здійснюється з 09:00 до 21:00 в межах міста Львів.
-                    </p>
-                </div>
-                <div class="blockMIN">
-                    <p>
-                        <b>
-                            <div class="minIMG" id="newPost"></div>
-                            Нова пошта
-                        </b>
-                        <br>
-                        <br>
-                        Доставка Новою поштою в будь які міста України. <br><br>
-                        Ціна доставки згідно тарифій Нової пошти.
-                    </p>
-                </div>
-            </div>
-        </div> 
-        <div class="call-btn">
-            Задати запитання
-            <div class="call-close">X</div>
-            <div class="call-btn-data">
-                <div class="call-msg-block">
-                    <div class="call-msg top-msg">Доброго дня! Якщо вам потрібна допомога, задайте нам записання і ми постараємось як найшвидше вам відповісти.</div>
-                </div>
-                <div class="call-send-block">
-                    <input type="text" id="call-send-msg">
-                    <input type="button" id="call-send-btn" value="">
-                </div>
-            </div>
-        </div>
-        <div class="call-block"></div>
-        <div class="footer">
-            <div class="Copyright">
-                Copyright © Riznyk (2018)
-            </div>
-        </div>
+        <script>
+                            var pageLength = Math.ceil(shops.tovLengthData / 10);                    
+                            for(var np = 0; np < pageLength; np++){
+                                        var npp = np + 1;
+                                        $('.centerPage').append('<div class="page">' + npp + '</div>');
+                                };
+                                $('.page:eq(0)').addClass('pageActive');
         
-        <div class="toTopBtn"></div>
-    </body>
-</html>
+        
+                        </script>
+
+                        <!--<div id="demo"></div>-->
+                    </div>
+                </div> 
+                <div class="content">
+                    <div class="content-preload"></div>
+                    <div class="title-block">Оплата та доставка</div>
+                    <div class="dataOfForm">                
+                        <div class="lineOfText">
+                            <div class="minIMG" id="payment"></div>
+                            <div class="minTXT">Оплата</div>
+                        </div>  
+                        <div class="blockMIN">
+                            <p>
+                                <b>
+                                    <div class="minIMG" id="cash"></div>
+                                    Грошовими коштами (готівкою) при отриманні товару
+                                </b>
+                                <br>
+                                <br>
+
+                                Оплата готівкою здійснюється в момент доставки замовлення. Покупець передає гроші експедитору-касиру і отримує замовлений товар і пакет документів (товарний чек або накладну (документи, які підтверджують покупку), гарантійний талон, інструкцію по експлуатації). Увага! Оплата товару здійснюється тільки в гривнях.
+                            </p>
+                        </div>
+                        <div class="blockMIN">
+                            <p>
+                                <b>
+                                    <div class="minIMG" id="noncash"></div>
+                                    Безготівкова оплата
+                                </b>
+                                <br>
+                                <br>
+                                За замовленням клієнта, співробітник Інтернет магазину оформляє рахунок-фактуру і відправляє її покупцеві (електронна пошта). На підставі рахунку-фактури покупець здійснює оплату за реквізитами, вказаними в рахунку-фактурі через банківську установу на протязі 3-х днів з дати виставлення рахунку. Після надходження грошей на рахунок Інтернет магазина з покупцем зв'язується співробітник Інтернет магазину і погоджує зручний час і місце доставки. Експедитор-касир доставляє оплачений товар і всі необхідні супровідні документи за адресою, вказаною покупцем.
+                            </p>
+                        </div>
+
+                        <div class="blockMIN">
+                            <p>
+
+                                <b>
+                                    <div class="minIMG" id="card"></div>
+                                    Оплата картою
+                                </b><br><br>
+
+                                За замовленням клієнта на сайті і оплачує замовлення картою банку або за допомогою Веб Мані. З покупцем зв'язується співробітник Інтернет магазину і підтверджує оплату і наявність товару. Співробітник Інтернет магазину зв'язується з покупцем і погоджує зручний час і місце доставки. Експедитор-касир доставляє оплачений товар і всі необхідні супровідні документи за адресою, вказаною покупцем.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="dataOfForm">                
+                        <div class="lineOfText">
+                            <div class="minIMG" id="delivery"></div>
+                            <div class="minTXT">Доставка</div>
+                        </div> 
+                        <div class="blockMIN">
+                            <p>
+                                <b>
+                                    <div class="minIMG" id="deliveryS"></div>
+                                    Самовивіз
+                                </b><br><br>
+                                Можливість забрати товар самовивозом в наших магазинів у місті Львів.
+                            </p>
+                        </div>
+                        <div class="blockMIN">
+                            <p>
+                                <b>
+                                    <div class="minIMG" id="courier"></div>
+                                    Доставка кур'єром
+                                </b><br><br>
+
+                                Доставка кур'єром здійснюється з 09:00 до 21:00 в межах міста Львів.
+                            </p>
+                        </div>
+                        <div class="blockMIN">
+                            <p>
+                                <b>
+                                    <div class="minIMG" id="newPost"></div>
+                                    Нова пошта
+                                </b>
+                                <br>
+                                <br>
+                                Доставка Новою поштою в будь які міста України. <br><br>
+                                Ціна доставки згідно тарифій Нової пошти.
+                            </p>
+                        </div>
+                    </div>
+                </div> 
+                <div class="call-btn">
+                    Задати запитання
+                    <div class="call-close">X</div>
+                    <div class="call-btn-data">
+                        <div class="call-msg-block">
+                            <div class="call-msg top-msg">Доброго дня! Якщо вам потрібна допомога, задайте нам записання і ми постараємось як найшвидше вам відповісти.</div>
+                        </div>
+                        <div class="call-send-block">
+                            <input type="text" id="call-send-msg">
+                            <input type="button" id="call-send-btn" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="call-block"></div>
+                <div class="footer">
+                    <div class="Copyright">
+                        Copyright © Riznyk (2018)
+                    </div>
+                </div>
+
+                <div class="toTopBtn"></div>
+        </body>
+    </html>

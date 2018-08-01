@@ -2,6 +2,7 @@
 
 var shops = new Object(); //переменная параметров
 shops.openCall = 0;
+shops.openMobMenu = false;
 //объект корзины
 var tovar = [];
 
@@ -237,6 +238,20 @@ var design = function () {
                 shops.SA = false;
             }, 500);
             
+        }
+    });
+    
+    
+    /*Mobile nav*/
+    $('.mobile-menu').click(function(){
+        if(shops.openMobMenu){
+            $('.mobile-menu').removeClass('openMobMenu');
+            $('.mobile-menu-block').fadeOut(300);
+            shops.openMobMenu = false;            
+        }else{            
+            $('.mobile-menu').addClass('openMobMenu');
+            $('.mobile-menu-block').fadeIn(300);
+            shops.openMobMenu = true;
         }
     });
 };

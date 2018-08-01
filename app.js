@@ -10,6 +10,9 @@ var InstagramAPI = require('instagram-api');
 var validator = require('validator');
 var mysql = require('mysql');
 var nodemailer = require('nodemailer');
+var path = require('path'),
+        fs = require('fs');
+
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -120,27 +123,30 @@ app.post('/getUsersLength', function (req, res) {
     });
 });
 
-var path = require('path'),
-        fs = require('fs');
 
 
 
-//Обновление инстаграмма и данных каждый час
-setInterval(function () {
+
+let UpdateDataFunction = (interval) => {
+    var TimeInt = (1000 * 60) * 60;
+    //Обновление инстаграмма и данных каждый час
+    setInterval(function () {
+        insta();
+        updateData();  //основнгые параметры
+        updateData2(); //партнеры
+        updateData3(); //магазины
+        updateData4();
+    }, TimeInt);
+};
+
+app.listen(80, function () {
+    UpdateDataFunction(1000);
     insta();
     updateData();  //основнгые параметры
     updateData2(); //партнеры
     updateData3(); //магазины
     updateData4();
-}, (1000 * 60) * 60);
-
-app.listen(80, function () {
     console.log('Сервер на 80 порте запущен! ');
-    insta(); //инстаграмм
-    updateData();  //основнгые параметры
-    updateData2(); //партнеры
-    updateData3(); //магазины
-    updateData4();
 });
 
 

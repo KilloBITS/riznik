@@ -177,7 +177,9 @@ body{
     font-weight: bold;
     transition: 1s;
 }
-
+.mobile-menu,.mobile-menu-block{
+    display: none;
+}
 .menu{
     position: absolute;
     left: 0px;

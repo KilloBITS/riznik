@@ -1,6 +1,7 @@
 @media screen and (max-width: 800px) {
     .head{
         height: 50px;
+        min-width: 360px;
     }
     .head-buy{
         height: 50px;
@@ -71,6 +72,7 @@
     }
     .content{
         top: 50px;
+        min-width: 360px;
     }
     .title-block{
         top: 0;
@@ -168,4 +170,41 @@
         background: #b09436;
         z-index: 100;
     }
+    .page-control{
+        margin-top: 14px;
+        margin-bottom: 14px;
+    }
+    .page, .prewPage, .toPage{
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        color: white;
+        font-size: 14px;
+        background-size: 20px;
+    }
+
+    .mobile-menu-block .filters{
+        display: block;
+        margin: 10px auto;
+        width: fit-content;
+    }
+    .mobile-menu-block .sort{
+        position: absolute;
+        left: 50%;
+        top: 60px;
+        transform: translate(-50%, 0);
+        display: block;
+        background: white;
+
+    }
+
+    .filter-btn {
+        background: white;
+    }
+
+    .btnActive {
+        /*background: -webkit-linear-gradient(top, #b09436 0%,#b09436 100%);*/
+        color: #b09436;
+    }
+
 }

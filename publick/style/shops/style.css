@@ -53,6 +53,7 @@ body{
     font-family: btn2;
     color: #201f3a;
     overflow: hidden;
+    min-width: 360px;
 }
 
 .head{

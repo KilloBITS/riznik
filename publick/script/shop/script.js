@@ -16,6 +16,16 @@ var loadtTovar = () => {
     });
 };
 
+var basketSum = () =>{
+    let BLength = $('.basket-item').size();
+    let summa = 0;
+    for(let i = 0; i < BLength; i++){
+        let price = $('.basket-price:eq('+i+')').html().replace(/[^-0-9^.]/g,'');
+        let sum = price * $('.lengthItems:eq('+i+')').val();
+        summa += sum;
+    }
+    $('.basket-sum').html('Загальна вартість: ' + summa + " грн")
+};
 
 var updateCart = function (name, id, price, img) {
     var cartS = new Object();
@@ -114,6 +124,7 @@ var design = function () {
                     $('.basket-list').append(ssd);
                 }
             }
+            basketSum();
             shops.basket = true;
         } else {
             $('.basket-WIN').css({"left": ($('.basket').offset().left - ($('.basket-WIN').width() - 45)) + "px"}).fadeOut(300);
@@ -176,22 +187,59 @@ var design = function () {
         });
         
         $('.basket-applyData').css({"display":"block"});
+        $('.content').css({'filter':'blur(3px)'});
     });
     
     $('#typeOfDostavka').change(function(){
         let sam = () => {
             $('#samShop').fadeIn(400);
+            $('.kur').fadeOut(300);
+            $('#mapa').fadeIn(300);
         };
         let kur = () => {
-            
+            $('#samShop').fadeOut(300);
+            $('.kur').fadeIn(400);
+            $('#mapa').fadeOut(300);
         };
         let np = () => {
-            
+            $('#samShop').fadeOut(300);
+            $('.kur').fadeOut(300);
+            $('#mapa').fadeOut(300);
         };
         switch(parseInt($('#typeOfDostavka').val())){
             case 1: sam();break;
             case 2: kur();break;
-            case 2: np();break;
+            case 3: np();break;
+        }
+    });
+    
+    function initMap(uluru) {
+//        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('mapa'), {
+          zoom: 19,
+          mapTypeControl: false,
+          zoomControl: false,
+          fullscreenControl: false,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          icon: 'image/marker.gif'
+        });
+    }
+    
+    $('#selectShops').change(function(){
+      
+      let kon = () => {
+          initMap(JSON.parse('{"lat": 49.833984, "lng": 24.0082176}'));
+      };
+      let kos = () => {
+          initMap(JSON.parse('{"lat": 49.832343, "lng": 24.0341354}'));
+      };
+        switch(parseInt($('#selectShops').val())){
+            case 1: kon();break;
+            case 2: kos();break;
         }
     });
 
@@ -265,7 +313,9 @@ var design = function () {
         }
     });
 
-
+$(document).on('keyup mouseup keydown change blur', '.lengthItems', function() {
+  basketSum();
+});
     /*Mobile nav*/
     $('.mobile-menu').click(function () {
         if (shops.openMobMenu) {

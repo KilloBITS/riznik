@@ -118,28 +118,38 @@
                     </select>
                 </div>
 
-                <div class="apply-area dinamicData">
+                <div class="apply-area dinamicData kur">
                     <span>Місто</span>
                     <input type="text" title="Місто" placeholder="Місто">
                 </div>
-                <div class="apply-area dinamicData">
-                    <span>Місто</span>
-                    <input type="text" title="Місто" placeholder="Місто">
+                <div class="apply-area dinamicData kur">
+                    <span>Вулиця</span>
+                    <input type="text" title="Вулиця" placeholder="Вулиця">
                 </div>
-                <div class="apply-area dinamicData">
-                    <span>Місто</span>
-                    <input type="text" title="Місто" placeholder="Місто">
+                <div class="apply-area dinamicData kur fiftyProc">
+                    <span>Будинок</span>
+                    <input type="text" title="Будинок" placeholder="Будинок">
+                </div>
+                <div class="apply-area dinamicData kur fiftyProc">
+                    <span>Квартира</span>
+                    <input type="text" title="Квартира" placeholder="Квартира">
                 </div>
 
                 <div class="apply-area dinamicData" id="samShop">
                     <span>Магазин</span>
-                    <select>
-                        <option value='def' disabled selected>Виберіть магазин</option>
+                    <select id="selectShops">
+                        <option value='0' disabled selected>Виберіть магазин</option>
                         <option value='1'>Львів, вул.Коновальца 10</option>
                         <option value="2">Львів, вул.Костомарова 10</option>
                     </select>
                 </div>
 
+                <div class="maps-Block">
+                    <div class="maps" id="mapa"></div>
+                </div>
+                <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlIhS5UqeKVst1q3j13NycKLE7uFqB9Yc&callback=initMap">
+                </script>
             </div>
             <div class="basket-sum"></div>
             <div class="basket-check">Замовити</div>

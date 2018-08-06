@@ -1038,6 +1038,7 @@ input{
     margin-left: 7px;
     border: 1px solid white;
     display: none;
+    position: relative;
 }
 
 .apply-area{
@@ -1072,7 +1073,7 @@ input{
 }
 
 .apply-area span{
-        float: left;
+    float: left;
     margin-left: 15px;
     color: white;
 }
@@ -1083,4 +1084,37 @@ input{
 
 .basket-WIN:after{
     display: none
+}
+
+.basket-sum{
+    position: absolute;
+    left: 10px;
+    bottom: 6px;
+    color: white;
+    /* font-weight: bold; */
+    font-size: 14px;
+}
+
+.fiftyProc{
+    width: 50%;
+}
+
+.maps-Block{
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    bottom: 0;
+}
+
+#mapa{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 215px;
+    float: left;
+}
+
+#mapa .gm-style div {
+    /*box-shadow: inset 0px 0px 16px 13px #b09337;*/
 }

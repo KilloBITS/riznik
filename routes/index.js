@@ -10,8 +10,9 @@ var mysql = require('mysql');
 var folder1 = __dirname + '/../publick/image/slide/';
 router.use(requestIp.mw());
 
+
 var ipOptSQL = {
-    host: '52.14.180.56',
+    host: '127.0.0.1',
     port: 3306,
     user: 'riznik',
     password: 'yaPn6eZQHBnBeOf8',

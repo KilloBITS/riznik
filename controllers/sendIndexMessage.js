@@ -12,9 +12,9 @@ var transporter = nodemailer.createTransport({
 
 function mailOptions(a, b, c, d) {
     this.from = a, //'riznik.comment@gmail.com',
-            this.to = b, //'mr.kalinuk@gmail.com',
-            this.subject = c, //'Sending Email using Node.js',
-            this.text = d;//'That was easy!';
+    this.to = b, //'mr.kalinuk@gmail.com',
+    this.subject = c, //'Sending Email using Node.js',
+    this.text = d;//'That was easy!';
 }
 
 router.post('/sendMessage', function (req, res) {
@@ -35,6 +35,7 @@ router.post('/sendMessage', function (req, res) {
             res.send(false);
         }
     } catch (err) {
+        console.log(err)
         res.send(false);
     }
 

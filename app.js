@@ -139,7 +139,7 @@ let UpdateDataFunction = (interval) => {
     }, TimeInt);
 };
 
-app.listen(8080, function () {
+app.listen(8010, function () {
     UpdateDataFunction(1000);
     insta();
     updateData();  //основнгые параметры

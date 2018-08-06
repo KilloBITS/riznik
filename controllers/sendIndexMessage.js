@@ -38,7 +38,6 @@ router.post('/sendMessage', function (req, res) {
         console.log(err)
         res.send(false);
     }
-
 });
 
 module.exports = router;

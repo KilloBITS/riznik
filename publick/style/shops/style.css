@@ -103,6 +103,10 @@ body{
     position: relative;
 }
 
+.MobBtnNavMenu{
+    display: none;
+}
+
 .basket{
     background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMS4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDIxMzguMzI3IDIxMzguMzI3IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyMTM4LjMyNyAyMTM4LjMyNzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIzMnB4IiBoZWlnaHQ9IjMycHgiPgo8cGF0aCBkPSJNMTAzMi45MjUsMTg1Mi42NTRjMCw5OC4wNzYtNzkuNTA2LDE3Ny41ODMtMTc3LjU4MywxNzcuNTgzUzY3Ny43NiwxOTUwLjczLDY3Ny43NiwxODUyLjY1NCAgYzAtOTguMDc2LDc5LjUwNi0xNzcuNTgzLDE3Ny41ODMtMTc3LjU4M1MxMDMyLjkyNSwxNzU0LjU3OCwxMDMyLjkyNSwxODUyLjY1NHogTTE1NzQuMzg3LDE2NzUuMDcyICBjLTk4LjA3NiwwLTE3Ny41ODMsNzkuNTA3LTE3Ny41ODMsMTc3LjU4M2MwLDk4LjA3Niw3OS41MDcsMTc3LjU4MywxNzcuNTgzLDE3Ny41ODNjOTguMDc2LDAsMTc3LjU4My03OS41MDcsMTc3LjU4My0xNzcuNTgzICBDMTc1MS45NjksMTc1NC41NzgsMTY3Mi40NjMsMTY3NS4wNzIsMTU3NC4zODcsMTY3NS4wNzJ6IE0yMTI1LjYxOSw4NDEuNDIzbC0yMTguNTEyLDY0OS40NjRjMCwwLTE4LjA4OCw5Ni4zODMtMTEwLjI0Nyw5Ni4zODMgIHMtOTkzLjQwNywwLTExMDMuMzg5LDBzLTExNC42MDQtMTIwLjgwOS0xMTQuNjA0LTEyMC44MDlTNDYxLjYyNCw1OTYuNjM3LDQ1NS44MTQsNTQ0LjA4OHMtNzMuMDEzLTkxLjQ5OC03My4wMTMtOTEuNDk4ICBMOTMuNjUxLDMxNy41MjJjLTE1OC4zMDYtODIuNzg0LTg2LjM0OS0yNDAuMjk4LDAtMjA0LjEyMWMzNjYuNjUyLDE3Mi45NjEsNTM2Ljk3MywyNTguMTIyLDU0Ny45MzIsMzI2LjI1ICBjMTEuMDkxLDY4LjI2LDMwLjM2NywyMzIuNjQsMzAuMzY3LDIzMi42NHYxLjA1NmMyLjI0NS0wLjY2LDMuODI5LTEuMDU2LDMuODI5LTEuMDU2czExMjQuMzgyLDAsMTM1MS40NzcsMCAgQzIxOTAuNDQ3LDY3Mi4yOTEsMjEyNS42MTksODQxLjY4OCwyMTI1LjYxOSw4NDEuNDIzeiBNMTgwOS41MzUsMTIwMy4wNThsLTIuMjQ1LDAuMTMySDczNy41N0w3NTkuNjE5LDEzNzhoOTk3Ljg5NiAgTDE4MDkuNTM1LDEyMDMuMDU4eiBNMTkxMy43MDgsODUwLjUzNEg2OTMuMzM5bDIzLjUwMiwxODYuODI1YzIzNC4wOTIsMCw5MTkuNjAxLDAsMTE0MS42NzgsMEwxOTEzLjcwOCw4NTAuNTM0eiIgZmlsbD0iI2IwOTUzNiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K);
 }
@@ -647,6 +651,8 @@ body{
     border-radius: 3px;
     overflow-y: auto;
     overflow-x: hidden;
+    float: left;
+    margin-left: 7px;
 }
 
 .basket-check{
@@ -660,6 +666,9 @@ body{
     text-align: center;
     font-size: 14px;
     cursor: pointer;
+    position: absolute;
+    right: 0px;
+    bottom: 6px;
 }
 
 .lineOfText{
@@ -1014,4 +1023,59 @@ input{
     margin-top: 5px;
     padding-left: 10px;
     cursor: default;
+}
+
+.basket-applyData{
+    width: calc(50% - 26px);
+    height: calc(100% - 58px);
+    /* background: white; */
+    margin: auto;
+    margin-top: 5px;
+    border-radius: 3px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    float: left;
+    margin-left: 7px;
+    border: 1px solid white;
+}
+
+.apply-area{
+    float: left;
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+}
+.apply-area input[type="text"]{
+    width: calc(100% - 17px);
+    margin-left: 5px;
+    height: 24px;
+    border: 1px solid white;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    outline: none;
+    color: black;
+    padding-left: 5px;
+}
+
+.apply-area select{
+    width: calc(100% - 10px);
+    margin-left: 5px;
+    height: 27px;
+    border: 1px solid white;
+    background: rgb(255, 255, 255);
+    border-radius: 5px;
+    outline: none;
+    color: black;
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.apply-area span{
+        float: left;
+    margin-left: 15px;
+    color: white;
+}
+
+.dinamicData{
+    display: none;
 }

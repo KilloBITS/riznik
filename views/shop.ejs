@@ -37,6 +37,9 @@
                     <div>0</div>
                 </div>
                 <div class="btnHead search"></div> 
+
+                <div class="btnHead MobBtnNavMenu" id="oplatatadostavka"></div> 
+                <div class="btnHead MobBtnNavMenu" id="produkciya"></div> 
                 <div class="searchLine">
                     <div class="searchArrow"></div>
                     <input type="text" name="search" id="searchValue" placeholder="Пошук">
@@ -44,49 +47,91 @@
             </div>
         </div>    
         <div class="mobile-menu-block">
-             <div class="filters">
-                    <div class="filters-block">
-                        <div class="filter-btn btnActive">Всі</div>
-                        <div class="filter-btn">Ковбаса</div>
-                        <div class="filter-btn">Соуси</div>                        
-                        <div class="filter-btn">Вино</div>
-                        <div class="filter-btn">Набори</div>
-                    </div>
-                    <div class="sort">
-                        <div class="select">
-                            <div class="title-select">Сортування</div>
-                            <select class="selector">
-                                <option value="popular">По популярності</option>
-                                <option value="priceToTop">По ціні (З меншої до більшої)</option>
-                                <option value="priceToDown">По ціні (З більшої до більшої)</option>                           
-                            </select>
-                            <div class="selectArea" id="sort">
+            <div class="filters">
+                <div class="filters-block">
+                    <div class="filter-btn btnActive">Всі</div>
+                    <div class="filter-btn">Ковбаса</div>
+                    <div class="filter-btn">Соуси</div>                        
+                    <div class="filter-btn">Вино</div>
+                    <div class="filter-btn">Набори</div>
+                </div>
+                <div class="sort">
+                    <div class="select">
+                        <div class="title-select">Сортування</div>
+                        <select class="selector">
+                            <option value="popular">По популярності</option>
+                            <option value="priceToTop">По ціні (З меншої до більшої)</option>
+                            <option value="priceToDown">По ціні (З більшої до більшої)</option>                           
+                        </select>
+                        <div class="selectArea" id="sort">
+                            <div class="selImage" id="s1"></div>
+                            <div class="selTitle">По популярності</div>
+                        </div>
+                        <div class="sel">
+                            <div class="selOption">
                                 <div class="selImage" id="s1"></div>
                                 <div class="selTitle">По популярності</div>
                             </div>
-                            <div class="sel">
-                                <div class="selOption">
-                                    <div class="selImage" id="s1"></div>
-                                    <div class="selTitle">По популярності</div>
-                                </div>
 
-                                <div class="selOption">
-                                    <div class="selImage" id="s2"></div>
-                                    <div class="selTitle" >По ціні (З меншої до більшої)</div>
-                                </div>
+                            <div class="selOption">
+                                <div class="selImage" id="s2"></div>
+                                <div class="selTitle" >По ціні (З меншої до більшої)</div>
+                            </div>
 
-                                <div class="selOption">
-                                    <div class="selImage" id="s3"></div>
-                                    <div class="selTitle" >По ціні (З більшої до більшої)</div>
-                                </div>
+                            <div class="selOption">
+                                <div class="selImage" id="s3"></div>
+                                <div class="selTitle" >По ціні (З більшої до більшої)</div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
         <div class="basket-WIN">
             <div class="basket-title">Кошик</div>
-            <div class="basket-list">
+            <div class="basket-list"></div>
+            <div class="basket-applyData">
+                <div class="apply-area">
+                    <span>Імя</span>
+                    <input type="text" title="Ваше Імя" placeholder="Ваше Імя">
+                </div>
+                <div class="apply-area">
+                    <span>Прізвище</span>
+                    <input type="text" title="Ваше Прізвище" placeholder="Ваше Прізвище">
+                </div>
+                <div class="apply-area">
+                    <span>Номер телефону</span>
+                    <input type="text" title="Номер телефону" placeholder="Номер телефону">
+                </div>
+                <div class="apply-area">
+                    <span>Email</span>
+                    <input type="text" title="Електронна пошта (за бажанням)" placeholder="Електронна пошта (за бажанням)">
+                </div>
+
+                <div class="apply-area">
+                    <span>Тип доставки</span>
+                    <select>
+                        <option value='def' disabled selected>Виберіть спосіб доставки</option>
+                        <option value='iam'>Самовивіз</option>
+                        <option value="kur">Доставка кур'єром</option>
+                        <option value="newpost">Доставка Новою поштою</option>
+                    </select>
+                </div>
+
+                <div class="apply-area dinamicData">
+                    <span>Місто</span>
+                    <input type="text" title="Місто" placeholder="Місто">
+                </div>
+
+                <div class="apply-area dinamicData">
+                    <span>Магазин</span>
+                    <select>
+                        <option value='def' disabled selected>Виберіть магазин</option>
+                        <option value='1'>Львів, вул.Коновальца 10</option>
+                        <option value="2">Львів, вул.Костомарова 10</option>
+                    </select>
+                </div>
+
             </div>
             <div class="basket-sum"></div>
             <div class="basket-check">Замовити</div>
@@ -150,7 +195,7 @@
 
                 <script>
                     shops.tovLengthData = <%= tovar.length %>;
-</script>
+                </script>
 
                 <% for(var i = 0; i < tovar.length; i++) { %>
 
@@ -228,15 +273,15 @@
                     </div>
 
         <script>
-        var pageLength = Math.ceil(shops.tovLengthData / 10);                    
-        for(var np = 0; np < pageLength; np++){
-                    var npp = np + 1;
-                    $('.centerPage').append('<div class="page">' + npp + '</div>');
-        };
-        $('.page:eq(0)').addClass('pageActive');
+                            var pageLength = Math.ceil(shops.tovLengthData / 10);                    
+                            for(var np = 0; np < pageLength; np++){
+                                        var npp = np + 1;
+                                        $('.centerPage').append('<div class="page">' + npp + '</div>');
+                            };
+                            $('.page:eq(0)').addClass('pageActive');
         
         
-        </script>
+                        </script>
 
                         <!--<div id="demo"></div>-->
                     </div>
@@ -318,7 +363,7 @@
                                 <br>
                                 <br>
                                 Доставка Новою поштою в будь які міста України. <br><br>
-                                Ціна доставки згідно тарифій Нової пошти.
+                                Ціна доставки згідно тарифів Нової пошти.
                             </p>
                         </div>
                     </div>

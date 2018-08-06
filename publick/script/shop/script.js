@@ -101,7 +101,12 @@ var design = function () {
 
     $('.basket').click(function () {
         if (!shops.basket) {
-            $('.basket-WIN').css({"left": ($('.basket').offset().left - ($('.basket-WIN').width() - 45)) + "px"}).fadeIn(300);
+            if ($(document).width() < 800) {
+                $('.basket-WIN').css({"left":"0px"}).fadeIn(300);
+            } else {
+                $('.basket-WIN').css({"left": ($('.basket').offset().left - ($('.basket-WIN').width() - 45)) + "px"}).fadeIn(300);
+
+            }
             if (tovar && tovar.length > 0) {
                 $('.basket-item').remove();
                 for (let i = 0; i < tovar.length; i++) {
@@ -169,6 +174,7 @@ var design = function () {
             "width": "50%",
             "margin-left": "10px"
         });
+        
     });
 
     $('.details').click(function () {
@@ -237,21 +243,47 @@ var design = function () {
             setTimeout(() => {
                 shops.SA = false;
             }, 500);
-            
+
         }
     });
-    
-    
+
+
     /*Mobile nav*/
-    $('.mobile-menu').click(function(){
-        if(shops.openMobMenu){
+    $('.mobile-menu').click(function () {
+        if (shops.openMobMenu) {
             $('.mobile-menu').removeClass('openMobMenu');
             $('.mobile-menu-block').fadeOut(300);
-            shops.openMobMenu = false;            
-        }else{            
+            $('.content').css({
+                'filter': 'blur(0px) grayscale(0%)',
+                'pointer-events': 'auto'
+            });
+            shops.openMobMenu = false;
+        } else {
             $('.mobile-menu').addClass('openMobMenu');
             $('.mobile-menu-block').fadeIn(300);
+            $('.content').css({
+                'filter': 'blur(3px) grayscale(100%)',
+                'pointer-events': 'none'
+            });
             shops.openMobMenu = true;
+        }
+    });
+
+    $('.MobBtnNavMenu').click(function () {
+        $('.BuyTovar').fadeOut(300);
+        $('.tovarDB').fadeIn(200);
+        $('.btnMenuDemo').hide();
+        let index = $('.MobBtnNavMenu').index(this);
+        $('.MobBtnNavMenu').removeClass('btnActive');
+        $('.MobBtnNavMenu:eq(' + index + ')').addClass('mobBtnActive');
+        $('.content').hide();
+        switch (index) {
+            case 1:
+                loadPricePage();
+                break;
+            case 0:
+                loadOtherPage();
+                break;
         }
     });
 };

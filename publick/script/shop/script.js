@@ -175,6 +175,24 @@ var design = function () {
             "margin-left": "10px"
         });
         
+        $('.basket-applyData').css({"display":"block"});
+    });
+    
+    $('#typeOfDostavka').change(function(){
+        let sam = () => {
+            $('#samShop').fadeIn(400);
+        };
+        let kur = () => {
+            
+        };
+        let np = () => {
+            
+        };
+        switch(parseInt($('#typeOfDostavka').val())){
+            case 1: sam();break;
+            case 2: kur();break;
+            case 2: np();break;
+        }
     });
 
     $('.details').click(function () {

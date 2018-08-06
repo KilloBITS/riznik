@@ -110,11 +110,11 @@
 
                 <div class="apply-area">
                     <span>Тип доставки</span>
-                    <select>
-                        <option value='def' disabled selected>Виберіть спосіб доставки</option>
-                        <option value='iam'>Самовивіз</option>
-                        <option value="kur">Доставка кур'єром</option>
-                        <option value="newpost">Доставка Новою поштою</option>
+                    <select id='typeOfDostavka'>
+                        <option value='0' disabled selected>Виберіть спосіб доставки</option>
+                        <option value='1'>Самовивіз</option>
+                        <option value="2">Доставка кур'єром</option>
+                        <option value="3">Доставка Новою поштою</option>
                     </select>
                 </div>
 
@@ -122,8 +122,16 @@
                     <span>Місто</span>
                     <input type="text" title="Місто" placeholder="Місто">
                 </div>
-
                 <div class="apply-area dinamicData">
+                    <span>Місто</span>
+                    <input type="text" title="Місто" placeholder="Місто">
+                </div>
+                <div class="apply-area dinamicData">
+                    <span>Місто</span>
+                    <input type="text" title="Місто" placeholder="Місто">
+                </div>
+
+                <div class="apply-area dinamicData" id="samShop">
                     <span>Магазин</span>
                     <select>
                         <option value='def' disabled selected>Виберіть магазин</option>

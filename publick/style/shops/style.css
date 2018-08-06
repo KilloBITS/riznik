@@ -1037,6 +1037,7 @@ input{
     float: left;
     margin-left: 7px;
     border: 1px solid white;
+    display: none;
 }
 
 .apply-area{
@@ -1078,4 +1079,8 @@ input{
 
 .dinamicData{
     display: none;
+}
+
+.basket-WIN:after{
+    display: none
 }

@@ -15,7 +15,7 @@
     </head>
     <body>      
         <div class="content">      
-            
+            <div id="tivarIDs" style="opacity: 0"><%= data[0].id %></div>
             <div class="title-block"><%= data[0].name %></div>
             <div class="product-data">               
                 <div class="product-top">
@@ -24,17 +24,18 @@
                         <div class="tovar-stars">
                             <div class="stars-title">Оцінка покупців</div>
                             <div class="stars">
-                                <div class="star st2"><span>1</span></div>
-                                <div class="star st2"><span>2</span></div>
-                                <div class="star st2"><span>3</span></div>
-                                <div class="star st1"><span>4</span></div>
-                                <div class="star st1"><span>5</span></div>
+                                 
+                                <div class="star <% if((data[0].star / data[0].len) > 0){ %> st2 <% }else { %> st1 <% } %> "><span>1</span></div>
+                                <div class="star <% if((data[0].star / data[0].len) > 1){ %> st2 <% }else { %> st1 <% } %> "><span>2</span></div>
+                                <div class="star <% if((data[0].star / data[0].len) > 2){ %> st2 <% }else { %> st1 <% } %> "><span>3</span></div>
+                                <div class="star <% if((data[0].star / data[0].len) > 3){ %> st2 <% }else { %> st1 <% } %> "><span>4</span></div>
+                                <div class="star <% if((data[0].star / data[0].len) > 4){ %> st2 <% }else { %> st1 <% } %> "><span>5</span></div>
                             </div>
                             <script>
                            $(document).ready(function(){
                                $('.star').click(function(){
                                    var index = $('.star').index(this);
-                                   $.post('/setStars', {bal: (index +1)}, function(a){
+                                   $.post('/setStars', {bal: (index +1), id: $("#tivarIDs").html()}, function(a){
                                        console.log(a);
                                    });
                                });

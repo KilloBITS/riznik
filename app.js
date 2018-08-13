@@ -98,17 +98,17 @@ let updateData3 = () => {
 
 function updateData4() {
     console.log('Товары обновлены!');
-    connection.query('SELECT * FROM `tovar` WHERE 1', function (errors, results, fields) {
+    connection.query('SELECT * FROM tovar left join tovarStars ON tovar.id = tovarStars.id WHERE 1', function (errors, results, fields) {
         global.tovar = results;
     });
 }
 ;
 
-app.post('/tovar', function (req, res) {
+app.post('/tovar', function (req, res) { //список товаров
     res.send(JSON.stringify(global.tovar));
 });
 
-app.post('/getShops', function (req, res) {
+app.post('/getShops', function (req, res) {  //список магазинов
     res.send(global.shops);
 });
 
@@ -116,20 +116,38 @@ app.post('/getShops', function (req, res) {
 let msg = require('./controllers/sendIndexMessage');
 app.post('/sendMessage', msg);
 
-app.post('/getUsersLength', function (req, res) {
+app.post('/getUsersLength', function (req, res) {  //количевство онлайн
     connection.query('SELECT * FROM `ipAdress` WHERE 1 ', function (errors, results, fields) {
         console.log(results);
         res.send(results.length.toString());
     });
 });
 
-app.post('/getSubTovar', function(req, res){
+app.post('/getSubTovar', function(req, res){  //супутствующие товары
     res.send('asdsdadasdsd');
 });
 
-app.post('/setStars', function(req, res){
-    var id = req.body.bal; 
-    res.send('111assdsdadasdsd');
+app.post('/setStars', function(req, res){  //оценка товара
+    var bal = req.body.bal; 
+    var id = req.body.id; 
+    connection.query('SELECT * FROM `tovarStars` WHERE id="'+ id +'"', function (errors, results, fields) {
+        if(results[0].len == 0){
+            var infLen = 1;
+        }
+        else
+        {
+            var infLen = results[0].len;
+        }
+        
+        var star = parseInt(results[0].star) + parseInt(bal);
+        var newLen = parseInt(results[0].len) + 1;
+        
+
+        connection.query('UPDATE `tovarStars` SET `star`="'+ star +'",`len`="'+ newLen +'" WHERE id="'+id+'"', function(){
+            res.send('good') 
+        });
+        
+    });   
 });
 
 
@@ -145,7 +163,7 @@ let UpdateDataFunction = (interval) => {
         updateData2(); //партнеры
         updateData3(); //магазины
         updateData4();
-    }, TimeInt);
+    }, 10000);
 };
 
 app.listen(1627, function () {
@@ -220,10 +238,10 @@ app2.post('/getTovar', function (req, res) {
 
 app2.post('/deleteTovar', function (req, res) {
     var id = req.body.id;
-    console.log("id suka" + id);
-    connection.query('DELETE FROM `tovar` WHERE id="' + id + '"', function (errors, results, fields) {
-        console.log(results)
-        res.send('Товар видалено');
+    connection.query('DELETE FROM `tovar` WHERE id="' + id + '"', function (errors, results, fields) {        
+        connection.query('DELETE FROM `tovarStars` WHERE id="' + id + '"', function (errors, result, fields) {            
+            res.send('Товар видалено');
+        });   
     });
 });
 
@@ -236,9 +254,9 @@ app2.post('/UpdateDataTovar', function (req, res) {
 
 app2.post('/AddNewsTovar', function (req, res) {
     var data = req.body.data;
-    console.log(data.name);
-    connection.query('INSERT INTO `tovar`(`type`, `name`, `text`, `price`, `length`, `sklad`) VALUES ("'+ data.categories +'","'+data.name+'","'+data.text+'","'+data.price+'","'+data.length+'","'+'none'+'")', function (errors, results, fields) {
-        connection.query('INSERT INTO `tovarStars`(`id`, `star`) VALUES ("'+ results.insertId +'","'+ 0 +'")', function (errors, results, fields) {
+    connection.query('INSERT INTO `tovar`(`type`, `name`, `text`, `price`, `length`, `sklad`) VALUES ("'+ data.categories +'","'+data.name+'","'+data.text+'","'+data.price+'","'+data.length+'","'+''+'")', function (errors, results, fields) {
+        console.log(results);
+        connection.query('INSERT INTO `tovarStars`(`id`, `star`, `len`) VALUES ("'+ results.insertId +'","'+ 0 +'","'+ 0 +'")', function (errors, results, fields) {
             res.send('Збережено');
         });
     });

@@ -198,11 +198,11 @@
                                 <div class="tovar-stars">
                                     <div class="stars-title">Оцінка покупців</div>
                                     <div class="stars">
-                                        <div class="star st2"><span>1</span></div>
-                                        <div class="star st2"><span>2</span></div>
-                                        <div class="star st2"><span>3</span></div>
-                                        <div class="star st1"><span>4</span></div>
-                                        <div class="star st1"><span>5</span></div>
+                                        <div class="star <% if((tovar[i].star / tovar[i].len) > 0){ %> st2 <% }else { %> st1 <% } %> "><span>1</span></div>
+                                        <div class="star <% if((tovar[i].star / tovar[i].len) > 1){ %> st2 <% }else { %> st1 <% } %> "><span>2</span></div>
+                                        <div class="star <% if((tovar[i].star / tovar[i].len) > 2){ %> st2 <% }else { %> st1 <% } %> "><span>3</span></div>
+                                        <div class="star <% if((tovar[i].star / tovar[i].len) > 3){ %> st2 <% }else { %> st1 <% } %> "><span>4</span></div>
+                                        <div class="star <% if((tovar[i].star / tovar[i].len) > 4){ %> st2 <% }else { %> st1 <% } %> "><span>5</span></div>
                                     </div>                            
                                 </div>
                             </div>

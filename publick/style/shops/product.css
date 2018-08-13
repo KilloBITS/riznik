@@ -388,13 +388,15 @@ body{
     z-index: 0;
 }
 
-.product-data{
+.product-data {
     width: 100%;
     height: 100%;
     max-width: 1024px;
     margin: auto;
     margin-top: 70px;
     position: relative;
+    border-top: 1px solid #b09436;
+    padding-top: 10px;
 }
 
 .backToShop{
@@ -963,4 +965,5 @@ body{
         text-transform: uppercase;
         font-size: 12px;
     }
+    
 }

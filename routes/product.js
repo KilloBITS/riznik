@@ -12,15 +12,15 @@ var folder1 = __dirname + '/../publick/image/slide/';
 var dataNext;
 var parseBase = (req, res, next) => {
     console.log(req.url.replace(/[^-0-9]/gi, ''));
-    connection.query('SELECT * FROM `tovar` WHERE id="' + req.url.replace(/[^-0-9]/gi, '') + '"', function (errors, results, fields) {
+    connection.query('SELECT * FROM tovar left join tovarStars ON tovar.id = tovarStars.id WHERE tovar.id="' + req.url.replace(/[^-0-9]/gi, '') + '"', function (errors, results, fields) {
+        console.log(results)
         dataNext = results;
         next();
     });
-
 };
 
 router.get('/product/*', parseBase, function (req, res, next) {
-    console.log(dataNext)
+    console.log(dataNext);
     res.render('product.ejs',{data:dataNext});
 });
 

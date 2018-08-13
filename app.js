@@ -123,6 +123,15 @@ app.post('/getUsersLength', function (req, res) {
     });
 });
 
+app.post('/getSubTovar', function(req, res){
+    res.send('asdsdadasdsd');
+});
+
+app.post('/setStars', function(req, res){
+    var id = req.body.bal; 
+    res.send('111assdsdadasdsd');
+});
+
 
 
 
@@ -209,6 +218,15 @@ app2.post('/getTovar', function (req, res) {
     });
 });
 
+app2.post('/deleteTovar', function (req, res) {
+    var id = req.body.id;
+    console.log("id suka" + id);
+    connection.query('DELETE FROM `tovar` WHERE id="' + id + '"', function (errors, results, fields) {
+        console.log(results)
+        res.send('Товар видалено');
+    });
+});
+
 app2.post('/UpdateDataTovar', function (req, res) {
     var d = req.body.data;
     connection.query('UPDATE `tovar` SET `type`="' + d.type + '",`name`="' + d.name + '",`text`="' + d.text + '",`price`="' + d.price + '" WHERE id="' + d.id + '"', function (errors, results, fields) {
@@ -219,8 +237,10 @@ app2.post('/UpdateDataTovar', function (req, res) {
 app2.post('/AddNewsTovar', function (req, res) {
     var data = req.body.data;
     console.log(data.name);
-    connection.query('INSERT INTO `tovar`(`type`, `name`, `text`, `price`, `length`, `sklad`) VALUES ("'+data.categories+'","'+data.name+'","'+data.text+'","'+data.price+'","'+data.length+'","'+'none'+'")', function (errors, results, fields) {
-        res.send('Збережено');
+    connection.query('INSERT INTO `tovar`(`type`, `name`, `text`, `price`, `length`, `sklad`) VALUES ("'+ data.categories +'","'+data.name+'","'+data.text+'","'+data.price+'","'+data.length+'","'+'none'+'")', function (errors, results, fields) {
+        connection.query('INSERT INTO `tovarStars`(`id`, `star`) VALUES ("'+ results.insertId +'","'+ 0 +'")', function (errors, results, fields) {
+            res.send('Збережено');
+        });
     });
 });
 

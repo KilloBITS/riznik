@@ -1,3 +1,5 @@
+var selectItem;
+
 function newTovar() {
     var ooo = new Object();
 
@@ -13,8 +15,7 @@ var refresh = function() {
     
     $.post('/getTovar',function(tovar){
         $('.listItems').remove();
-        for(let t = 0; t < tovar.length; t++){
-            console.log(tovar[t].name)
+        for(let t = 0; t < tovar.length; t++){       
             var shab = '<div class="listItems" style="background-image: none;"><div class="listID">'+tovar[t].id+'</div><div class="listNAME">'+tovar[t].name+'</div></div>'
             $('.listbox').append(shab);
         }
@@ -26,13 +27,13 @@ var listItemClick= function(){
     $('.listItems').click(function () {
         $('.dataTovar').removeClass('disabled');
         var index = $('.listItems').index(this);
+        
         $('.listItems').css({"background-image": "none"});
         $('.listItems:eq(' + index + ')').css({"background-image": "url(../../../image/icons/32.png)"});
         var idTovaru = $('.listItems:eq(' + index + ') .listID').html();
 
         $.post('/tovarData', {id: idTovaru}, function (data) {
-            console.log(data);
-
+            selectItem = data[0].id;
             $('.section50 .lineData:eq(1) input').val(data[0].id);
             $('.section50 .lineData:eq(2) input').val(data[0].name);
             $('.section50 .lineData:eq(3) input').val(data[0].price);
@@ -57,8 +58,6 @@ let design = () => {
         $('.panelBlock:eq(' + index + ')').show();
     });
 
-    
-
     $('#newTovar').click(function () {
         $('.panel').css({"filter": "blur(5px)"})
         $('.addNewTovar').fadeIn(300);
@@ -70,7 +69,6 @@ let design = () => {
     });
 
     var FocusData;
-
     $('.lineData input, .lineData textarea').focusout(function () {
         if ($(this).val() !== FocusData) {
             var dataObj = new Object();
@@ -94,8 +92,7 @@ let design = () => {
     $('#listSearch').on('input keyup', function (e) {
         var result;
         var data = $("#listSearch").val();
-        console.log(data);
-        if (data.length >= 1) {
+         if (data.length >= 1) {
             for (var i = 0; i < $('.listItems').length; i++) {
                 if (($('.listItems:eq(' + i + ') .listNAME').html().toLowerCase().indexOf(data.toLowerCase()) !== -1) || ($('.listItems:eq(' + i + ') .listID').html().toLowerCase().indexOf(data.toLowerCase()) !== -1)) {
                     result = i;
@@ -113,11 +110,16 @@ let design = () => {
 
     $('#saveNewsTovar').click(function () {
         $.post("/AddNewsTovar", {data: newTovar()}, function (result) {
-            console.log(result);
             $('.panel').css({"filter": "blur(0px)"});
             $('.addNewTovar').fadeOut(300);
             refresh();
             
+        });
+    });
+    
+    $('#deleteTovar').click(function () {
+        $.post("/deleteTovar", {id: selectItem}, function (result) {
+            refresh();            
         });
     });
     

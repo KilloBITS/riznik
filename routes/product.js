@@ -18,7 +18,6 @@ var parseBase = (req, res, next) => {
 };
 
 router.get('/product/*', parseBase, function (req, res, next) {
-    console.log(dataNext);
     res.render('product.ejs',{data:dataNext});
 });
 

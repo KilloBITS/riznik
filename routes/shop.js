@@ -9,7 +9,6 @@ var folder1 = __dirname + '/../publick/image/slide/';
 
 
 router.get('/shop', function(req, res, next){
-    console.log(global.tovar);
     res.render('shop.ejs', {tovar: global.tovar});  
 });
 

@@ -13,15 +13,15 @@ router2.use(cookieParser());
 
 
 function parseAdmin(req, res, next) {
-//    let AuthKEY = req.cookies.AuthKEY;
-//    let uID = req.cookies.uID;
-//    let users = 'userID' + req.cookies.uName;
-//    if(global[users]){
-//        next();
-//    }else{
-//       res.redirect('/'); 
-//    }
-//    
+    let AuthKEY = req.cookies.AuthKEY;
+    let uID = req.cookies.uID;
+    let users = 'userID' + req.cookies.uName;
+    if(global[users]){
+        next();
+    }else{
+       res.redirect('/'); 
+    }
+    
     next();
 }
 

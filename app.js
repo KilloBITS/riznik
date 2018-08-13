@@ -40,8 +40,12 @@ instagramAPI.userSelf().then(function (result) {
 
 
 global.SQLoptions = {host: '52.14.180.56', port: 3306, user: 'riznik', password: 'yaPn6eZQHBnBeOf8', database: 'PanRiznyk'};
+global.SQLoptions2 = {host: '52.14.180.56', port: 3306, user: 'riznik', password: 'yaPn6eZQHBnBeOf8', database: 'commentars'};
 var connection = mysql.createConnection(global.SQLoptions);
 connection.connect();
+
+var connection2 = mysql.createConnection(global.SQLoptions2);
+connection2.connect();
 
 function insta() {
     global.instaImage = [];
@@ -252,12 +256,15 @@ app2.post('/UpdateDataTovar', function (req, res) {
     });
 });
 
+
 app2.post('/AddNewsTovar', function (req, res) {
     var data = req.body.data;
     connection.query('INSERT INTO `tovar`(`type`, `name`, `text`, `price`, `length`, `sklad`) VALUES ("'+ data.categories +'","'+data.name+'","'+data.text+'","'+data.price+'","'+data.length+'","'+''+'")', function (errors, results, fields) {
         console.log(results);
-        connection.query('INSERT INTO `tovarStars`(`id`, `star`, `len`) VALUES ("'+ results.insertId +'","'+ 0 +'","'+ 0 +'")', function (errors, results, fields) {
+        connection.query('INSERT INTO `tovarStars`(`id`, `star`, `len`) VALUES ("'+ results.insertId +'","'+ 0 +'","'+ 0 +'")', function (errors, result, fields) {
             res.send('Збережено');
+            console.log(results.insertId);
+            connection2.query('create table tov'+results.insertId+' (id int (10),name varchar(20) NOT NULL, textVal text(1024) NOT NULL, dateMsg varchar(24) NOT NULL)');
         });
     });
 });

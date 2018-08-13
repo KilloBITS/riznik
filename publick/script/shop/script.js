@@ -6,12 +6,20 @@ shops.openMobMenu = false;
 //объект корзины
 var tovar = [];
 
+var basketDelete = (a) => {
+    var index = $(".basket-item-delete").index(a);
+    $(".basket-item:eq("+ index +")").remove();
+//    remove(tovar, index);
+    var removed = tovar.splice(index, 1);
+    console.log(removed[0].nameTovar);
+    localStorage.setItem("cart", JSON.stringify(tovar));
+};
 
 var loadtTovar = () => {
     $.post('/tovar', function (data) {
         console.log(JSON.parse(data));
         for (let i = 0; i < JSON.parse(data).length; i++) {
-
+            
         }
     });
 };
@@ -120,7 +128,7 @@ var design = function () {
             if (tovar && tovar.length > 0) {
                 $('.basket-item').remove();
                 for (let i = 0; i < tovar.length; i++) {
-                    var ssd = '<div class="basket-item"><div class="basket-icon" style="background-image:' + tovar[i].img + '"></div><div class="basket-string">' + tovar[i].nameTovar + '</div><div class="basket-price">' + tovar[i].price + '</div><div class="basket-item-length">Кількість: <input type="number" class="lengthItems" value="1" min="1"></div><div class="basket-item-delete"></div></div>';
+                    var ssd = '<div class="basket-item"><div class="basket-icon" style="background-image:' + tovar[i].img + '"></div><div class="basket-string">' + tovar[i].nameTovar + '</div><div class="basket-price">' + tovar[i].price + '</div><div class="basket-item-length">Кількість: <input type="number" class="lengthItems" value="1" min="1"></div><div class="basket-item-delete" onclick="basketDelete(this)"></div></div>';
                     $('.basket-list').append(ssd);
                 }
             }
@@ -300,6 +308,17 @@ var design = function () {
             }, 1000);
         }
     });
+    
+    $('.filtersOpen').click(function(){
+        $('.filters').toggleClass('minOpened');
+        if( $('.filters').hasClass('minOpened')){
+            setTimeout(function(){
+                $(".filters").css({"overflow":"inherit"});
+            },300);
+        }else{
+            $(".filters").css({"overflow":"hidden"});
+        }
+    });
 
     $(document).mouseup(function (e) { // событие клика по веб-документу
         var div = $(".sel"); // тут указываем ID элемента        
@@ -321,18 +340,12 @@ $(document).on('keyup mouseup keydown change blur', '.lengthItems', function() {
         if (shops.openMobMenu) {
             $('.mobile-menu').removeClass('openMobMenu');
             $('.mobile-menu-block').fadeOut(300);
-            $('.content').css({
-                'filter': 'blur(0px) grayscale(0%)',
-                'pointer-events': 'auto'
-            });
+            
             shops.openMobMenu = false;
         } else {
             $('.mobile-menu').addClass('openMobMenu');
             $('.mobile-menu-block').fadeIn(300);
-            $('.content').css({
-                'filter': 'blur(3px) grayscale(100%)',
-                'pointer-events': 'none'
-            });
+           
             shops.openMobMenu = true;
         }
     });
@@ -353,6 +366,9 @@ $(document).on('keyup mouseup keydown change blur', '.lengthItems', function() {
                 loadOtherPage();
                 break;
         }
+        $('.mobile-menu').removeClass('openMobMenu');
+        $('.mobile-menu-block').fadeOut(300);
+        shops.openMobMenu = false;
     });
 };
 

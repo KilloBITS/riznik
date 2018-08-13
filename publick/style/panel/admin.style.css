@@ -530,7 +530,7 @@ td {
     max-width: 600px;
 }
 
-.lineData{
+.lineData,.lineData2{
     float: left;
     width: 100%;
     height: 50px;
@@ -540,7 +540,7 @@ td {
     position: relative;
 }
 
-.lineData input{
+.lineData input,.lineData2 input{
     position: absolute;
     width: 100%;
     height: 35px;
@@ -550,7 +550,7 @@ td {
     padding-left: 10px;
 }
 
-.lineData span{
+.lineData span, .lineData span{
     position: absolute;
     left: 10px;
     background: white;
@@ -560,7 +560,7 @@ td {
     top: -11px;
 }
 
-#text{
+#text, #newText{
     resize: none;
     position: absolute;
     width: 100%;

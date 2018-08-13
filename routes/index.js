@@ -12,7 +12,7 @@ router.use(requestIp.mw());
 
 
 var ipOptSQL = {
-    host: '127.0.0.1',
+    host: '52.14.180.56',
     port: 3306,
     user: 'riznik',
     password: 'yaPn6eZQHBnBeOf8',

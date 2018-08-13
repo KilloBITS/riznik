@@ -11,8 +11,8 @@ var folder1 = __dirname + '/../publick/image/slide/';
 
 var dataNext;
 var parseBase = (req, res, next) => {
-//    console.log(req.url.slice(-1));
-    connection.query('SELECT * FROM `tovar` WHERE id="' + req.url.slice(-1) + '"', function (errors, results, fields) {
+    console.log(req.url.replace(/[^-0-9]/gi, ''));
+    connection.query('SELECT * FROM `tovar` WHERE id="' + req.url.replace(/[^-0-9]/gi, '') + '"', function (errors, results, fields) {
         dataNext = results;
         next();
     });

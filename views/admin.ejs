@@ -74,8 +74,7 @@
                         </div>
                         <% } %>                
                     </div>
-
-
+                    
                     <div class="dataTovar disabled" >
                         <div class="lineData" id="photo">
                             <span>Зображення</span>
@@ -132,30 +131,35 @@
 
             <div class="addNewTovar">
                 <div class="closeNewTovar">X</div>
-                <div class="dataTovar">
-                    <div class="lineData">
-                        <span>ID</span>
-                        <input class="input" type="text">
-                    </div>
-                    <div class="lineData">
+                <div class="dataTovar">                
+                    <div class="lineData2">
                         <span>Назва</span>
-                        <input class="input" type="text">
+                        <input class="input2" type="text" id="newName">
                     </div>
-                    <div class="lineData">
+                    <div class="lineData2">
                         <span>Ціна</span>
-                        <input class="input" type="text">
+                        <input class="input2" type="text" id="newPrice">
                     </div>
-                    <div class="lineData">
+                    <div class="lineData2">
                         <span>Категорія</span>
-                        <input class="input" type="text">
+                        <select id="newCategories">
+                            <option value="Ковбаса">Ковбаса</option>
+                            <option value="Соус">Соус</option>
+                            <option value="Вино">Вино</option>
+                        </select>
+                       
                     </div>
-                    <div class="lineData" id="ttt">
+                     <div class="lineData2">
+                        <span>Кількість</span>
+                        <input class="input2" type="text" id="newLength">
+                    </div>
+                    <div class="lineData2" id="ttt">
                         <span>Опис</span>
-                        <textarea class="input" id="text"></textarea>
+                        <textarea class="input2" id="newText"></textarea>
                     </div>
                 </div>
 
-                <div class="bbttnn">Зберегти</div>
+                <div class="bbttnn" id="saveNewsTovar">Зберегти</div>
             </div>              
         </main>
         <footer role="contentinfo">Riznyk</footer>

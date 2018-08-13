@@ -39,7 +39,7 @@ instagramAPI.userSelf().then(function (result) {
 });
 
 
-global.SQLoptions = {host: '127.0.0.1', port: 3306, user: 'riznik', password: 'yaPn6eZQHBnBeOf8', database: 'PanRiznyk'};
+global.SQLoptions = {host: '52.14.180.56', port: 3306, user: 'riznik', password: 'yaPn6eZQHBnBeOf8', database: 'PanRiznyk'};
 var connection = mysql.createConnection(global.SQLoptions);
 connection.connect();
 
@@ -139,14 +139,14 @@ let UpdateDataFunction = (interval) => {
     }, TimeInt);
 };
 
-app.listen(8010, function () {
+app.listen(1627, function () {
     UpdateDataFunction(1000);
     insta();
     updateData();  //основнгые параметры
     updateData2(); //партнеры
     updateData3(); //магазины
     updateData4();
-    console.log('Сервер на 8080 порте запущен! ');
+    console.log('Сервер на 8010 порте запущен! ');
 });
 
 
@@ -203,10 +203,24 @@ app2.post('/tovarData', function (req, res) {
     });
 });
 
+app2.post('/getTovar', function (req, res) {
+    connection.query('SELECT * FROM `tovar` WHERE 1', function (errors, results, fields) {
+        res.send(results);
+    });
+});
+
 app2.post('/UpdateDataTovar', function (req, res) {
     var d = req.body.data;
     connection.query('UPDATE `tovar` SET `type`="' + d.type + '",`name`="' + d.name + '",`text`="' + d.text + '",`price`="' + d.price + '" WHERE id="' + d.id + '"', function (errors, results, fields) {
         res.send('Зміни збереженно для товару: ' + d.name);
+    });
+});
+
+app2.post('/AddNewsTovar', function (req, res) {
+    var data = req.body.data;
+    console.log(data.name);
+    connection.query('INSERT INTO `tovar`(`type`, `name`, `text`, `price`, `length`, `sklad`) VALUES ("'+data.categories+'","'+data.name+'","'+data.text+'","'+data.price+'","'+data.length+'","'+'none'+'")', function (errors, results, fields) {
+        res.send('Збережено');
     });
 });
 

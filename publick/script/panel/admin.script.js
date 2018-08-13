@@ -1,19 +1,29 @@
-let design = () => {
-    /** buttons **/
-    $('#submitLeg').click(function () {
-        $.post('/legend', {typePost: 1, text: $('#leg').val()}, function (data) {
-            alert(data);
-        });
-    });
+function newTovar() {
+    var ooo = new Object();
 
-    $('.bluBTN').click(function () {
-        let index = $('.bluBTN').index(this);
-        $('.panelBlock').hide();
-        $('.panelBlock:eq(' + index + ')').show();
-    });
+    ooo.name = $("#newName").val();
+    ooo.price = $("#newPrice").val();
+    ooo.categories = $("#newCategories").val();
+    ooo.text = $("#newText").val();
+    ooo.length = $("#newLength").val();
+    return ooo;
+};
 
+var refresh = function() {
+    
+    $.post('/getTovar',function(tovar){
+        $('.listItems').remove();
+        for(let t = 0; t < tovar.length; t++){
+            console.log(tovar[t].name)
+            var shab = '<div class="listItems" style="background-image: none;"><div class="listID">'+tovar[t].id+'</div><div class="listNAME">'+tovar[t].name+'</div></div>'
+            $('.listbox').append(shab);
+        }
+        listItemClick();
+    });
+}
+
+var listItemClick= function(){
     $('.listItems').click(function () {
-
         $('.dataTovar').removeClass('disabled');
         var index = $('.listItems').index(this);
         $('.listItems').css({"background-image": "none"});
@@ -31,6 +41,23 @@ let design = () => {
             $('.betaImage').css({"background-image": "url(../../../content/tovarImage/" + data[0].id + ".jpg)"});
         });
     });
+};
+
+let design = () => {
+    /** buttons **/
+    $('#submitLeg').click(function () {
+        $.post('/legend', {typePost: 1, text: $('#leg').val()}, function (data) {
+            alert(data);
+        });
+    });
+
+    $('.bluBTN').click(function () {
+        let index = $('.bluBTN').index(this);
+        $('.panelBlock').hide();
+        $('.panelBlock:eq(' + index + ')').show();
+    });
+
+    
 
     $('#newTovar').click(function () {
         $('.panel').css({"filter": "blur(5px)"})
@@ -81,6 +108,20 @@ let design = () => {
             $('.listItems').show();
         }
     });
+
+
+
+    $('#saveNewsTovar').click(function () {
+        $.post("/AddNewsTovar", {data: newTovar()}, function (result) {
+            console.log(result);
+            $('.panel').css({"filter": "blur(0px)"});
+            $('.addNewTovar').fadeOut(300);
+            refresh();
+            
+        });
+    });
+    
+    listItemClick();
 };
 
 let listBoxItemsClick = () => {

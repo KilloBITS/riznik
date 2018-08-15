@@ -1,5 +1,4 @@
 'use strict';
-
 var shops = new Object(); //переменная параметров
 shops.openCall = 0;
 shops.openMobMenu = false;
@@ -9,19 +8,22 @@ var tovar = [];
 var basketDelete = (a) => {
     var index = $(".basket-item-delete").index(a);
     $(".basket-item:eq("+ index +")").remove();
-//    remove(tovar, index);
     var removed = tovar.splice(index, 1);
-    console.log(removed[0].nameTovar);
+    $('.basket div').html(parseInt(tovar.length));
     localStorage.setItem("cart", JSON.stringify(tovar));
 };
 
-var loadtTovar = () => {
-    $.post('/tovar', function (data) {
-        console.log(JSON.parse(data));
-        for (let i = 0; i < JSON.parse(data).length; i++) {
-            
-        }
-    });
+var loadtTovar = (data, filter) => {
+    $('.tovarDB').hide();
+    for(let i = 0; i < shops.tovLengthData; i++){ 
+        if((data.find(item => item.id === $('.tovarDB:eq('+i+') .tovarID').html())) !== undefined){
+            if(filter === '1' && i >= 10){
+                $('.tovarDB:eq('+i+')').hide();
+            }else{
+                $('.tovarDB:eq('+i+')').show();
+            }          
+        }         
+    }     
 };
 
 var basketSum = () =>{
@@ -54,6 +56,11 @@ var getCart = function () {
     }
 };
 
+var filters = (filter) => {
+    $.post('/filters',{fil:filter}, function(data){
+        loadtTovar(data, filter);
+    });
+};
 
 var design = function () {
     var prewList, nextList;
@@ -62,8 +69,6 @@ var design = function () {
         $('.page').removeClass('pageActive');
         var index = $('.page').index(this);
         $('.page:eq(' + index + ')').addClass('pageActive');
-
-        console.log(10 * parseInt($(this).html()));
 
         for (let i = 0; i < shops.tovLengthData; i++) {
             if (i < (parseInt($(this).html()) * 10) && i >= ((parseInt($(this).html()) * 10) - 10)) {
@@ -102,6 +107,14 @@ var design = function () {
         let index = $('.filter-btn').index(this);
         $('.filter-btn').removeClass('btnActive');
         $('.filter-btn:eq(' + index + ')').addClass('btnActive');
+        console.log('Используем фильтр: ' + index);
+        switch(index){
+            case 0: filters('1');break;
+            case 1: filters('Ковбаса');break;
+            case 2: filters('Соус');break;
+            case 3: filters('Вино');break;
+            case 4: filters('Набір');break;
+        }
     });
 
     $('.selectArea').click(function () {
@@ -152,8 +165,9 @@ var design = function () {
         var demo = document.createElement('div');
         demo.className = 'demoCart';
         $('body').append(demo);
+        console.log($(".tovarID:eq("+index+")").html())
         $('.demoCart').css({
-            "background-image": "url(../../../content/tovarImage/" + (index + 1) + ".jpg",
+            "background-image": "url(../../../content/tovarImage/" + $(".tovarID:eq("+index+")").html() + ".jpg",
             "left": $('.tovar-logo:eq(' + index + ')').offset().left + ($('.tovar-logo:eq(' + index + ')').width() / 2) + 'px',
             "top": $('.tovar-logo:eq(' + index + ')').offset().top + ($('.tovar-logo:eq(' + index + ')').height() / 2) + 'px'
         });
@@ -165,7 +179,7 @@ var design = function () {
                 "top": 5 + 'px'
             });
             $('.basket div').html(parseInt($('.basket div').html()) + 1);
-            updateCart($('.tovar-title:eq(' + index + ')').html(), $('.tovarID:eq(' + index + ')').html(), $('.price:eq(' + index + ')').html(), 'url(../../../content/tovarImage/' + (index + 1) + '.jpg');
+            updateCart($('.tovar-title:eq(' + index + ')').html(), $('.tovarID:eq(' + index + ')').html(), $('.price:eq(' + index + ')').html(), 'url(../../../content/tovarImage/' + $(".tovarID:eq("+index+")").html() + '.jpg)');
         }, 500);
 
         setTimeout(function () {
@@ -332,9 +346,9 @@ var design = function () {
         }
     });
 
-$(document).on('keyup mouseup keydown change blur', '.lengthItems', function() {
-  basketSum();
-});
+    $(document).on('keyup mouseup keydown change blur', '.lengthItems', function() {
+      basketSum();
+    });
     /*Mobile nav*/
     $('.mobile-menu').click(function () {
         if (shops.openMobMenu) {
@@ -379,7 +393,7 @@ var loadMainPage = function () {
 
 var loadPricePage = function () {
 
-    loadtTovar();
+//    loadtTovar();
     $('.content:eq(1)').show();
     $('.content-preload:eq(1)').fadeOut(400);
 

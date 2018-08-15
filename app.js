@@ -108,8 +108,16 @@ function updateData4() {
 }
 ;
 
-app.post('/tovar', function (req, res) { //список товаров
-    res.send(JSON.stringify(global.tovar));
+app.post('/filters', function (req, res) { //список товаров
+    if(req.body.fil != '1'){
+        var fil = 'type="'+req.body.fil+'"';
+    }else{
+        var fil = req.body.fil;
+    }
+    
+    connection.query('SELECT * FROM tovar left join tovarStars ON tovar.id = tovarStars.id WHERE '+fil, function (errors, results, fields) {
+        res.send(results)
+    });
 });
 
 app.post('/getShops', function (req, res) {  //список магазинов

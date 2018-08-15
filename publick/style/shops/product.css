@@ -430,8 +430,9 @@ body{
     height: 370px;
     float: left;
     position: relative;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
 }
 
 .product-info{
@@ -792,8 +793,9 @@ body{
         height: 260px;
         float: left;
         position: relative;
-        background-size: cover;
+        background-size: contain;
         background-position: center;
+        background-repeat: no-repeat;
     }
 
     .product-info {

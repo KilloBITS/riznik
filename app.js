@@ -178,7 +178,7 @@ let UpdateDataFunction = (interval) => {
     }, 10000);
 };
 
-app.listen(1627, function () {
+app.listen(8010, function () {
     UpdateDataFunction(1000);
     insta();
     updateData();  //основнгые параметры

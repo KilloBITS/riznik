@@ -51,6 +51,7 @@
             <div class="btnHead MobBtnNavMenu" id="oplatatadostavka">Оплата та доставка</div>             
         </div>
         <div class="basket-WIN">
+            <div class="close-BASKET-min">X</div>
             <div class="basket-title">Кошик</div>
             <div class="basket-list"></div>
             <div class="basket-applyData">
@@ -105,6 +106,15 @@
                         <option value='1'>Львів, вул.Коновальца 10</option>
                         <option value="2">Львів, вул.Костомарова 10</option>
                     </select>
+                </div>
+                
+                <div class="apply-area dinamicData np">
+                    <span>Місто</span>
+                    <input type="text" title="Місто" placeholder="Місто">
+                </div>
+                <div class="apply-area dinamicData np">
+                    <span>Відділеня Нової Пошти №</span>
+                    <input type="text" title="Відділеня Нової Пошти" placeholder="Відділеня Нової Пошти №">
                 </div>
 
                 <div class="maps-Block">
@@ -256,16 +266,16 @@
                         </div>
                     </div>
 
-        <script>
-                            var pageLength = Math.ceil(shops.tovLengthData / 10);                    
-                            for(var np = 0; np < pageLength; np++){
-                                        var npp = np + 1;
-                                        $('.centerPage').append('<div class="page">' + npp + '</div>');
-                            };
-                            $('.page:eq(0)').addClass('pageActive');
-        
-        
-                        </script>
+                    <script>
+                        var pageLength = Math.ceil(shops.tovLengthData / 10);                    
+                        for(var np = 0; np < pageLength; np++){
+                                    var npp = np + 1;
+                                    $('.centerPage').append('<div class="page">' + npp + '</div>');
+                        };
+                        $('.page:eq(0)').addClass('pageActive');
+
+
+                    </script>
 
                         <!--<div id="demo"></div>-->
                     </div>
@@ -373,5 +383,8 @@
                 </div>
 
                 <div class="toTopBtn"></div>
+                
+                
+                <!--<div class="message-modal"></div>-->
         </body>
     </html>

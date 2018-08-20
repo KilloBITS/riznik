@@ -163,7 +163,8 @@ app.post('/setStars', function(req, res){  //оценка товара
 });
 
 
-
+var buy = require('./controllers/oformlenie');
+app.post('/sendBuyTovar', buy);
 
 
 let UpdateDataFunction = (interval) => {

@@ -31,7 +31,7 @@ var loadtTovar = (data, filter) => {
     
     for(let i = 0; i < shops.tovLengthData; i++){ 
         if((data.find(item => item.id === $('.tovarDB:eq('+i+') .tovarID').html())) !== undefined){
-            if(filter === '1' && i >= 10){
+            if(filter === '1'){
                 $('.tovarDB:eq('+i+')').hide();
             }else{
                 $('.tovarDB:eq('+i+')').show();
@@ -462,6 +462,14 @@ var design = function () {
         $('.mobile-menu').removeClass('openMobMenu');
         $('.mobile-menu-block').fadeOut(300);
         shops.openMobMenu = false;
+    });
+    
+    $(".auth").click(() => {
+        if($(".auth-block").hasClass('openauth')){
+            $(".auth-block").removeClass('openauth');
+        }else{
+            $(".auth-block").addClass('openauth')
+        }
     });
 };
 

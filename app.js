@@ -134,9 +134,28 @@ app.post('/getUsersLength', function (req, res) {  //количевство он
         res.send(results.length.toString());
     });
 });
+function randomInteger(min, max) {
+    var rand = min - 0.5 + Math.random() * (max - min + 1)
+    rand = Math.round(rand);
+    return rand;
+  }
+
 
 app.post('/getSubTovar', function(req, res){  //супутствующие товары
-    res.send('asdsdadasdsd');
+    let dataSub = [];
+    var tov = global.tovar;
+    for(let i = 0; i < 4; i++){
+        let randomka = randomInteger(0, tov.length)
+        dataSub.push(tov[randomka]);
+        delete tov[randomka];
+    }
+    res.send(dataSub);
+});
+
+app.post('/getComments', function(req, res){  //супутствующие товары
+    connection2.query('SELECT * FROM `tov'+req.body.id+'` WHERE 1', function (errors, results, fields) {
+        res.send(results);
+    });
 });
 
 app.post('/setStars', function(req, res){  //оценка товара

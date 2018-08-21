@@ -13,12 +13,11 @@ var dataNext;
 var parseBase = (req, res, next) => { 
     connection.query('SELECT * FROM tovar left join tovarStars ON tovar.id = tovarStars.id WHERE tovar.id="' + req.url.replace(/[^-0-9]/gi, '') + '"', function (errors, results, fields) {
         dataNext = results;
+        res.render('product.ejs',{data:results});
         next();
     });
 };
 
-router.get('/product/*', parseBase, function (req, res, next) {
-    res.render('product.ejs',{data:dataNext});
-});
+router.get('/product/*', parseBase, function (req, res, next) {});
 
 module.exports = router;

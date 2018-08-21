@@ -45,6 +45,18 @@
                 </div>       
             </div>
         </div>    
+        <div class="auth-block openauth">
+            <div class="auth-line">
+                <input type="text" id="authNumber" placeholder="Ваш номер телефону">
+            </div>
+            <div class="auth-line">
+                <input type="text" id="authPassword" placeholder="Ваш пароль">
+            </div>
+            <div class="auth-line">
+                <input type="button" id="authSend" value="Авторизація">
+            </div>
+        </div>
+        
         <div class="mobile-menu-block">
             <a href="/"><div class="btnHead MobBtnNavMenu" id="glavnaya">На головну</div></a>
             <div class="btnHead MobBtnNavMenu" id="produkciya">Наша продукція</div> 
@@ -193,8 +205,8 @@
 
                 <% for(var i = 0; i < tovar.length; i++) { %>
 
-                <% if(i < 10){ %> 
-                <div class="tovarDB">
+                    <% if(i < 10){ %> 
+                    <div class="tovarDB">
                     <% } else { %>
                     <div class="tovarDB" style="display: none;">
                         <% } %>

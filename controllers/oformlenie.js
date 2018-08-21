@@ -16,12 +16,10 @@ connection.connect();
 var buyTovar = function(req, res, next)  {
     var d = req.body.data;
     console.log(d);
-    connection.query('INSERT INTO stonewalling(`name`, `number`, `text`, `tovar`, `dostavka`) VALUES ("'+d.clientName+'", "'+d.clientPNum+'", "'+'Email: '+d.clientEmail+'", "'+d.tov+'", "'+d.umovi+'")', function (errors, results, fields) {
+    connection.query('INSERT INTO stonewalling(`name`, `number`, `text`, `tovar`, `dostavka`) VALUES ("'+d.clientName+'", "'+d.clientPNum+'", "' + d.clientEmail+'", "'+'test'+'", "'+'test'+'")', function (errors, results, fields) {
         console.log(results);
         res.send({code:500, message:"Замовлення відправлене у обробку"});
-    }); 
-    
-
+    });  
 };
 
 router.post('/sendBuyTovar', buyTovar, function(req, res, next){});

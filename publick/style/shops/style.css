@@ -1152,3 +1152,10 @@ input{
     color: white;
     font-size: 18px;
 }
+
+.notTovars{
+    display: none;
+    text-align: center;
+    font-size: 28px;
+    color: #b09436;
+}

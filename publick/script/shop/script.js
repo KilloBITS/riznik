@@ -26,6 +26,9 @@ var basketDelete = (a) => {
 
 var loadtTovar = (data, filter) => {
     $('.tovarDB').hide();
+    if(data.length > 10){$(".pages").show();}else{$(".pages").hide();}
+    if(data.length >= 1){$(".notTovars").hide();}else{$(".notTovars").show();}   
+    
     for(let i = 0; i < shops.tovLengthData; i++){ 
         if((data.find(item => item.id === $('.tovarDB:eq('+i+') .tovarID').html())) !== undefined){
             if(filter === '1' && i >= 10){
@@ -228,9 +231,30 @@ var design = function () {
                 modal('Ваш кошик пустий');
             }
         }else{
+            if($("#typeOfDostavka").val() === "1"){
+                var umovi = $('#samShop').val();
+            } else if($("#typeOfDostavka").val() === "2"){
+                var umovi = [];
+                for(let i = 0; i < $('.kur').size(); i++){
+                    umovi.push($('.kur:eq('+i+') input').val());
+                }
+            } else if($("#typeOfDostavka").val() === "3"){
+                var umovi = [];
+                for(let i = 0; i < $('.np').size(); i++){
+                    umovi.push($('.np:eq('+i+') input').val());
+                }
+            }
+            
             var newBuy = new Object({
-                tov: tovar
-            });
+                clientName: $("#clientName").val(),
+                clientPriz: $("#clientPriz").val(),
+                clientPNum: $("#clientPNum").val(),
+                clientEmail: $("#clientEmail").val(),
+                typeOfDostavka: $("#typeOfDostavka").val(),
+                tov: tovar,
+                umovi: umovi
+            });                                
+                     
             $.post("/sendBuyTovar",{data:newBuy},(data) => {
                 console.log(data);
                 if(data.code === 500){
@@ -244,17 +268,13 @@ var design = function () {
                     tovar = [];
                     localStorage.setItem("cart", JSON.stringify(tovar));                    
                     setTimeout(() => {
-                        location.reload()
+                        location.reload();
                     }, 1500);
                 }else{
                     modal(data.message);
-                }
-               
-            });
-            
-        }
-        
-        
+                }               
+            });            
+        }        
     });
     
     $('.close-BASKET-min').click(function () {
@@ -283,8 +303,7 @@ var design = function () {
         let np = () => {
             $('#samShop').fadeOut(300);
             $('.kur').fadeOut(300);
-            $('#mapa').fadeOut(300);
-            
+            $('#mapa').fadeOut(300);            
             $(".np").fadeIn(300);
             
         };

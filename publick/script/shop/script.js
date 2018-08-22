@@ -285,7 +285,9 @@ var design = function () {
                     $('.content').css({'filter':'blur(0px)'});
                     $('.close-BASKET-min').hide();
                     tovar = [];
-                    localStorage.setItem("cart", JSON.stringify(tovar));                    
+                    localStorage.setItem("cart", JSON.stringify(tovar));     
+                    $(".basket div").html(0);
+                    $(".basket-item").remove();
                     setTimeout(() => {
                         oplataMOdal(data.oplata, data.sum)
                     }, 500);

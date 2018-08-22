@@ -89,8 +89,14 @@ var filters = (filter) => {
 
 let oplataMOdal = (id, sum) => {
     $("#oplata").fadeIn(300);
-    $("#sumOplata").html('Ваше замовлення на суму: '+sum+ 'грн не оплачено :(');
+    $("#sumOplata").html('Ваше замовлення на суму: '+sum+ 'грн очікує оплати');
     idOtmeni = id;
+    $('.basket-WIN').removeAttr( "style" ).removeClass('oformlenie');
+    $('.basket-list').removeAttr( "style" );
+    shops.basket = false;
+    $('.basket-applyData').hide();
+    $('.content').css({'filter':'blur(0px)'});
+    $('.close-BASKET-min').hide();
     setTimeout(() => {
     //  location.reload();
     }, 1500);
@@ -251,57 +257,74 @@ var design = function () {
                 modal('Ваш кошик пустий');
             }
         }else{
-            $(".basket-WIN").css({
-                "transform":"translate(-50%, -50%) rotateY(360deg)"
-            });
+            if($("#clientName").val().length >= 3){ //проверка имени
+                if($("#clientPriz").val().length >= 3){ //проверка фамилии
+                    if($("#clientPNum").val().length >= 10){ //проверка номера телефона
+                        if($("#typeOfDostavka").val()!== 0){ //проверка типа доставки
+                            
+                            if($("#typeOfDostavka").val() === "1"){
+                                var umovi = $('#samShop').val();
+                            } else if($("#typeOfDostavka").val() === "2"){
+                                var umovi = [];
+                                for(let i = 0; i < $('.kur').size(); i++){
+                                    umovi.push($('.kur:eq('+i+') input').val());
+                                }
+                            } else if($("#typeOfDostavka").val() === "3"){
+                                var umovi = [];
+                                for(let i = 0; i < $('.np').size(); i++){
+                                    umovi.push($('.np:eq('+i+') input').val());
+                                }
+                            }
             
-            if($("#typeOfDostavka").val() === "1"){
-                var umovi = $('#samShop').val();
-            } else if($("#typeOfDostavka").val() === "2"){
-                var umovi = [];
-                for(let i = 0; i < $('.kur').size(); i++){
-                    umovi.push($('.kur:eq('+i+') input').val());
-                }
-            } else if($("#typeOfDostavka").val() === "3"){
-                var umovi = [];
-                for(let i = 0; i < $('.np').size(); i++){
-                    umovi.push($('.np:eq('+i+') input').val());
-                }
-            }
-            
-            var newBuy = new Object({
-                clientName: $("#clientName").val(),
-                clientPriz: $("#clientPriz").val(),
-                clientPNum: $("#clientPNum").val(),
-                clientEmail: $("#clientEmail").val(),
-                typeOfDostavka: $("#typeOfDostavka").val(),
-                tov: tovar,
-                umovi: umovi,
-                price: $('.basket-sum').html(),
-                oplata: $("#clientEmail").val() 
-            });                                
+                            var newBuy = new Object({
+                                clientName: $("#clientName").val(),
+                                clientPriz: $("#clientPriz").val(),
+                                clientPNum: $("#clientPNum").val(),
+                                clientEmail: $("#clientEmail").val(),
+                                typeOfDostavka: $("#typeOfDostavka").val(),
+                                tov: tovar,
+                                umovi: umovi,
+                                price: $('.basket-sum').html(),
+                                oplata: $("#clientEmail").val() 
+                            });                                
                      
-            $.post("/sendBuyTovar",{data:newBuy},(data) => {
-                console.log(data);
-                if(data.code === 500){
-                    modal(data.message);
-                    $('.basket-WIN').removeAttr( "style" );
-                    $('.basket-list').removeAttr( "style" );
-                    shops.basket = false;
-                    $('.basket-applyData').hide();
-                    $('.content').css({'filter':'blur(0px)'});
-                    $('.close-BASKET-min').hide();
-                    tovar = [];
-                    localStorage.setItem("cart", JSON.stringify(tovar));     
-                    $(".basket div").html(0);
-                    $(".basket-item").remove();
-                    setTimeout(() => {
-                        oplataMOdal(data.oplata, data.sum)
-                    }, 500);
+                            $.post("/sendBuyTovar",{data:newBuy},(data) => {
+                                console.log(data);
+                                if(data.code === 500){
+                                    modal(data.message);
+                                    $('.basket-WIN').removeAttr( "style" );
+                                    $('.basket-list').removeAttr( "style" );
+                                    shops.basket = false;
+                                    $('.basket-applyData').hide();
+                                    $('.content').css({'filter':'blur(0px)'});
+                                    $('.close-BASKET-min').hide();
+                                    $('.basket-check').html('Замовити');
+                                    tovar = [];
+                                    localStorage.setItem("cart", JSON.stringify(tovar));     
+                                    $(".basket div").html(0);
+                                    $(".basket-item").remove();
+                                    setTimeout(() => {                        
+                                        oplataMOdal(data.oplata, data.sum)
+                                    }, 500);
+                                }else{
+                                    modal(data.message);
+                                }               
+                            });            
+                        }else{
+                            $("#typeOfDostavka").addClass('nonCorrectData');
+                        }
+                        $("#typeOfDostavka").removeClass('nonCorrectData');
+                    }else{
+                        $("#clientPNum").addClass('nonCorrectData');
+                    }
+                    $("#clientPriz").removeClass('nonCorrectData');
                 }else{
-                    modal(data.message);
-                }               
-            });            
+                    $("#clientPriz").addClass('nonCorrectData');
+                }
+                $("#clientName").removeClass('nonCorrectData');
+            }else{
+                $("#clientName").addClass('nonCorrectData');
+            }      
         }        
     });
     
@@ -325,6 +348,7 @@ var design = function () {
         $('.basket-list').removeAttr( "style" );
         shops.basket = false;
         $('.basket-applyData').hide();
+        $('.basket-check').html('Замовити');
         $('.content').css({'filter':'blur(0px)'});
         $('.close-BASKET-min').hide();
         
@@ -548,15 +572,21 @@ var design = function () {
             $("#oplata").fadeOut(300);
         });
     });
+    
+    $("#authSend").click(function(){
+        $.post("/auth",{l:$("#authNumber").val() ,p:$("#authPassword").val() },function(data){
+            console.log(data);
+        })
+    });
 };
 
 var loadMainPage = function () {
     $('.content:eq(0)').show();
     $('.content-preload:eq(0)').fadeOut(400);
+    $('.btnMenu:eq(0)').addClass('btnActive');
 };
 
 var loadPricePage = function () {
-
 //    loadtTovar();
     $('.content:eq(1)').show();
     $('.content-preload:eq(1)').fadeOut(400);
@@ -575,7 +605,7 @@ var mainLoad = function () {
 };
 
 $(document).ready(function () {
-    mainLoad();
+    loadMainPage();
     design();
     getCart();
 });

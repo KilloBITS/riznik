@@ -170,8 +170,7 @@ app.post('/setStars', function(req, res){  //оценка товара
         }
         
         var star = parseInt(results[0].star) + parseInt(bal);
-        var newLen = parseInt(results[0].len) + 1;
-        
+        var newLen = parseInt(results[0].len) + 1;        
 
         connection.query('UPDATE `tovarStars` SET `star`="'+ star +'",`len`="'+ newLen +'" WHERE id="'+id+'"', function(){
             res.send('good') 
@@ -180,6 +179,8 @@ app.post('/setStars', function(req, res){  //оценка товара
     });   
 });
 
+var authUser = require('./controllers/authController');
+app.post('/auth', authUser);
 
 var sendBuyTovar = require('./controllers/oformlenie');
 app.post('/sendBuyTovar', sendBuyTovar);

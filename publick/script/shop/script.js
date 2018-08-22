@@ -5,6 +5,10 @@ shops.openMobMenu = false;
 //объект корзины
 var tovar = [];
 
+var updateSum = function(ind, sum){
+    tovar[ind].lenTov = sum;   
+    localStorage.setItem("cart", JSON.stringify(tovar));
+};
 var modal = function(text){
     var mod = document.createElement('div');
     mod.className = 'message-modal';
@@ -51,13 +55,14 @@ var basketSum = () =>{
     $('.basket-sum').html('Загальна вартість: ' + summa + " грн")
 };
 
-var updateCart = function (name, id, price, img) {
+var updateCart = function (name, id, price, img, l) {
     var cartS = new Object();
     cartS.nameTovar = name;
     cartS.id = parseInt(id);
     cartS.v = 1;
     cartS.price = price;
     cartS.img = img;
+    cartS.lenTov = l;
     tovar.push(cartS);
     localStorage.setItem("cart", JSON.stringify(tovar));
 };
@@ -76,6 +81,13 @@ var filters = (filter) => {
     });
 };
 
+let oplataMOdal = (id, sum) => {
+   $("#oplata").fadeIn(300);
+   
+    setTimeout(() => {
+//  location.reload();
+    }, 1500);
+};
 var design = function () {
     var prewList, nextList;
 
@@ -192,7 +204,7 @@ var design = function () {
                 "top": 5 + 'px'
             });
             $('.basket div').html(parseInt($('.basket div').html()) + 1);
-            updateCart($('.tovar-title:eq(' + index + ')').html(), $('.tovarID:eq(' + index + ')').html(), $('.price:eq(' + index + ')').html(), 'url(../../../content/tovarImage/' + $(".tovarID:eq("+index+")").html() + '.jpg)');
+            updateCart($('.tovar-title:eq(' + index + ')').html(), $('.tovarID:eq(' + index + ')').html(), $('.price:eq(' + index + ')').html(), 'url(../../../content/tovarImage/' + $(".tovarID:eq("+index+")").html() + '.jpg)', 1);
             modal('Додано в кошик!');
         }, 500);
 
@@ -226,11 +238,16 @@ var design = function () {
 
                 $('.basket-applyData').css({"display":"block"});
                 $('.content').css({'filter':'blur(3px)'});
-                $('.close-BASKET-min').fadeIn(350);           
+                $('.close-BASKET-min').fadeIn(350);   
+                $('.basket-check').html('Оплатити');                
             }else{            
                 modal('Ваш кошик пустий');
             }
         }else{
+            $(".basket-WIN").css({
+                "transform":"translate(-50%, -50%) rotateY(360deg)"
+            });
+            
             if($("#typeOfDostavka").val() === "1"){
                 var umovi = $('#samShop').val();
             } else if($("#typeOfDostavka").val() === "2"){
@@ -252,7 +269,9 @@ var design = function () {
                 clientEmail: $("#clientEmail").val(),
                 typeOfDostavka: $("#typeOfDostavka").val(),
                 tov: tovar,
-                umovi: umovi
+                umovi: umovi,
+                price: $('.basket-sum').html(),
+                oplata: $("#clientEmail").val() 
             });                                
                      
             $.post("/sendBuyTovar",{data:newBuy},(data) => {
@@ -268,8 +287,8 @@ var design = function () {
                     tovar = [];
                     localStorage.setItem("cart", JSON.stringify(tovar));                    
                     setTimeout(() => {
-                        location.reload();
-                    }, 1500);
+                        oplataMOdal(data.oplata, data.sum)
+                    }, 500);
                 }else{
                     modal(data.message);
                 }               
@@ -426,7 +445,9 @@ var design = function () {
     });
 
     $(document).on('keyup mouseup keydown change blur', '.lengthItems', function() {
-      basketSum();
+        basketSum();
+        var ind =  $(".lengthItems").index(this);
+        updateSum(ind, $(".lengthItems:eq("+ind+")").val());
     });
     /*Mobile nav*/
     $('.mobile-menu').click(function () {
@@ -471,6 +492,14 @@ var design = function () {
             $(".auth-block").addClass('openauth')
         }
     });
+    
+    $(".typeOplati").click(function(){
+        var ind = $(".typeOplati").index(this);
+        $(".typeOplati").removeClass('typeOplatiAct');
+        $(".typeOplati:eq("+ind+")").addClass('typeOplatiAct');
+        $(".tabs-oplata").hide();
+        $(".tabs-oplata:eq("+ind+")").show();
+    });    
 };
 
 var loadMainPage = function () {
@@ -502,3 +531,5 @@ $(document).ready(function () {
     design();
     getCart();
 });
+
+

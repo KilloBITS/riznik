@@ -113,8 +113,7 @@ app.post('/filters', function (req, res) { //список товаров
         var fil = 'type="'+req.body.fil+'"';
     }else{
         var fil = req.body.fil;
-    }
-    
+    }    
     connection.query('SELECT * FROM tovar left join tovarStars ON tovar.id = tovarStars.id WHERE '+fil, function (errors, results, fields) {
         res.send(results)
     });
@@ -134,12 +133,12 @@ app.post('/getUsersLength', function (req, res) {  //количевство он
         res.send(results.length.toString());
     });
 });
+
 function randomInteger(min, max) {
     var rand = min - 0.5 + Math.random() * (max - min + 1)
     rand = Math.round(rand);
     return rand;
-  }
-
+}
 
 app.post('/getSubTovar', function(req, res){  //супутствующие товары
     let dataSub = [];

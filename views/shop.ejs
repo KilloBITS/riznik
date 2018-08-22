@@ -15,6 +15,8 @@
         <script src="script/jquery.min.js" type="text/javascript"></script>
         <script src="script/paginator.js" type="text/javascript"></script>
         <script src="script/shop/script.js" type="text/javascript"></script>
+        <script src="script/validate.js" type="text/javascript"></script>
+        <script src="script/paysafe.min.js" type="text/javascript"></script>
     </head>
     <body>        
         <div class="head">
@@ -201,7 +203,7 @@
 
                 <script>
                     shops.tovLengthData = <%= tovar.length %>;
-                </script>
+</script>
 
                 <% for(var i = 0; i < tovar.length; i++) { %>
 
@@ -279,16 +281,16 @@
                         </div>
                     </div>
 
-                    <script>
-                        var pageLength = Math.ceil(shops.tovLengthData / 10);                    
-                        for(var np = 0; np < pageLength; np++){
-                                    var npp = np + 1;
-                                    $('.centerPage').append('<div class="page">' + npp + '</div>');
-                        };
-                        $('.page:eq(0)').addClass('pageActive');
-
-
-                    </script>
+        <script>
+        var pageLength = Math.ceil(shops.tovLengthData / 10);                    
+        for(var np = 0; np < pageLength; np++){
+                    var npp = np + 1;
+                    $('.centerPage').append('<div class="page">' + npp + '</div>');
+        };
+        $('.page:eq(0)').addClass('pageActive');
+        
+        
+        </script>
 
                         <!--<div id="demo"></div>-->
                     </div>
@@ -397,7 +399,30 @@
 
                 <div class="toTopBtn"></div>
                 
-                
+                <div id="oplata">                    
+                    <div class="typeOplati typeOplatiAct" id="cashO"></div>
+                     <div class="typeOplati" id="cardO"></div>
+                    <div class="typeOplati" id="nonCash"></div>
+                   
+                    
+                    <div class="tabs-oplata" style="display: block">
+                        <div class="payTitle">Оплата готівкою</div>
+                        <div class="payText">
+                            Оплата готівкою здійснюється в момент доставки замовлення. Покупець передає гроші експедитору-касиру і отримує замовлений товар і пакет документів (товарний чек або накладну (документи, які підтверджують покупку), гарантійний талон, інструкцію по експлуатації). Увага! Оплата товару здійснюється тільки в гривнях.
+                        </div>
+                        
+                    </div>
+                    <div class="tabs-oplata">
+                        <div class="payTitle">Онлайн оплата картою</div>
+                        
+                    </div>
+                    <div class="tabs-oplata">
+                        <div class="payTitle">Безготівкова оплата</div>
+                        
+                    </div>
+                    <div class="sendPayment">Підтвердити</div>
+                    <div class="removePayment">Відмінити покупку</div>
+                </div>
                 <!--<div class="message-modal"></div>-->
         </body>
     </html>

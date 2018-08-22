@@ -6,7 +6,6 @@ let app2 = express();
 let http = require('http');
 var bParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-var InstagramAPI = require('instagram-api');
 var validator = require('validator');
 var mysql = require('mysql');
 var nodemailer = require('nodemailer');
@@ -26,59 +25,23 @@ app.use(bParser.json());
 app.use(express.static(__dirname + '/publick/'));
 app.use(cookieParser());
 
-//7725656041.1677ed0.5aade3d607d34211b0f95abefb37acd8
-var accessToken = '7725656041.1677ed0.5aade3d607d34211b0f95abefb37acd8';//5562828690.1677ed0.8acf44b1448249d1bdae3ca9bbba69dc
-var instagramAPI = new InstagramAPI(accessToken);
-// instagram 
-instagramAPI.userSelf().then(function (result) {
-//     console.log(result.data); // user info 
-//     console.log(result.limit); // api limit 
-//     console.log(result.remaining) // api request remaining
-}, function (err) {
-    console.log(err); // error info 
-});
-
-
 global.SQLoptions = {host: '52.14.180.56', port: 3306, user: 'riznik', password: 'yaPn6eZQHBnBeOf8', database: 'PanRiznyk'};
 global.SQLoptions2 = {host: '52.14.180.56', port: 3306, user: 'riznik', password: 'yaPn6eZQHBnBeOf8', database: 'commentars'};
-var connection = mysql.createConnection(global.SQLoptions);
-connection.connect();
-
-var connection2 = mysql.createConnection(global.SQLoptions2);
-connection2.connect();
-
-function insta() {
-    global.instaImage = [];
-    instagramAPI.userMedia("7725656041", accessToken).then(function (result) {  //5562828690  7725656041
-        for (var i = 0; i < (result.data).length; i++) {
-            var a = result.data[i];
-            global.instaImage.push(a);//.images.standard_resolution.url
-        }
-    });
-}
+var connection = mysql.createConnection(global.SQLoptions); connection.connect();
+var connection2 = mysql.createConnection(global.SQLoptions2); connection2.connect();
 
 /*GET запроссы*/
-let index = require('./routes/index');
-app.get('/', index);
-
-let shop = require('./routes/shop');
-app.get('/shop', shop);
-
-let checkout = require('./routes/product');
-app.get('/product/*', checkout);
+let index = require('./routes/index'); app.get('/', index);
+let shop = require('./routes/shop'); app.get('/shop', shop);
+let checkout = require('./routes/product'); app.get('/product/*', checkout);
 
 app.get('*', function (req, res) {
     res.redirect('/');
 });
 
-/*Post запроссы*/
-app.post('/main', function (req, res) {
-    res.send(global.instaImage);
-});
-
 //Обновление конфигураций страницы
 let updateData = () => {
-    console.log('Конфигурации обновлены!');
+//    console.log('Конфигурации обновлены!');
     connection.query('SELECT * FROM `MainConfig` WHERE 1', function (errors, results, fields) {
         global.mainData = results[0];
     });
@@ -86,7 +49,7 @@ let updateData = () => {
 
 //обновление партнеров
 let updateData2 = () => {
-    console.log('Партнеры обновлены');
+//    console.log('Партнеры обновлены');
     connection.query('SELECT * FROM `partners` WHERE 1', function (errors, results, fields) {
         global.partners = results;
     });
@@ -94,108 +57,60 @@ let updateData2 = () => {
 
 //обновление магазинов
 let updateData3 = () => {
-    console.log('Магазины обновлены!');
+//    console.log('Магазины обновлены!');
     connection.query('SELECT * FROM `shops` WHERE 1', function (errors, results, fields) {
         global.shops = results;
     });
 };
 
-function updateData4() {
-    console.log('Товары обновлены!');
+let updateData4 = () => {
+//    console.log('Товары обновлены!');
     connection.query('SELECT * FROM tovar left join tovarStars ON tovar.id = tovarStars.id WHERE 1', function (errors, results, fields) {
         global.tovar = results;
     });
-}
-;
+};
 
-app.post('/filters', function (req, res) { //список товаров
-    if(req.body.fil != '1'){
-        var fil = 'type="'+req.body.fil+'"';
-    }else{
-        var fil = req.body.fil;
-    }    
-    connection.query('SELECT * FROM tovar left join tovarStars ON tovar.id = tovarStars.id WHERE '+fil, function (errors, results, fields) {
-        res.send(results)
-    });
-});
-
+//список магазинов
 app.post('/getShops', function (req, res) {  //список магазинов
     res.send(global.shops);
 });
-
+var insta = require('./controllers/instagram');
+app.post('/insta', insta);
+//фильтр
+var filters = require('./controllers/filters');
+app.post('/filters', filters);
 // отправка сообщения
 let msg = require('./controllers/sendIndexMessage');
 app.post('/sendMessage', msg);
-
-app.post('/getUsersLength', function (req, res) {  //количевство онлайн
-    connection.query('SELECT * FROM `ipAdress` WHERE 1 ', function (errors, results, fields) {
-        console.log(results);
-        res.send(results.length.toString());
-    });
-});
-
-function randomInteger(min, max) {
-    var rand = min - 0.5 + Math.random() * (max - min + 1)
-    rand = Math.round(rand);
-    return rand;
-}
-
-app.post('/getSubTovar', function(req, res){  //супутствующие товары
-    let dataSub = [];
-    var tov = global.tovar;
-    for(let i = 0; i < 4; i++){
-        let randomka = randomInteger(0, tov.length);
-        dataSub.push(tov[randomka]);
-        tov.splice(randomka, 1);
-    }
-    res.send(dataSub);
-});
-
-app.post('/getComments', function(req, res){  //супутствующие товары
-    connection2.query('SELECT * FROM `tov'+req.body.id+'` WHERE 1', function (errors, results, fields) {
-        res.send(results);
-    });
-});
-
-app.post('/setStars', function(req, res){  //оценка товара
-    var bal = req.body.bal; 
-    var id = req.body.id; 
-    connection.query('SELECT * FROM `tovarStars` WHERE id="'+ id +'"', function (errors, results, fields) {
-        if(results[0].len == 0){
-            var infLen = 1;
-        }
-        else
-        {
-            var infLen = results[0].len;
-        }
-        
-        var star = parseInt(results[0].star) + parseInt(bal);
-        var newLen = parseInt(results[0].len) + 1;        
-
-        connection.query('UPDATE `tovarStars` SET `star`="'+ star +'",`len`="'+ newLen +'" WHERE id="'+id+'"', function(){
-            res.send('good') 
-        });
-        
-    });   
-});
-
+//количство гостей
+var getUsersLength = require('./controllers/getUsersLength');
+app.post('/getUsersLength', getUsersLength);
+//супутствующие товары
+var getSubTovar = require('./controllers/getSubTovar');
+app.post('/getSubTovar', getSubTovar);
+//получение комментариев
+var getComments = require('./controllers/getComments');
+app.post('/getComments', getComments);
+//оставить оценку
+var setStars = require('./controllers/setStars');
+app.post('/setStars', setStars);
+//авторизация
 var authUser = require('./controllers/authController');
 app.post('/auth', authUser);
-
+//оформление заказа
 var sendBuyTovar = require('./controllers/oformlenie');
 app.post('/sendBuyTovar', sendBuyTovar);
-
+//подтверждение платежа
 var sendPayment = require('./controllers/sendPayment');
 app.post('/sendPayment', sendPayment);
-
+//отмена заказа и платежа
 var cancelPayTovar = require('./controllers/cancelPay');
 app.post('/cancelPayTovar', cancelPayTovar);
 
-let UpdateDataFunction = (interval) => {
+let UpdateDataFunction = () => {
     var TimeInt = (1000 * 60) * 60;
     //Обновление инстаграмма и данных каждый час
     setInterval(function () {
-        insta();
         updateData();  //основнгые параметры
         updateData2(); //партнеры
         updateData3(); //магазины
@@ -204,24 +119,13 @@ let UpdateDataFunction = (interval) => {
 };
 
 app.listen(8010, function () {
-    UpdateDataFunction(1000);
-    insta();
+    UpdateDataFunction();
     updateData();  //основнгые параметры
     updateData2(); //партнеры
     updateData3(); //магазины
     updateData4();
-    console.log('Сервер на 8010 порте запущен! ');
+    console.log('Магазин на порте 8010 запущен!');
 });
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -288,7 +192,6 @@ app2.post('/UpdateDataTovar', function (req, res) {
         res.send('Зміни збереженно для товару: ' + d.name);
     });
 });
-
 
 app2.post('/AddNewsTovar', function (req, res) {
     var data = req.body.data;
@@ -405,5 +308,5 @@ app2.post('/getUsersLength', function (req, res) {
 });
 
 app2.listen(3000, function () {
-    console.log('Сервер на 3000 порте запущен');
+    console.log('Админка на 3000 порте запущена');
 });

@@ -1365,6 +1365,6 @@ input{
     display: none;
 }
 
-#clientName.nonCorrectData,#clientPriz.nonCorrectData,#clientPNum.nonCorrectData{
+#clientName.nonCorrectData,#clientPriz.nonCorrectData,#clientPNum.nonCorrectData,#typeOfDostavka.nonCorrectData{
     border: 2px solid red;
 }

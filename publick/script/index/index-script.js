@@ -20,7 +20,7 @@ $(function () {
 
 var indexIMG = 0;
     let loadGallery = () => {
-        $.post('/main', function (data) {
+        $.post('/insta', function (data) {
             page.gallery = data;
             console.log(data);
             for (let i = 0; i < data.length - 1; i++) {

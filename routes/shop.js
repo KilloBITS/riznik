@@ -24,7 +24,10 @@ router.get('/shop', function(req, res, next){
     connection.query('SELECT * FROM `configurate`', function (errors, results, fields) {
         console.log(results[0].one);
         if(results[0].one === 1){
-            res.render('shop.ejs', {tovar: global.tovar});  
+            connection.query('SELECT * FROM tovar left join tovarStars ON tovar.id = tovarStars.id WHERE 1', function (errors, results, fields) {
+                res.render('shop.ejs', {tovar: results});  
+            });
+            
         }else{
             res.render('supporting.ejs');  
         }

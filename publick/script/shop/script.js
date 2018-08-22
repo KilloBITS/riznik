@@ -260,7 +260,7 @@ var design = function () {
             if($("#clientName").val().length >= 3){ //проверка имени
                 if($("#clientPriz").val().length >= 3){ //проверка фамилии
                     if($("#clientPNum").val().length >= 10){ //проверка номера телефона
-                        if($("#typeOfDostavka").val()!== 0){ //проверка типа доставки
+                        if($("#typeOfDostavka").val() !== null){ //проверка типа доставки
                             
                             if($("#typeOfDostavka").val() === "1"){
                                 var umovi = $('#samShop').val();
@@ -552,7 +552,7 @@ var design = function () {
     
     $(".sendPayment").click(function(){
         switch(shops.buytype){
-            case 0: var t = 'Оплата курєру';break;
+            case 0: var t = 'Оплата готівкою';break;
             case 1: var t = 'Оплата картою';break;
             case 2: var t = 'Оплата квитанцією';break;
         }

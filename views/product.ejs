@@ -23,7 +23,9 @@
                     a.innerHTML = '<div class="comment-user-name">'+data[i].textVal+'</div><div class="comment-user-msg">'+data[i].textVal+'</div><div class="comment-date">'+data[i].dateMsg+'</div>';
                     $(".comment-data").append(a);
                 }
-            });   
+            });  
+            
+          
         });    
         </script>
     </head>
@@ -35,7 +37,7 @@
                 <div class="product-top">
                     <div class="product-images" style="background-image: url(../../../content/tovarImage/<%= data[0].id %>.jpg)">
                         <div class="water_sec"></div>
-                        <div class="tovar-stars">
+                        <div class="tovar-stars stars1">
                             <div class="stars-title">Оцінка покупців</div>
                             <div class="stars">
                                  
@@ -48,9 +50,22 @@
                             <script>
                            $(document).ready(function(){
                                $('.star').click(function(){
+                                   $(".stars1 .star").fadeOut(100);
+                                   $(".stars1").addClass('sl');
                                    var index = $('.star').index(this);
                                    $.post('/setStars', {bal: (index +1), id: $("#tivarIDs").html()}, function(a){
-                                       console.log(a);
+                                        console.log(a);
+                                        $(".stars1 .star").fadeIn(100);
+                                        $(".stars1").removeClass('sl');
+                                        var mod = document.createElement('div');
+                                        mod.className = 'message-modal';
+                                        mod.innerHTML = 'Оцінку поставлено!';
+                                        mod.style.bottom = (45 * $('.message-modal').size()) + 20 + "px";
+                                        $('body').append(mod);
+                                        $('.message-modal').fadeIn(300);
+                                        setTimeout(() => {
+                                            $(mod).remove();            
+                                        },3000);
                                    });
                                });
                            });    

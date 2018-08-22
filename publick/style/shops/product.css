@@ -480,6 +480,11 @@ body{
     height: 44px;
     margin: auto;
 }
+
+.sl{
+    background-image: rgb(255, 255, 255) url(../../../image/spinner-preloader.gif);
+}
+
 .star{
     width: 22px;
     height: 47px;
@@ -763,6 +768,17 @@ body{
     line-height: 22px;
     color: white;
     background: #b09237;
+}
+
+.message-modal{
+    position: fixed;
+    left: 10px;
+    bottom: 45px;
+    padding: 15px 30px 15px 30px;
+    background: red;
+    border-radius: 3px;
+    color: white;
+    font-size: 18px;
 }
 
 @media screen and (max-width: 800px) {

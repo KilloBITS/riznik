@@ -1,0 +1,276 @@
+body{
+    background: #7b7910 url(../../../image/1.jpg);
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.texture{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.74);
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.wrap{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:250px;
+    height:250px;
+    margin:-125px;
+    border-radius:50%;
+    background:#2c2d32;
+    border:#1d1e22 4px solid;
+    z-index:0;
+    overflow:hidden;
+}
+#gears{
+    position:absolute;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+}
+.gear1{
+    top:22px;
+    left:30px;
+    background:#c44646;
+    border:#e86060 16px solid;
+    animation:rolling 5s linear 0s infinite;
+    -moz-animation:rolling 5s linear 0s infinite;
+    -webkit-animation:rolling 5s linear 0s infinite;
+}
+.gear1:before{
+    background:#2c2d32;
+    border:#c44646 solid 14px;
+}
+.gear1 li{
+    border-bottom:63px solid #e86060;
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+}
+.gear2{
+    top:90px;
+    left:136px;
+    background:#3a8dda;
+    border:#5facf3 16px solid;
+    animation:rolling 5s linear 0s infinite;
+    -moz-animation:rolling 5s linear 0s infinite;
+    -webkit-animation:rolling 5s linear 0s infinite;
+}
+.gear2:before{
+    background:#2c2d32;
+    border:#3a8dda solid 14px;
+}
+.gear2 li{
+    border-bottom:63px solid #5facf3;
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+}
+.gear3{
+    top:135px;
+    left:32px;
+    background:#d8be7d;
+    border:#f4e1b3 16px solid;
+    transform:rotate(65deg);
+    -webkit-transform:rotate(65deg);
+    -moz-transform:rotate(65deg);
+    animation:rolling_r 5s linear 0s infinite;
+    -moz-animation:rolling_r 5s linear 0s infinite;
+    -webkit-animation:rolling_r 5s linear 0s infinite;
+}
+.gear3:before{
+    background:#2c2d32;
+    border:#d8be7d solid 14px;
+}
+.gear3 li{
+    border-bottom:63px solid #f4e1b3;
+    border-left:6px solid transparent;
+    border-right:6px solid transparent;
+}
+#gears:before{
+    content:'';
+    position:absolute;
+    top:calc(50% - 29px);
+    left:calc(50% - 29px);
+    width:30px;
+    height:30px;
+    border-radius:50%;
+}
+#gears ul{
+    position:absolute;
+    top:-50px;
+    left:15px;
+    list-style:none;
+    z-index:-1;
+}
+#gears li{
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:16px;
+    height:0px;
+}
+#gears li:nth-child(0){
+    transform:rotate(0deg);
+    -moz-transform:rotate(0deg);
+    -webkit-transform:rotate(0deg);
+    transform-origin:center bottom;
+    -moz-transform-origin:center bottom;
+    -webkit-transform-origin:center bottom;
+}
+#gears li:nth-child(1){
+    transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -webkit-transform:rotate(45deg);
+    transform-origin:center bottom;
+    -moz-transform-origin:center bottom;
+    -webkit-transform-origin:center bottom;
+}
+#gears li:nth-child(2){
+    transform:rotate(90deg);
+    -moz-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+    transform-origin:center bottom;
+    -moz-transform-origin:center bottom;
+    -webkit-transform-origin:center bottom;
+}
+#gears li:nth-child(3){
+    transform:rotate(135deg);
+    -moz-transform:rotate(135deg);
+    -webkit-transform:rotate(135deg);
+    transform-origin:center bottom;
+    -moz-transform-origin:center bottom;
+    -webkit-transform-origin:center bottom;
+}
+#gears li:nth-child(4){
+    transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+    -webkit-transform:rotate(180deg);
+    transform-origin:center bottom;
+    -moz-transform-origin:center bottom;
+    -webkit-transform-origin:center bottom;
+}
+#gears li:nth-child(5){
+    transform:rotate(225deg);
+    -moz-transform:rotate(225deg);
+    -webkit-transform:rotate(225deg);
+    transform-origin:center bottom;
+    -moz-transform-origin:center bottom;
+    -webkit-transform-origin:center bottom;
+}
+#gears li:nth-child(6){
+    transform:rotate(270deg);
+    -moz-transform:rotate(270deg);
+    -webkit-transform:rotate(270deg);
+    transform-origin:center bottom;
+    -moz-transform-origin:center bottom;
+    -webkit-transform-origin:center bottom;
+}
+#gears li:nth-child(7){
+    transform:rotate(315deg);
+    -moz-transform:rotate(315deg);
+    -webkit-transform:rotate(315deg);
+    transform-origin:center bottom;
+    -moz-transform-origin:center bottom;
+    -webkit-transform-origin:center bottom;
+}
+
+
+@-webkit-keyframes rolling{
+    100%{
+        transform:rotate(360deg);
+        -moz-transform:rotate(360deg);
+        -webkit-transform:rotate(360deg);
+    }
+    0%{
+        transform:rotate(0deg);
+        -moz-transform:rotate(0deg);
+        -webkit-transform:rotate(0deg);
+    }
+}
+
+
+@-webkit-keyframes rolling_r{
+    100%{
+        transform:rotate(-295deg);
+        -moz-transform:rotate(-295deg);
+        -webkit-transform:rotate(-295deg);
+    }
+    0%{
+        transform:rotate(65deg);
+        -moz-transform:rotate(65deg);
+        -webkit-transform:rotate(65deg);
+    }
+}
+
+@keyframes rolling{
+    100%{
+        transform:rotate(360deg);
+        -moz-transform:rotate(360deg);
+        -webkit-transform:rotate(360deg);
+    }
+    0%{
+        transform:rotate(0deg);
+        -moz-transform:rotate(0deg);
+        -webkit-transform:rotate(0deg);
+    }
+}
+
+
+@keyframes rolling_r{
+    100%{
+        transform:rotate(-295deg);
+        -moz-transform:rotate(-295deg);
+        -webkit-transform:rotate(-295deg);
+    }
+    0%{
+        transform:rotate(65deg);
+        -moz-transform:rotate(65deg);
+        -webkit-transform:rotate(65deg);
+    }
+}
+
+@-moz-keyframes rolling{
+    100%{
+        transform:rotate(360deg);
+        -moz-transform:rotate(360deg);
+        -webkit-transform:rotate(360deg);
+    }
+    0%{
+        transform:rotate(0deg);
+        -moz-transform:rotate(0deg);
+        -webkit-transform:rotate(0deg);
+    }
+}
+
+
+@-moz-keyframes rolling_r{
+    100%{
+        transform:rotate(-295deg);
+        -moz-transform:rotate(-295deg);
+        -webkit-transform:rotate(-295deg);
+    }
+    0%{
+        transform:rotate(65deg);
+        -moz-transform:rotate(65deg);
+        -webkit-transform:rotate(65deg);
+    }
+}
+
+.title{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-family: sans-serif;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 24px;
+    background: rgba(0, 0, 0, 0.62);
+    padding: 10px 0;
+    z-index: 1;
+}

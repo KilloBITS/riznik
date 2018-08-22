@@ -49,6 +49,9 @@
         </div>    
         <div class="auth-block openauth">
             <div class="auth-line">
+                Авторизація
+            </div>
+            <div class="auth-line">
                 <input type="text" id="authNumber" placeholder="Ваш номер телефону">
             </div>
             <div class="auth-line">
@@ -69,6 +72,10 @@
             <div class="basket-title">Кошик</div>
             <div class="basket-list"></div>
             <div class="basket-applyData">
+                <div class="news-user" style="display: none;">
+                    <div class="users-btn">У мене є аккаунт</div>
+                    <div class="users-btn uba">Я новий користувач</div>
+                </div>
                 <div class="apply-area">
                     <span>Імя</span>
                     <input type="text" title="Ваше Імя" placeholder="Ваше Імя" id="clientName">
@@ -237,6 +244,7 @@
                                     <%= tovar[i].text %>
                                 </div>
                                 <div class="tovar-right-bottom">
+                                    <div class="gprice">(Ціна вказана за 100 грам)</div>
                                     <div class="price">
                                         Ціна: <%= tovar[i].price %> .00
                                     </div>
@@ -399,7 +407,8 @@
 
                 <div class="toTopBtn"></div>
                 
-                <div id="oplata">                    
+                <div id="oplata">  
+                    <div id="sumOplata">***</div>
                     <div class="typeOplati typeOplatiAct" id="cashO"></div>
                      <div class="typeOplati" id="cardO"></div>
                     <div class="typeOplati" id="nonCash"></div>
@@ -408,17 +417,27 @@
                     <div class="tabs-oplata" style="display: block">
                         <div class="payTitle">Оплата готівкою</div>
                         <div class="payText">
-                            Оплата готівкою здійснюється в момент доставки замовлення. Покупець передає гроші експедитору-касиру і отримує замовлений товар і пакет документів (товарний чек або накладну (документи, які підтверджують покупку), гарантійний талон, інструкцію по експлуатації). Увага! Оплата товару здійснюється тільки в гривнях.
+                            Оплата готівкою здійснюється в момент доставки замовлення. 
+                            Покупець передає гроші кур'єру або касиру нової пошти та отримує замовлений товар і пакет документів 
+                            (товарний чек або накладну (документи, які підтверджують покупку)). 
+                            <br>
+                            Увага! Оплата товару здійснюється тільки в гривнях.
                         </div>
                         
                     </div>
                     <div class="tabs-oplata">
-                        <div class="payTitle">Онлайн оплата картою</div>
-                        
+                        <div class="payTitle">Оплата картою</div>
+                        <div class="payText">
+                            На данний момент оплата картою неможлива<br>
+                            Приносимо вибачення за незручності<br>
+                        </div>
                     </div>
                     <div class="tabs-oplata">
                         <div class="payTitle">Безготівкова оплата</div>
-                        
+                        <div class="payText">
+                            На данний момент безготівкова оплата неможлива<br>
+                            Приносимо вибачення за незручності<br>
+                        </div>
                     </div>
                     <div class="sendPayment">Підтвердити</div>
                     <div class="removePayment">Відмінити покупку</div>

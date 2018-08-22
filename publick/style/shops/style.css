@@ -1162,7 +1162,7 @@ input{
 
 .auth-block{
     position: absolute;
-    right: 20px;
+    right: 0;
     top: 50px;
     background: #b09436;
     width: 251px;
@@ -1172,13 +1172,14 @@ input{
     box-shadow: -2px 2px 10px -3px black;
     overflow: hidden;
     transition: 0.3s;
-    height: 103px;
+    height: calc(100% - 92px);
 }
 
 .auth-line{
     width: calc(100% - 10px);
     margin: auto;
     margin-top: 10px;
+    text-align: center;
 }
 
 .auth-line input[type="text"]{
@@ -1199,7 +1200,7 @@ input{
 }
 
 .openauth{
-    height: 0;
+    width: 0;
     padding: 0;
 }
 
@@ -1320,4 +1321,40 @@ input{
     cursor: pointer;
     font-size: 18px;
     box-shadow: inset 0px 7px 22px -5px rgba(0, 0, 0, 0.71);
+}
+
+.news-user{
+    
+}
+
+.users-btn{
+    width: 50%;
+    float: left;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border-bottom: white 1px solid;
+    color: white;
+    cursor: pointer;
+}
+
+.uba{
+    background: white;
+    color: black;
+}
+
+#sumOplata{
+    position: absolute;
+    right: 0px;
+    top: -25px;
+    background: #b09436;
+    padding: 5px 10px;
+    border-radius: 5px 5px 0 0;
+    color: white;
+}
+
+.gprice{
+    position: absolute;
+    font-size: 12px;
+    left: 20px;
 }

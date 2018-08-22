@@ -144,9 +144,9 @@ app.post('/getSubTovar', function(req, res){  //супутствующие то�
     let dataSub = [];
     var tov = global.tovar;
     for(let i = 0; i < 4; i++){
-        let randomka = randomInteger(0, tov.length)
+        let randomka = randomInteger(0, tov.length);
         dataSub.push(tov[randomka]);
-        delete tov[randomka];
+        tov.splice(randomka, 1);
     }
     res.send(dataSub);
 });
@@ -181,9 +181,14 @@ app.post('/setStars', function(req, res){  //оценка товара
 });
 
 
-var buy = require('./controllers/oformlenie');
-app.post('/sendBuyTovar', buy);
+var sendBuyTovar = require('./controllers/oformlenie');
+app.post('/sendBuyTovar', sendBuyTovar);
 
+var sendPayment = require('./controllers/sendPayment');
+app.post('/sendPayment', sendPayment);
+
+var cancelPayTovar = require('./controllers/cancelPay');
+app.post('/cancelPayTovar', cancelPayTovar);
 
 let UpdateDataFunction = (interval) => {
     var TimeInt = (1000 * 60) * 60;

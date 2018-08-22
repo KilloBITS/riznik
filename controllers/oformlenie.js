@@ -18,10 +18,11 @@ var buyTovar = function(req, res, next)  {
     console.log(d);
     var tovars = "";
     for(let i = 0; i < d.tov.length; i++){
-        tovars += "{[ name:"+d.tov[i].nameTovar+"; id:"+d.tov[i].id+"; len:"+d.tov[i].lenTov+"]}"
+        tovars += "{[ name:"+d.tov[i].nameTovar+", id:"+d.tov[i].id+", len:"+d.tov[i].lenTov+"]}";
     }
     
     let price = d.price.replace(/[^-0-9]/gim,'');
+    
     connection.query('INSERT INTO stonewalling(`name`, `number`, `text`, `tovar`, `dostavka`, `price`, `oplata`, `statusOplati`) VALUES ("'+d.clientName+'", "'+d.clientPNum+'", "' + d.clientEmail+'", "'+tovars+'", "0", "'+price+'", "0", "0")', function (errors, results, fields) {
         res.send({code:500, message:"Замовлення відправлене у обробку", oplata: results.insertId, sum: price});
     });  

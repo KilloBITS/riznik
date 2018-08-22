@@ -2,6 +2,9 @@
 var shops = new Object(); //переменная параметров
 shops.openCall = 0;
 shops.openMobMenu = false;
+shops.regUs = false;
+shops.buytype = 0;
+var idOtmeni = 0;
 //объект корзины
 var tovar = [];
 
@@ -29,19 +32,21 @@ var basketDelete = (a) => {
 };
 
 var loadtTovar = (data, filter) => {
+    $(".content-preload:eq(1)").show();
     $('.tovarDB').hide();
     if(data.length > 10){$(".pages").show();}else{$(".pages").hide();}
     if(data.length >= 1){$(".notTovars").hide();}else{$(".notTovars").show();}   
     
     for(let i = 0; i < shops.tovLengthData; i++){ 
         if((data.find(item => item.id === $('.tovarDB:eq('+i+') .tovarID').html())) !== undefined){
-            if(filter === '1'){
+            if(filter === '1' && i < 0){
                 $('.tovarDB:eq('+i+')').hide();
             }else{
                 $('.tovarDB:eq('+i+')').show();
             }          
         }         
-    }     
+    }  
+    $(".content-preload:eq(1)").fadeOut(300);
 };
 
 var basketSum = () =>{
@@ -76,16 +81,18 @@ var getCart = function () {
 };
 
 var filters = (filter) => {
-    $.post('/filters',{fil:filter}, function(data){
+    $.post('/filters',{fil: filter}, function(data){
+        console.log(data);
         loadtTovar(data, filter);
     });
 };
 
 let oplataMOdal = (id, sum) => {
-   $("#oplata").fadeIn(300);
-   
+    $("#oplata").fadeIn(300);
+    $("#sumOplata").html('Ваше замовлення на суму: '+sum+ 'грн не оплачено :(');
+    idOtmeni = id;
     setTimeout(() => {
-//  location.reload();
+    //  location.reload();
     }, 1500);
 };
 var design = function () {
@@ -239,7 +246,7 @@ var design = function () {
                 $('.basket-applyData').css({"display":"block"});
                 $('.content').css({'filter':'blur(3px)'});
                 $('.close-BASKET-min').fadeIn(350);   
-                $('.basket-check').html('Оплатити');                
+                $('.basket-check').html('Оплата');                
             }else{            
                 modal('Ваш кошик пустий');
             }
@@ -296,6 +303,21 @@ var design = function () {
                 }               
             });            
         }        
+    });
+    
+    $(".users-btn").click(function(){
+        var ind = $(".users-btn").index(this);
+        $(".users-btn").removeClass('uba');
+        $(".users-btn:eq("+ind+")").addClass('uba');
+        switch(ind){
+            case 0: 
+                shops.regUs = false ;     
+                $(".auth").click();
+                break;
+            case 1: 
+                shops.regUs = true ;                
+                break;
+        }
     });
     
     $('.close-BASKET-min').click(function () {
@@ -497,11 +519,35 @@ var design = function () {
     
     $(".typeOplati").click(function(){
         var ind = $(".typeOplati").index(this);
+        shops.buytype = ind;
         $(".typeOplati").removeClass('typeOplatiAct');
         $(".typeOplati:eq("+ind+")").addClass('typeOplatiAct');
         $(".tabs-oplata").hide();
         $(".tabs-oplata:eq("+ind+")").show();
-    });    
+    });   
+    
+    $(".sendPayment").click(function(){
+        switch(shops.buytype){
+            case 0: var t = 'Оплата курєру';break;
+            case 1: var t = 'Оплата картою';break;
+            case 2: var t = 'Оплата квитанцією';break;
+        }
+        $.post("/sendPayment",{id:idOtmeni, type: t}, function(data){
+            modal(data.message);
+            $("#oplata").fadeOut(300);
+            idOtmeni = null; 
+            setTimeout(function(){
+                location.reload();
+            },2000);
+        });
+    });
+    
+    $(".removePayment").click(function(){
+        $.post("/cancelPayTovar",{id:idOtmeni}, function(data){
+            modal(data.message);
+            $("#oplata").fadeOut(300);
+        });
+    });
 };
 
 var loadMainPage = function () {

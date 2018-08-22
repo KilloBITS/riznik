@@ -20,10 +20,8 @@ var connection = mysql.createConnection(ipOptSQL);
 connection.connect();
 
 router.get('/shop', function(req, res, next){
-    //SELECT * FROM `configurate`
     connection.query('SELECT * FROM `configurate`', function (errors, results, fields) {
-        console.log(results[0].one);
-        if(results[0].one === 1){
+        if(parseInt(results[0].one) === 1){
             connection.query('SELECT * FROM tovar left join tovarStars ON tovar.id = tovarStars.id WHERE 1', function (errors, results, fields) {
                 res.render('shop.ejs', {tovar: results});  
             });

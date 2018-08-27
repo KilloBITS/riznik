@@ -718,6 +718,7 @@ td {
     height: 40px;
     border-bottom: 1px solid silver;
     min-width: 1265px;
+    cursor: pointer;
 }
 
 .pays .payLines{

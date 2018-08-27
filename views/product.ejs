@@ -7,6 +7,8 @@
         <!--<script src="/script/shop/script.js" type="text/javascript"></script>-->
         <script>
         $(document).ready(function(){
+           
+
             $.post('/getSubTovar', function(data){
                 for(var i = 0; i < data.length; i++){
                     var a = document.createElement('div');
@@ -20,7 +22,7 @@
                 for(var i = 0; i < data.length; i++){
                     var a = document.createElement('div');
                     a.className = 'comment';
-                    a.innerHTML = '<div class="comment-user-name">'+data[i].textVal+'</div><div class="comment-user-msg">'+data[i].textVal+'</div><div class="comment-date">'+data[i].dateMsg+'</div>';
+                    a.innerHTML = '<div class="comment-user-name">'+data[i].name+'</div><div class="comment-user-msg">'+data[i].textVal+'</div><div class="comment-date">'+data[i].dateMsg+'</div>';
                     $(".comment-data").append(a);
                 }
             });  
@@ -49,6 +51,7 @@
                             </div>
                             <script>
                            $(document).ready(function(){
+                               
                                $('.star').click(function(){
                                    $(".stars1 .star").fadeOut(100);
                                    $(".stars1").addClass('sl');
@@ -76,7 +79,7 @@
                         <div class="product-text"><%= data[0].text %></div>
                         <div class="product-sklad"><%= data[0].sklad %></div>
                         <div class="tovar-right-bottom">
-                            <div class="price">
+                            <div class="price priceNA">
                                 Ціна: <%= data[0].price %> .00
                             </div>
                             <div class="addCart">
@@ -99,10 +102,48 @@
                                 <% if(data[0].length == 0){ %>
                                 <div class="button bGreen disBtn">Додати в кошик</div>                                
                                 <% } else { %>
-                                <div class="button bGreen">Додати в кошик</div>
+                                <div class="button bGreen buttonNA">Додати в кошик</div>
                                 <% } %>
 
                             </div>
+                            
+                            <script>  
+                                var tovar = [];
+                                var cart = localStorage.getItem("cart");
+                                if ((JSON.parse(cart)) && JSON.parse(cart).length > 0) {
+                                    tovar = JSON.parse(cart);
+                                    $('.basket div').html(JSON.parse(cart).length);
+                                }                                
+                                var updateCart = function (name, id, price, img, l) {
+                                    var cartS = new Object();
+                                    cartS.nameTovar = name;
+                                    cartS.id = parseInt(id);
+                                    cartS.v = 1;
+                                    cartS.price = price;
+                                    cartS.img = img;
+                                    cartS.lenTov = l;
+                                    tovar.push(cartS);
+                                    localStorage.setItem("cart", JSON.stringify(tovar));
+                                };
+                                
+                                var modal = function(text){
+                                    var mod = document.createElement('div');
+                                    mod.className = 'message-modal';
+                                    mod.innerHTML = text;
+                                    mod.style.bottom = (45 * $('.message-modal').size()) + 20 + "px";
+                                    $('body').append(mod);
+                                    $('.message-modal').fadeIn(300);
+                                    setTimeout(() => {
+                                        $(mod).remove();            
+                                    },3000);
+                                };
+                                
+                                $('.buttonNA').click(function () {
+                                    $('.basket div').html(parseInt($('.basket div').html()) + 1);
+                                    updateCart($('.title-block').html(), $("#tivarIDs").html(), $('.priceNA').html(), 'url(../../../content/tovarImage/' + $("#tivarIDs").html() + '.jpg)', 1);
+                                    modal('Додано в кошик!');                          
+                                });                                
+                            </script>
 
                         </div>
                     </div>
@@ -120,7 +161,16 @@
                             <div class="comment-text">
                                 <textarea class="commentar" id="comment-area" placeholder="Введіть ваш коментар"></textarea>
                                 <div class="comment-button">Відправити</div>
-                                <div class="comment-smile">☺</div>
+                                 <script>
+                                    $(document).ready(function(){
+                                        $('.comment-button').click(function(){                                           
+                                            $.post('/addComments', {text: $('#comment-area').val(), id: $("#tivarIDs").html()}, function(a){
+                                                 console.log(a);                                           
+                                            });
+                                        });
+                                    });    
+                                </script>    
+                                <!--<div class="comment-smile">☺</div>-->
                             </div>                            
                         </div>
                     </div>

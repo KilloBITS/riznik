@@ -105,19 +105,19 @@
 
                 <div class="apply-area dinamicData kur">
                     <span>Місто</span>
-                    <input type="text" title="Місто" placeholder="Місто">
+                    <input type="text" title="Місто" placeholder="Місто" value="Львів">
                 </div>
                 <div class="apply-area dinamicData kur">
                     <span>Вулиця</span>
-                    <input type="text" title="Вулиця" placeholder="Вулиця">
+                    <input type="text" title="Вулиця" placeholder="Вулиця" id="ulicakur">
                 </div>
                 <div class="apply-area dinamicData kur fiftyProc">
                     <span>Будинок</span>
-                    <input type="text" title="Будинок" placeholder="Будинок">
+                    <input type="text" title="Будинок" placeholder="Будинок" id="budkur">
                 </div>
                 <div class="apply-area dinamicData kur fiftyProc">
                     <span>Квартира</span>
-                    <input type="text" title="Квартира" placeholder="Квартира">
+                    <input type="text" title="Квартира" placeholder="Квартира" id="kvkur">
                 </div>
 
                 <div class="apply-area dinamicData" id="samShop">
@@ -131,11 +131,11 @@
                 
                 <div class="apply-area dinamicData np">
                     <span>Місто</span>
-                    <input type="text" title="Місто" placeholder="Місто">
+                    <input type="text" title="Місто" placeholder="Місто" id="npsity">
                 </div>
                 <div class="apply-area dinamicData np">
                     <span>Відділеня Нової Пошти №</span>
-                    <input type="text" title="Відділеня Нової Пошти" placeholder="Відділеня Нової Пошти №">
+                    <input type="text" title="Відділеня Нової Пошти" placeholder="Відділеня Нової Пошти №" id="viddilNumNP">
                 </div>
 
                 <div class="maps-Block">
@@ -150,10 +150,10 @@
         </div>
         <div class="content">
             <div class="content-preload"></div>
-            <div class="main-top">
-            </div>
+            <div class="main-top"></div>
         </div>     
-        <div class="content">
+        
+        <div class="content">            
             <div class="content-preload"></div>
             <div class="title-block">
                 Наша продукція
@@ -210,10 +210,9 @@
 
                 <script>
                     shops.tovLengthData = <%= tovar.length %>;
-</script>
+                </script>
 
                 <% for(var i = 0; i < tovar.length; i++) { %>
-
                     <% if(i < 10){ %> 
                     <div class="tovarDB">
                     <% } else { %>
@@ -289,16 +288,16 @@
                         </div>
                     </div>
 
-        <script>
-        var pageLength = Math.ceil(shops.tovLengthData / 10);                    
-        for(var np = 0; np < pageLength; np++){
-                    var npp = np + 1;
-                    $('.centerPage').append('<div class="page">' + npp + '</div>');
-        };
-        $('.page:eq(0)').addClass('pageActive');
-        
-        
-        </script>
+                    <script>
+                    var pageLength = Math.ceil(shops.tovLengthData / 10);                    
+                    for(var np = 0; np < pageLength; np++){
+                                var npp = np + 1;
+                                $('.centerPage').append('<div class="page">' + npp + '</div>');
+                    };
+                    $('.page:eq(0)').addClass('pageActive');
+
+
+                    </script>
 
                         <!--<div id="demo"></div>-->
                     </div>
@@ -306,7 +305,7 @@
                 <div class="content">
                     <div class="content-preload"></div>
                     <div class="title-block">Оплата та доставка</div>
-                    <div class="dataOfForm">                
+                    <div class="dataOfForm plitki">                
                         <div class="lineOfText">
                             <div class="minIMG" id="payment"></div>
                             <div class="minTXT">Оплата</div>

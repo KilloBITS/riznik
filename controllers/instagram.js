@@ -25,11 +25,13 @@ function insta() {
     });
 };
 
+insta();
 setInterval(function(){
     insta();
 },(1000 * 60) * 60 * 24);
 
 router.post('/insta', function(req, res, next){
+    
     res.send(global.instaImage);
 });
 module.exports = router;

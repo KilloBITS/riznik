@@ -9,25 +9,25 @@ function newTovar() {
     ooo.text = $("#newText").val();
     ooo.length = $("#newLength").val();
     return ooo;
-};
+}
+;
 
-var refresh = function() {
-    
-    $.post('/getTovar',function(tovar){
+var refresh = function () {
+    $.post('/getTovar', function (tovar) {
         $('.listItems').remove();
-        for(let t = 0; t < tovar.length; t++){       
-            var shab = '<div class="listItems" style="background-image: none;"><div class="listID">'+tovar[t].id+'</div><div class="listNAME">'+tovar[t].name+'</div></div>'
+        for (let t = 0; t < tovar.length; t++) {
+            var shab = '<div class="listItems" style="background-image: none;"><div class="listID">' + tovar[t].id + '</div><div class="listNAME">' + tovar[t].name + '</div></div>';
             $('.listbox').append(shab);
         }
         listItemClick();
     });
-}
+};
 
-var listItemClick= function(){
+var listItemClick = function () {
     $('.listItems').click(function () {
         $('.dataTovar').removeClass('disabled');
         var index = $('.listItems').index(this);
-        
+
         $('.listItems').css({"background-image": "none"});
         $('.listItems:eq(' + index + ')').css({"background-image": "url(../../../image/icons/32.png)"});
         var idTovaru = $('.listItems:eq(' + index + ') .listID').html();
@@ -44,6 +44,22 @@ var listItemClick= function(){
     });
 };
 
+var updateListPays = function () {
+    $(".paysList .pays").remove();
+    $.post("/stonewalling", function (data) {
+        for (var i = 0; i < data.length; i++) {
+            let a = document.createElement("div");
+            a.className = 'pays';
+            if (parseInt(data[i].statusOplati) === 0) {
+                var op = "<span>"+data[i].oplata+"</span><span>Не оплачено</span>"
+            }
+            var payDatas = '<div class="tn0 payLines"><input type="radio" name="tovPay" value="' + data[i].id + '"></div><div class="tn1 payLines">' + data[i].id + '</div><div class="tn2 payLines">' + data[i].tovar + '</div><div class="tn3 payLines">' + data[i].name + '</div><div class="tn4 payLines">' + data[i].price + '</div><div class="tn5 payLines">' + data[i].status + '</div><div class="tn6 payLines">' + op + '</div><div class="tn7 payLines">' + data[i].number + '</div><div class="tn8 payLines">' + data[i].dostavka + '</div>';
+            a.innerHTML = payDatas;
+            $(".paysList").prepend(a);
+        }
+    });
+};
+
 let design = () => {
     /** buttons **/
     $('#submitLeg').click(function () {
@@ -56,7 +72,16 @@ let design = () => {
         let index = $('.bluBTN').index(this);
         $('.panelBlock').hide();
         $('.panelBlock:eq(' + index + ')').show();
+
+        if (index === 3) {
+            updateListPays()
+        };
     });
+    
+    $('.refreshPays').click(function () {
+        updateListPays();
+    });
+    
 
     $('#newTovar').click(function () {
         $('.panel').css({"filter": "blur(5px)"})
@@ -92,7 +117,7 @@ let design = () => {
     $('#listSearch').on('input keyup', function (e) {
         var result;
         var data = $("#listSearch").val();
-         if (data.length >= 1) {
+        if (data.length >= 1) {
             for (var i = 0; i < $('.listItems').length; i++) {
                 if (($('.listItems:eq(' + i + ') .listNAME').html().toLowerCase().indexOf(data.toLowerCase()) !== -1) || ($('.listItems:eq(' + i + ') .listID').html().toLowerCase().indexOf(data.toLowerCase()) !== -1)) {
                     result = i;
@@ -113,16 +138,26 @@ let design = () => {
             $('.panel').css({"filter": "blur(0px)"});
             $('.addNewTovar').fadeOut(300);
             refresh();
-            
+
         });
     });
-    
+
     $('#deleteTovar').click(function () {
         $.post("/deleteTovar", {id: selectItem}, function (result) {
-            refresh();            
+            refresh();
         });
     });
     
+    $(".statusZakaz").click(function(){
+        alert($('input[name=tovPay]:checked').val()); 
+    });
+    
+    
+//    $("input[type=radio]").on('change',function(){
+        
+//    });
+ 
+
     listItemClick();
 };
 
@@ -143,5 +178,6 @@ let initLegend = () => {
 $(document).ready(function () {
     design();
     initLegend();
+    $(".statusZakaz").removeClass("disabled");
     $('.bluBTN:eq(0)').click();
 });

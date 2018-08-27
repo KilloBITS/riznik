@@ -19,10 +19,9 @@ $(function () {
     }
 
 var indexIMG = 0;
-    let loadGallery = () => {
+    let loadGallery = function(){
         $.post('/insta', function (data) {
             page.gallery = data;
-            console.log(data);
             for (let i = 0; i < data.length - 1; i++) {
                 let a = document.createElement('div');
                 a.className = 'img';
@@ -65,8 +64,7 @@ var indexIMG = 0;
             $('#imaaages').width(W).height(H).css({"background-image": "url(" + page.gallery[indexIMG].images.standard_resolution.url + ")"});
         });
         
-        $('#next').click(function(){
-            
+        $('#next').click(function(){            
             if(indexIMG < $('.img').size()){
                 indexIMG++;
             }
@@ -339,10 +337,7 @@ var indexIMG = 0;
         lazyLoading: false,
 
         //events
-        onLeave: function (index, nextIndex, direction) {
-//            var vid = document.getElementById("video-background");
-//            vid.play();
-                 
+        onLeave: function (index, nextIndex, direction) {                
             if(direction === 'up'){
                 var time = 1;
             }else{
@@ -351,8 +346,7 @@ var indexIMG = 0;
             
             if(nextIndex === 4){
                 $('.footer-social-links').fadeOut(300);
-            }
-            
+            }            
             
             switch(nextIndex){
                 case 1: svgColor('white', time);break;
@@ -366,25 +360,11 @@ var indexIMG = 0;
                 $('.footer-social-links').fadeIn(300);            
             }
         },
-        afterRender: function () {
-//            var vid = document.getElementById("video-background");
-//            vid.play();
-        },
+        afterRender: function () {},
         afterResize: function () {},
         afterResponsive: function (isResponsive) {},
         afterSlideLoad: function (anchorLink, index, slideAnchor, slideIndex) {},
         onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {}
     });
-    $.fn.fullpage.setAllowScrolling(false, 'down');
-
-//    var vid = document.getElementById("video-background");
-//    vid.play();
-//    var day = new Date();
-//    
-//    if((day.getHours() > 9) || (day.getHours() < 20)){
-//        $('.opened span').html('(Відчинено)');
-//    }else{
-//        $('.opened span').html('(Зачинено)');
-//    }
-    
+    $.fn.fullpage.setAllowScrolling(false, 'down');    
 });

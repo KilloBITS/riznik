@@ -24,7 +24,8 @@
             <ul class="main">
                 <li class="bluBTN dashboard"><a href="#">Головна сторінка</a></li>
                 <li class="bluBTN write"><a href="#">Товари</a></li>
-                <li class="bluBTN users"><a href="#">Пользователи</a></li>
+                <li class="bluBTN users"><a href="#">Користувачі</a></li>
+                <li class="bluBTN paysb"><a href="#">Замовлення</a></li>
             </ul>
         </nav>
 
@@ -66,7 +67,7 @@
                         <input type="text" id="listSearch" placeholder="Пошук (введіть ID або Назву товару)">
                     </div>
                     <div class="listbox">  
-                
+
                         <% for(var i = 0; i < tovar.length; i++) { %>
                         <div class="listItems">
                             <div class="listID"><%= tovar[i].id %></div>
@@ -74,7 +75,7 @@
                         </div>
                         <% } %>                
                     </div>
-                    
+
                     <div class="dataTovar disabled" >
                         <div class="lineData" id="photo">
                             <span>Зображення</span>
@@ -88,7 +89,7 @@
                                         var file = document.getElementById('file');
                                         image.addEventListener('click', function () {
                                             file.click();
-                                        }, false);                         
+                                        }, false);
                                         file.addEventListener('change', function () {
                                             if (this.files && this.files[0]) {
                                                 var reader = new FileReader();
@@ -147,9 +148,9 @@
                             <option value="Соус">Соус</option>
                             <option value="Вино">Вино</option>
                         </select>
-                       
+
                     </div>
-                     <div class="lineData2">
+                    <div class="lineData2">
                         <span>Кількість</span>
                         <input class="input2" type="text" id="newLength">
                     </div>
@@ -162,14 +163,49 @@
                 <div class="bbttnn" id="saveNewsTovar">Зберегти</div>
             </div>              
         </main>
-        
+
         <main role="main" class="panelBlock mains">
             <section class="panel important">
                 <h2>Список користувачів:</h2>
-                
-            </section>           
+            </section>       
+            <section class="panel important">
+                <div class="userList">
+                    
+                </div>
+            </section>      
         </main>
-        
+
+        <main role="main" class="panelBlock paysbbb">
+            <section class="panel important">
+                <h2>Список замовлень</h2>
+
+            </section>      
+            <section class="panel important">
+                <div class="refreshPays"></div>
+                <div class="paysTitle">
+                    <div class="pays">
+                        <div class="tn0 payLines">*</div>
+                        <div class="tn1 payLines">ID</div>
+                        <div class="tn2 payLines">Товари</div>
+                        <div class="tn3 payLines">ПІБ</div>
+                        <div class="tn4 payLines">Сумма</div>
+                        <div class="tn5 payLines">Статус замовлення</div>
+                        <div class="tn6 payLines">Статус оплати</div>
+                        <div class="tn7 payLines">Номер</div>
+                    </div>    
+                </div>
+                <div class="paysList"></div>
+            </section>  
+            
+            <section class="panel important" id="paymentSector">
+                <h2>Керування замовленням</h2>
+                <div class="statusZakaz nbRED disabled">Видалити</div>
+                <div class="statusZakaz nbBLUE disabled">Скасувати замовлення</div>
+                <div class="statusZakaz nbYellow disabled">Прийнято до обробки</div>
+                <div class="statusZakaz nbGREEN disabled">Товар відправленно</div>               
+            </section> 
+        </main>
+
         <footer role="contentinfo">Riznyk</footer>
 
         <div class=""></div>

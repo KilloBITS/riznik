@@ -8,6 +8,34 @@ var idOtmeni = 0;
 //объект корзины
 var tovar = [];
 
+var createPrice = function(){
+    $(".tovarDB").remove();
+};
+
+var sotMyFunctionUPtoDown = function(){
+    function compare(a,b) {
+        if (parseInt(a.price) > parseInt(b.price))
+            return -1;
+        if (parseInt(a.price) < parseInt(b.price))
+            return 1;
+        return 0;
+    }    
+    shops.staticTovar.sort(compare);
+    createPrice();
+};
+
+var sotMyFunctionDownToUp = function(){
+    function compare(a,b) {
+        if (parseInt(a.price) < parseInt(b.price))
+            return -1;
+        if (parseInt(a.price) > parseInt(b.price))
+            return 1;
+        return 0;
+    }    
+    shops.staticTovar.sort(compare);
+    createPrice();
+};
+
 var updateSum = function(ind, sum){
     tovar[ind].lenTov = sum;   
     localStorage.setItem("cart", JSON.stringify(tovar));
@@ -195,7 +223,11 @@ var design = function () {
     $('.selOption').click(function () {
         $('.sel').fadeOut(200);
         var index = $('.selOption').index(this);
-        $('#sort').html($('.selOption:eq(' + index + ')').html())
+        $('#sort').html($('.selOption:eq(' + index + ')').html());
+        switch(index){
+            case 1: sotMyFunctionDownToUp();break;
+            case 2: sotMyFunctionUPtoDown();break;
+        }
         shops.SA = false;
     });
 
@@ -260,20 +292,14 @@ var design = function () {
             if($("#clientName").val().length >= 3){ //проверка имени
                 if($("#clientPriz").val().length >= 3){ //проверка фамилии
                     if($("#clientPNum").val().length >= 10){ //проверка номера телефона
-                        if($("#typeOfDostavka").val() !== null){ //проверка типа доставки
-                            
+                        if($("#typeOfDostavka").val() !== null){ //проверка типа доставки                            
                             if($("#typeOfDostavka").val() === "1"){
                                 var umovi = $('#samShop').val();
                             } else if($("#typeOfDostavka").val() === "2"){
-                                var umovi = [];
-                                for(let i = 0; i < $('.kur').size(); i++){
-                                    umovi.push($('.kur:eq('+i+') input').val());
-                                }
+                                var umovi = "Доставка курєром: м.Львів вул."+ $("#ulicakur").val() + " Будинок: " + $("#budkur").val() + " Квартира: " + $("#kvkur").val();
+                                
                             } else if($("#typeOfDostavka").val() === "3"){
-                                var umovi = [];
-                                for(let i = 0; i < $('.np').size(); i++){
-                                    umovi.push($('.np:eq('+i+') input').val());
-                                }
+                                var umovi = "Доставка Новою поштою: Місто: "+ $("#npsity").val() + " Відділення №: " + $("#viddilNumNP").val();
                             }
             
                             var newBuy = new Object({
@@ -286,7 +312,9 @@ var design = function () {
                                 umovi: umovi,
                                 price: $('.basket-sum').html(),
                                 oplata: $("#clientEmail").val() 
-                            });                                
+                            });      
+                            
+                            
                      
                             $.post("/sendBuyTovar",{data:newBuy},(data) => {
                                 console.log(data);
@@ -608,6 +636,10 @@ $(document).ready(function () {
     loadMainPage();
     design();
     getCart();
+    
+    $.post('/tovars', function(data){
+        shops.staticTovar = data;
+    });
 });
 
 

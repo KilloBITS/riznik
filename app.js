@@ -70,6 +70,9 @@ let updateData4 = () => {
     });
 };
 
+app.post('/tovars', function (req, res) {  //список магазинов
+    res.send(global.tovar);
+});
 //список магазинов
 app.post('/getShops', function (req, res) {  //список магазинов
     res.send(global.shops);
@@ -106,6 +109,9 @@ app.post('/sendPayment', sendPayment);
 //отмена заказа и платежа
 var cancelPayTovar = require('./controllers/cancelPay');
 app.post('/cancelPayTovar', cancelPayTovar);
+
+var addComments = require('./controllers/addComments');
+app.post('/addComments', addComments);
 
 let UpdateDataFunction = () => {
     var TimeInt = (1000 * 60) * 60;
@@ -162,6 +168,9 @@ let auth = require('./routes/auth');
 app2.get('/', auth);
 let panel = require('./routes/admin');
 app2.get('/panel', panel);
+
+let stonewalling = require('./controllers/stonewalling');
+app2.post('/stonewalling', stonewalling);
 
 
 app2.post('/tovarData', function (req, res) {
@@ -302,7 +311,6 @@ app2.post('/upload', function (req, res) {
 
 app2.post('/getUsersLength', function (req, res) {
     connection.query('SELECT * FROM `ipAdress` WHERE 1 ', function (errors, results, fields) {
-        console.log(results);
         res.send(results.length.toString());
     });
 });

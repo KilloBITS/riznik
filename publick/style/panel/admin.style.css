@@ -134,6 +134,7 @@ footer[role=contentinfo] {
     border-radius: .3rem;
     margin: 1%;
     transition: 0.3s;
+    position: relative;
 }
 .panel > h2, .panel > ul {
     margin: 1rem;
@@ -690,7 +691,7 @@ td {
     -o-filter: grayscale(100%);
     filter: grayscale(100%);
     filter: gray; /* IE 6-9 */
-     pointer-events: none;
+    pointer-events: none;
     opacity: 0.4;
 }
 
@@ -710,4 +711,144 @@ td {
     height: 33px;
     border: none;
     border-top: 1px solid silver;
+}
+
+.pays{
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid silver;
+    min-width: 1265px;
+}
+
+.pays .payLines{
+    float: left;
+    border-right: 1px solid silver;
+    text-align: center;
+    line-height: 40px;
+    overflow: hidden;
+    height: 40px;
+}
+
+.tn0{
+    width: 40px;
+}
+
+.tn0 input{
+    width: 15px;
+    height: 35px;
+}
+
+.tn1{
+    width: 40px;
+}
+
+.tn2{
+    padding: 0 10px 0 10px;
+    width: 150px;
+}
+
+.tn3{
+    padding: 0 10px 0 10px;
+    width: 210px;
+}
+
+.tn4{
+    padding: 0 10px 0 10px;
+    width: 115px;
+}
+
+.tn5{
+    padding: 0 10px 0 10px;
+    width: 190px;
+}
+
+.tn6{
+    padding: 0 10px 0 10px;
+    width: 160px;
+    font-size: 12px;    
+}
+.tn7{
+    padding: 0 10px 0 10px;
+    width: 160px;
+}
+.tn8{
+    padding: 0 10px 0 10px;
+    width: 200px;
+}
+
+
+.payLines span{
+    float: left;
+    line-height: 17px;
+}
+
+.statusZakaz{
+    float: left;
+    display: inline-block;
+    padding: 5px 10px;
+    margin-left: 10px;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.nbGREEN{
+    background: #009000;
+}
+
+.nbRED{
+    background: #b10000;
+}
+
+.nbBLUE{
+    background: #000082;
+}
+
+.nbYellow{
+    background: #a5a51b;
+}
+
+.paysTitle{
+    width: 100%;
+    height: 40px;
+    background: silver;
+    border-color: black;
+    border-bottom: black 1px solid;
+}
+
+.paysTitle .pays{
+    width: 100%;
+    height: 40px;
+    border-bottom: 1px solid black;
+}
+
+.paysTitle .pays .payLines{
+    float: left;
+    border-right: 1px solid black;
+    text-align: center;
+    line-height: 40px;
+}
+
+.refreshPays{
+    position: absolute;
+    right: 8px;
+    top: -80px;
+    width: 50px;
+    height: 50px;
+    background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0NzIuOCA0NzIuOCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDcyLjggNDcyLjg7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8cG9seWdvbiBzdHlsZT0iZmlsbDojMEQ5Qjc5OyIgcG9pbnRzPSI0MDgsODcuNiAzNzkuMiwxMTQuOCAzNDIuNCwxMTQuOCA0MDgsNTAuOCA0NzIuOCwxMTcuMiA0MzYsMTE3LjIgIi8+Cjxwb2x5bGluZSBzdHlsZT0iZmlsbDojMjNDMTgxOyIgcG9pbnRzPSI0MDgsNTAuOCA0NzIuOCwxMTcuMiA0MzYsMTE3LjIgNDA4LDg3LjYgMzc5LjIsMTE0LjggIi8+Cjxwb2x5Z29uIHN0eWxlPSJmaWxsOiMwRDlCNzk7IiBwb2ludHM9IjQwOCwxNjguNCAzNzkuMiwxOTcuMiAzNDIuNCwxOTcuMiA0MDgsMTMyLjQgNDcyLjgsMTk3LjIgNDM2LDE5Ny4yICIvPgo8Zz4KCTxwb2x5bGluZSBzdHlsZT0iZmlsbDojMjNDMTgxOyIgcG9pbnRzPSI0MDgsMTMyLjQgNDcyLjgsMTk3LjIgNDM2LDE5Ny4yIDQwOCwxNjguNCAzNzkuMiwxOTcuMiAgIi8+Cgk8cGF0aCBzdHlsZT0iZmlsbDojMjNDMTgxOyIgZD0iTTM1MC40LDIzNy4yYy0xLjYsNjQtNTEuMiwxMTIuOC0xMTMuNiwxMTIuOGMtNjMuMiwwLTExNC40LTUwLjQtMTE0LjQtMTEzLjYgICBjMC02MC44LDUwLjQtMTA5LjYsMTA2LjQtMTEyLjhWMS4yQzEwMC44LDQuNCwwLDEwOS4yLDAsMjM3LjJjMCwxMzAuNCwxMDYuNCwyMzQuNCwyMzYuOCwyMzQuNGMxMjguOCwwLDIzNC40LTEwNi40LDIzNi0yMzQuNCAgIEgzNTAuNHoiLz4KPC9nPgo8cGF0aCBzdHlsZT0iZmlsbDojMEQ5Qjc5OyIgZD0iTTAuOCwyMzcuMmMwLDEzMC40LDEwNS42LDIzNC40LDIzNiwyMzQuNGMxMjkuNiwwLDIzNC40LTEwNi40LDIzNi0yMzQuNEgzNTAuNCAgYy0xLjYsNjQtNTEuMiwxMTIuOC0xMTMuNiwxMTIuOGMtNjMuMiwwLTExNC40LTUwLjQtMTE0LjQtMTEzLjYiLz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==);
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+
+.disabled{
+    pointer-events:none;
+    filter: grayscale(100%);
+}
+
+.paysList{
+     overflow-x: scroll;   
 }

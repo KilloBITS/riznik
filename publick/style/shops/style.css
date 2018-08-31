@@ -256,6 +256,16 @@ body{
     top: 16px;
     cursor: default;
 }
+.title-block2{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    font-family: btn;
+    text-align: center;
+    font-size: 15px;
+    top: 45px;
+    cursor: default;
+}
 
 .dataOfForm{
     width: 100%;
@@ -376,7 +386,7 @@ body{
 .tovar-text{
     position: absolute;
     top: 50px;
-    width: 100%;
+    width: calc(100% - 27px);
     padding: 0 10px 10px 15px; 
 }
 
@@ -693,6 +703,19 @@ body{
     margin-left: 10px;
     text-align: center;
     cursor: default;
+    position: relative;
+}
+
+#ntTovar{
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+    height: 30px;
+    width: 100%;
+    background: red;
+    color: white;
+    line-height: 30px;
 }
 .minIMG{
     width: 25px;
@@ -1366,66 +1389,83 @@ input{
 #clientName.nonCorrectData,#clientPriz.nonCorrectData,#clientPNum.nonCorrectData,#typeOfDostavka.nonCorrectData{
     border: 2px solid red;
 }
-
-
-@media screen and (min-width: 800px) {
-    
-.plitki .tovarDB{
-    width: 48%;
-    margin-right: 2%;
+.mainDF{
+    margin-top: 72px;
 }
 
-.plitki .tovar-title {
+.divSpecials{
+    width: 100%;
+}
+
+.spectext{
+    width: 40%;
+    font-size: 18px;
+    padding-top: 25px;
+    display: inline-block;
+}
+
+.popularTovar{
+
+}
+.recomended-block{
+    width: 100%;
+    height: 295px;
+    position: relative;
+    border: 2px solid #b09337;
+    margin-top: 100px;
+}
+
+.recomended-title{
     position: absolute;
+    top: -15px;
+    background: #b09337;
+    padding: 5px 20px 5px 20px;
+    left: 15px;
+    color: aliceblue;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+.recomended-data{
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 15px);
+    top: 15px;
+}
+
+.recomended-tovar{
+    width: calc(25% - 6px);
+    height: 100%;
+    float: left;
+    display: inline-block;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.recomended-tovar:hover .recomended-tovarImage{
+    outline: 1px dashed white;
+    outline-offset: -3px;
+}
+
+.recomended-tovarImage{
+    width: 100%;
+    height: 215px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.3s;
+}
+
+.recomended-tovar-title{
     width: 100%;
     text-align: center;
-    top: 10px;
-    font-size: 18px;
-}
-
-.plitki .tovar-text {
-    position: absolute;
-    top: 50px;
-    width: 100%;
-    padding: 0 10px 10px 15px;
-    font-size: 13px;
-}
-
-.plitki .tovar-right-bottom {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    left: -100%;
-}
-
-.plitki .gprice {
-    position: absolute;
+    margin-top: 6px;
+    height: 20px;
     font-size: 12px;
-    left: 0;
-    top: -9px;
 }
 
-.plitki .price {
-    padding: 4px 13px;
-    font-size: 16px;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 11px;
-    margin-right: 10px;
-}
-
-.plitki .addCart{
-    margin-bottom: 5px;
-}
-
-.plitki .nayavnist{
-    position: absolute;
-    top: 14px;
-    right: -94%;
-}
-
-.plitki .button{
-    padding: 9px 15px 10px 15px;
+.recomended-tovar-btn{
+    padding: 5px 15px 5px 15px;
     border: 1px solid #68a341;
     box-shadow: 0 1px 2px 0 #a4ca6c inset;
     -webkit-box-shadow: 0 1px 2px 0 #a4ca6c inset;
@@ -1434,31 +1474,109 @@ input{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#96c161', endColorstr='#609c3d',GradientType=0 );
     color: white;
     cursor: pointer;
+    text-align: center;
+    margin-top: 5px;
 }
 
-.plitki .details{
-    position: absolute;
-    right: -94%;
-    bottom: 16px;
-    font-size: 18px;
-    cursor: pointer;
+.recomended-tovar-btn:hover { opacity: 0.95; filter: alpha(opacity=95); -webkit-transition: opacity 0.2s ease-in-out; -moz-transition: opacity 0.2s ease-in-out; transition: opacity 0.2s ease-in-out; }
+
+.recomended-tovar-btn:active{
+    background: -webkit-linear-gradient(top, #d2af41 0%,#967d2f 100%);
+    box-shadow: 0 0 2px #707070 inset, 0 1px 0 #fff; -webkit-box-shadow: 0 0 2px #707070 inset, 0 1px 0 #fff; -moz-box-shadow: 0 0 2px #707070 inset, 0 1px 0 #fff; 
 }
 
-.plitki .tovar-logo{
-    height: calc(100% - 80px);
-}
 
-.plitki .tovar-stars {
-    position: absolute;
-    left: 0;
-    bottom: inherit;
-    background: rgba(255, 255, 255, 0.8);
-    width: 100%;
-    height: 62px;
-    transition: 0.6s;
-    opacity: 0;
-    top: 0;
-}
+@media screen and (min-width: 800px) {
+
+    .plitki .tovarDB{
+        width: 48%;
+        margin-right: 2%;
+    }
+
+    .plitki .tovar-title {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 10px;
+        font-size: 18px;
+    }
+
+    .plitki .tovar-text {
+        position: absolute;
+        top: 50px;
+        width: 100%;
+        padding: 0 10px 10px 15px;
+        font-size: 13px;
+    }
+
+    .plitki .tovar-right-bottom {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left: -100%;
+    }
+
+    .plitki .gprice {
+        position: absolute;
+        font-size: 12px;
+        left: 0;
+        top: -9px;
+    }
+
+    .plitki .price {
+        padding: 4px 13px;
+        font-size: 16px;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: 11px;
+        margin-right: 10px;
+    }
+
+    .plitki .addCart{
+        margin-bottom: 5px;
+    }
+
+    .plitki .nayavnist{
+        position: absolute;
+        top: 14px;
+        right: -94%;
+    }
+
+    .plitki .button{
+        padding: 9px 15px 10px 15px;
+        border: 1px solid #68a341;
+        box-shadow: 0 1px 2px 0 #a4ca6c inset;
+        -webkit-box-shadow: 0 1px 2px 0 #a4ca6c inset;
+        -moz-box-shadow: 0 1px 2px 0 #a4ca6c inset;
+        background: -webkit-linear-gradient(top, #e4bf48 0%,#b09337 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#96c161', endColorstr='#609c3d',GradientType=0 );
+        color: white;
+        cursor: pointer;
+    }
+
+    .plitki .details{
+        position: absolute;
+        right: -94%;
+        bottom: 16px;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    .plitki .tovar-logo{
+        height: calc(100% - 80px);
+    }
+
+    .plitki .tovar-stars {
+        position: absolute;
+        left: 0;
+        bottom: inherit;
+        background: rgba(255, 255, 255, 0.8);
+        width: 100%;
+        height: 62px;
+        transition: 0.6s;
+        opacity: 0;
+        top: 0;
+    }
 }
 
 

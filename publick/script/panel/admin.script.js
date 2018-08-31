@@ -44,16 +44,30 @@ var listItemClick = function () {
     });
 };
 
+var payClick = function(){
+    var ind = $('.pays').index(this);
+    $(".pays:eq("+ind+") input[type='radio']").prop("checked", true);
+};
+
 var updateListPays = function () {
     $(".paysList .pays").remove();
     $.post("/stonewalling", function (data) {
         for (var i = 0; i < data.length; i++) {
             let a = document.createElement("div");
             a.className = 'pays';
+            a.onclick = payClick;
             if (parseInt(data[i].statusOplati) === 0) {
                 var op = "<span>"+data[i].oplata+"</span><span>Не оплачено</span>"
             }
-            var payDatas = '<div class="tn0 payLines"><input type="radio" name="tovPay" value="' + data[i].id + '"></div><div class="tn1 payLines">' + data[i].id + '</div><div class="tn2 payLines">' + data[i].tovar + '</div><div class="tn3 payLines">' + data[i].name + '</div><div class="tn4 payLines">' + data[i].price + '</div><div class="tn5 payLines">' + data[i].status + '</div><div class="tn6 payLines">' + op + '</div><div class="tn7 payLines">' + data[i].number + '</div><div class="tn8 payLines">' + data[i].dostavka + '</div>';
+            
+            switch(data[i].status){
+                case "NEW": var lc = "gold";break; 
+                case "OB": var lc = "yellow";break; 
+                case "OTP": var lc = "#009000";break; 
+            }
+            
+            var payDatas = '<div class="tn0 payLines"><input type="radio" name="tovPay" value="' + data[i].id + '"></div><div class="tn1 payLines">' + data[i].id + '</div><div class="tn3 payLines">' + data[i].name + '</div><div class="tn4 payLines">' + data[i].price + '</div><div class="tn5 payLines">' + data[i].status + '</div><div class="tn6 payLines">' + op + '</div><div class="tn7 payLines">' + data[i].number + '</div>';
+            a.style.backgroundColor = lc;
             a.innerHTML = payDatas;
             $(".paysList").prepend(a);
         }
@@ -130,9 +144,7 @@ let design = () => {
             $('.listItems').show();
         }
     });
-
-
-
+    
     $('#saveNewsTovar').click(function () {
         $.post("/AddNewsTovar", {data: newTovar()}, function (result) {
             $('.panel').css({"filter": "blur(0px)"});
@@ -149,14 +161,19 @@ let design = () => {
     });
     
     $(".statusZakaz").click(function(){
-        alert($('input[name=tovPay]:checked').val()); 
+        console.log(this.id)
+        switch(this.id){
+            case "dd1": var type = "DEL";break;
+            case "dd2": var type = "CAN";break;
+            case "dd3": var type = "OP";break;
+            case "dd4": var type = "OTP";break;
+        }
+        $.post("/ZakazStatus",{type:type,id:$('input[name=tovPay]:checked').val()},function(data){
+            console.log(data)
+        });
     });
     
-    
-//    $("input[type=radio]").on('change',function(){
-        
-//    });
- 
+   
 
     listItemClick();
 };

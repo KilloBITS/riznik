@@ -721,6 +721,10 @@ td {
     cursor: pointer;
 }
 
+.pays:hover{
+    background: wheat;
+}
+
 .pays .payLines{
     float: left;
     border-right: 1px solid silver;
@@ -807,7 +811,8 @@ td {
 }
 
 .nbYellow{
-    background: #a5a51b;
+    background: yellow;
+    color: black;
 }
 
 .paysTitle{

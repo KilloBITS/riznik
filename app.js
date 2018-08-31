@@ -168,10 +168,11 @@ let auth = require('./routes/auth');
 app2.get('/', auth);
 let panel = require('./routes/admin');
 app2.get('/panel', panel);
-
 let stonewalling = require('./controllers/stonewalling');
 app2.post('/stonewalling', stonewalling);
 
+let statusZakaz = require('./controllers/setZacazStatus');
+app2.post('/ZakazStatus', statusZakaz);
 
 app2.post('/tovarData', function (req, res) {
     var id = req.body.id;

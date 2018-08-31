@@ -124,8 +124,8 @@
                     <span>Магазин</span>
                     <select id="selectShops">
                         <option value='0' disabled selected>Виберіть магазин</option>
-                        <option value='1'>Львів, вул.Коновальца 10</option>
-                        <option value="2">Львів, вул.Костомарова 10</option>
+                        <option value='Львів, вул.Коновальца 10'>Львів, вул.Коновальца 10</option>
+                        <option value="Львів, вул.Костомарова 10">Львів, вул.Костомарова 10</option>
                     </select>
                 </div>
                 
@@ -150,7 +150,55 @@
         </div>
         <div class="content">
             <div class="content-preload"></div>
-            <div class="main-top"></div>
+            <div class="title-block">
+                Онлайн магазин пана Різника                
+            </div>
+            <div class="title-block2">
+                Тільки найсмачніші ковбаси
+            </div>            
+            <div class="dataOfForm mainDF">
+                <div class="divSpecials">
+                    <div class="spectext">
+                        «Різник» - це один з небагатьох магазинів що продають лише власну продукцію.
+                        Тільки у нас ви знайдете свіжу та якісну ковбасу з натурального м'яса та спецій, 
+                        смачний та запашний сир, а також соуси які доповнять вишуканий смак нашої продукції. 
+                        <br><br>
+                        Наше сучасне обладнання та перевірені часом методи виготовлення дозволили добитися
+                        неймовірного смаку нашої ковбаси. 
+                    </div>
+                    
+                    <div class="popularTovar">
+                        
+                    </div>
+                    <div class="recomended-block">
+                        <div class="recomended-title">Популярні товари</div>
+                        <div class="recomended-data">
+                            
+                            <div class="recomended-tovar"> 
+                                <div class="recomended-tovarImage" style="background-image: url(../../../content/tovarImage/48.jpg);"></div>
+                                <div class="recomended-tovar-title">Ковбаса копчена з пармезаном</div>
+                                <div class="recomended-tovar-btn">Додати в кошик</div>                                    
+                            </div>                            
+                            <div class="recomended-tovar"> 
+                                <div class="recomended-tovarImage" style="background-image: url(../../../content/tovarImage/47.jpg);"></div>
+                                <div class="recomended-tovar-title">Ковбаса печена на яблуках</div>
+                                <div class="recomended-tovar-btn">Додати в кошик</div>        
+                            </div>     
+                            <div class="recomended-tovar"> 
+                                <div class="recomended-tovarImage" style="background-image: url(../../../content/tovarImage/71.jpg);"></div>
+                                <div class="recomended-tovar-title">Barton Guestier Beaujolais Passeport червоне</div>
+                                <div class="recomended-tovar-btn">Додати в кошик</div>                                    
+                            </div>
+                            <div class="recomended-tovar"> 
+                                <div class="recomended-tovarImage" style="background-image: url(../../../content/tovarImage/63.jpg);"></div>
+                                <div class="recomended-tovar-title">Салямі коньячна</div>
+                                <div class="recomended-tovar-btn">Додати в кошик</div>                                    
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>         
         </div>     
         
         <div class="content">            
@@ -210,7 +258,7 @@
 
                 <script>
                     shops.tovLengthData = <%= tovar.length %>;
-                </script>
+</script>
 
                 <% for(var i = 0; i < tovar.length; i++) { %>
                     <% if(i < 10){ %> 
@@ -243,7 +291,7 @@
                                     <%= tovar[i].text %>
                                 </div>
                                 <div class="tovar-right-bottom">
-                                    <div class="gprice">(Ціна вказана за 100 грам)</div>
+                                    <div class="gprice"><%= tovar[i].cinOD %></div>
                                     <div class="price">
                                         Ціна: <%= tovar[i].price %> .00
                                     </div>
@@ -288,16 +336,16 @@
                         </div>
                     </div>
 
-                    <script>
-                    var pageLength = Math.ceil(shops.tovLengthData / 10);                    
-                    for(var np = 0; np < pageLength; np++){
-                                var npp = np + 1;
-                                $('.centerPage').append('<div class="page">' + npp + '</div>');
-                    };
-                    $('.page:eq(0)').addClass('pageActive');
-
-
-                    </script>
+        <script>
+        var pageLength = Math.ceil(shops.tovLengthData / 10);                    
+        for(var np = 0; np < pageLength; np++){
+                    var npp = np + 1;
+                    $('.centerPage').append('<div class="page">' + npp + '</div>');
+        };
+        $('.page:eq(0)').addClass('pageActive');
+        
+        
+        </script>
 
                         <!--<div id="demo"></div>-->
                     </div>
@@ -381,6 +429,7 @@
                                 Доставка Новою поштою в будь які міста України. <br><br>
                                 Ціна доставки згідно тарифів Нової пошти.
                             </p>
+                            <a href="https://novaposhta.ua/tracking" target="_blank"><div id="ntTovar">Відстежити товар</div></a>
                         </div>
                     </div>
                 </div> 

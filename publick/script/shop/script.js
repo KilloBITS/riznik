@@ -294,7 +294,8 @@ var design = function () {
                     if($("#clientPNum").val().length >= 10){ //проверка номера телефона
                         if($("#typeOfDostavka").val() !== null){ //проверка типа доставки                            
                             if($("#typeOfDostavka").val() === "1"){
-                                var umovi = $('#samShop').val();
+                                
+                                var umovi = "Самовивіз з: " + $('#selectShops').val();
                             } else if($("#typeOfDostavka").val() === "2"){
                                 var umovi = "Доставка курєром: м.Львів вул."+ $("#ulicakur").val() + " Будинок: " + $("#budkur").val() + " Квартира: " + $("#kvkur").val();
                                 

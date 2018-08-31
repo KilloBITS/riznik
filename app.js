@@ -124,7 +124,7 @@ let UpdateDataFunction = () => {
     }, 10000);
 };
 
-app.listen(8010, function () {
+app.listen(80, function () {
     UpdateDataFunction();
     updateData();  //основнгые параметры
     updateData2(); //партнеры

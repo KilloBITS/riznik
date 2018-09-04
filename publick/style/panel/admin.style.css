@@ -461,6 +461,8 @@ td {
 
 .panelBlock{
     display: none;
+    overflow-y: scroll;
+    height: calc(100% - 80px);
 }
 
 .listbox{
@@ -799,7 +801,7 @@ td {
 }
 
 .nbGREEN{
-    background: #009000;
+    background: rgb(0, 232, 0);
 }
 
 .nbRED{
@@ -807,12 +809,12 @@ td {
 }
 
 .nbBLUE{
-    background: #000082;
+    background: rgb(255, 98, 98);
 }
 
 .nbYellow{
-    background: yellow;
-    color: black;
+    background: rgb(162, 162, 255);
+    /*color: black;*/
 }
 
 .paysTitle{
@@ -857,4 +859,28 @@ td {
 
 .paysList{
      overflow-x: scroll;   
+}
+
+.detailsZAKAZ{
+        float: left;
+    display: inline-block;
+    margin: 15px;
+}
+
+#tovList{
+    width: 350px;
+    height: 420px;
+    background: red;
+}
+
+#userNameList{
+    width: 300px;
+    height: 50px;
+    background: blue;
+}
+
+#OplataStatus{
+    width: 300px;
+    height: 50px;
+    background: blue;
 }

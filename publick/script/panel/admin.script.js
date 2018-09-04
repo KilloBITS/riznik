@@ -51,7 +51,8 @@ var payClick = function(){
 
 var updateListPays = function () {
     $(".paysList .pays").remove();
-    $.post("/stonewalling", function (data) {
+    
+    $.post("/stonewalling", function (data) {        
         for (var i = 0; i < data.length; i++) {
             let a = document.createElement("div");
             a.className = 'pays';
@@ -62,15 +63,22 @@ var updateListPays = function () {
             
             switch(data[i].status){
                 case "NEW": var lc = "gold";break; 
-                case "OB": var lc = "yellow";break; 
-                case "OTP": var lc = "#009000";break; 
+                case "OB": var lc = "#a2a2ff";break; 
+                case "OTP": var lc = "rgb(0, 232, 0)";break; 
+                case "CAN": var lc = "rgb(255, 98, 98)";break; 
             }
             
-            var payDatas = '<div class="tn0 payLines"><input type="radio" name="tovPay" value="' + data[i].id + '"></div><div class="tn1 payLines">' + data[i].id + '</div><div class="tn3 payLines">' + data[i].name + '</div><div class="tn4 payLines">' + data[i].price + '</div><div class="tn5 payLines">' + data[i].status + '</div><div class="tn6 payLines">' + op + '</div><div class="tn7 payLines">' + data[i].number + '</div>';
+            
+            if(data[i].status === "CAN"){
+                var rad = 'X';
+            }else{
+                var rad = '<input type="radio" name="tovPay" value="' + data[i].id + '">';
+            }
+            var payDatas = '<div class="tn0 payLines">'+rad+'</div><div class="tn1 payLines"> '+ data[i].id + '</div><div class="tn3 payLines">' + data[i].name + '</div><div class="tn4 payLines">' + data[i].price + '</div><div class="tn5 payLines">' + data[i].status + '</div><div class="tn6 payLines">' + op + '</div><div class="tn7 payLines">' + data[i].number + '</div>';
             a.style.backgroundColor = lc;
             a.innerHTML = payDatas;
             $(".paysList").prepend(a);
-        }
+        }        
     });
 };
 
@@ -165,11 +173,11 @@ let design = () => {
         switch(this.id){
             case "dd1": var type = "DEL";break;
             case "dd2": var type = "CAN";break;
-            case "dd3": var type = "OP";break;
+            case "dd3": var type = "OB";break;
             case "dd4": var type = "OTP";break;
         }
-        $.post("/ZakazStatus",{type:type,id:$('input[name=tovPay]:checked').val()},function(data){
-            console.log(data)
+        $.post("/ZakazStatus",{type: type, id: $('input[name=tovPay]:checked').val()},function(data){
+            $(".refreshPays").click();
         });
     });
     

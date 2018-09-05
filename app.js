@@ -255,7 +255,7 @@ app2.post('/auth', function (req, res, next) {
                 transporter.sendMail(ml, function (error, info) {
                     if (error) {
                         console.log(error);
-                        res.send('Неверный логин или пароль');
+                        res.send('{"code":500 , "data": "Неверный логин или пароль"}');
                     } else {
                         console.log('Email sent: ' + info.response);
                         let users1 = 'userSMS' + results[0].Name;
@@ -264,10 +264,10 @@ app2.post('/auth', function (req, res, next) {
                     }
                 });
             } else {
-                res.send('Неверный логин или пароль');
+                res.send('{"code":500 , "data": "Неверный логин или пароль"}');
             }
         } else {
-            res.send('Неверный логин или пароль');
+            res.send('{"code":500 , "data": "Неверный логин или пароль"}');
         }
     });
 });

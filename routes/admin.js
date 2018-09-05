@@ -19,8 +19,6 @@ function parseAdmin(req, res, next) {
     }else{
        res.redirect('/'); 
     }
-    
-    next();
 }
 
 router2.get('/panel',parseAdmin, function(req, res, next){    

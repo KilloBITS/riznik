@@ -8,6 +8,7 @@ function newTovar() {
     ooo.categories = $("#newCategories").val();
     ooo.text = $("#newText").val();
     ooo.length = $("#newLength").val();
+    
     return ooo;
 }
 ;

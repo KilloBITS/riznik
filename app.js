@@ -205,7 +205,10 @@ app2.post('/UpdateDataTovar', function (req, res) {
 
 app2.post('/AddNewsTovar', function (req, res) {
     var data = req.body.data;
-    connection.query('INSERT INTO `tovar`(`type`, `name`, `text`, `price`, `length`, `sklad`) VALUES ("'+ data.categories +'","'+data.name+'","'+data.text+'","'+data.price+'","'+data.length+'","'+''+'")', function (errors, results, fields) {
+    connection.query('INSERT INTO `tovar`(`type`, `name`, `text`, `price`, `length`, `sklad`) VALUES ("'+ data.categories +'","'+data.name+'","'+data.text+'","'+data.price+'","'+data.length+'","'+''+'")', function (error, results, field) {
+        console.log(results);
+        console.log(results.insertId)
+        
         connection.query('INSERT INTO `tovarStars`(`id`, `star`, `len`) VALUES ("'+ results.insertId +'","'+ 0 +'","'+ 0 +'")', function (errors, result, fields) {
             res.send('Збережено');            
             connection2.query('create table tov'+results.insertId+' (id int (10),name varchar(20) NOT NULL, textVal text(1024) NOT NULL, dateMsg varchar(24) NOT NULL)');

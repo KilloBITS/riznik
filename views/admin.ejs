@@ -99,7 +99,15 @@
                                                         $('.betaImage').css({"background-image": "url(" + e.target.result + ")"});
                                                     });
                                                 };
+
                                                 reader.readAsDataURL(this.files[0]);
+                                                
+                                                reader.onprogress = function (data) {
+                                                    if (data.lengthComputable) {
+                                                        var progress = parseInt(((data.loaded / data.total) * 100), 10);
+                                                        console.log(progress);
+                                                    }
+                                                }
                                             }
                                         }, false);
                                     }, false);
@@ -170,7 +178,7 @@
             </section>       
             <section class="panel important">
                 <div class="userList">
-                    
+
                 </div>
             </section>      
         </main>
@@ -195,11 +203,11 @@
                 </div>
                 <div class="paysList"></div>
             </section>  
-            
+
             <section class="panel important" id="paymentSector">
                 <h2>Деталі замовлення</h2>
                 <div class="detailsZAKAZ" id="tovList">
-                    
+
                 </div>      
                 <div class="detailsZAKAZ" id="userNameList"></div>      
                 <div class="detailsZAKAZ" id="OplataStatus"></div>      
@@ -208,7 +216,7 @@
                 <div class="detailsZAKAZ" id=""></div>      
                 <div class="detailsZAKAZ"></div>      
             </section> 
-            
+
             <section class="panel important" id="paymentSector">
                 <h2>Керування замовленням</h2>
                 <div class="statusZakaz nbRED disabled" id="dd1">Видалити</div>
